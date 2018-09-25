@@ -117,6 +117,7 @@ class Array
     }
 
     public void find()
+    {}
 
 
 }
