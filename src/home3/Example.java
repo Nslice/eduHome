@@ -2,9 +2,11 @@ package home3;
 
 import java.util.Random;
 
+
+
 class NumberSeries
 {
-    public static final double EPS = 0.000001;
+    static final double EPS = 0.000001;
 
     //--------------------------------------------------------------------
     private static double funcA(int n)
@@ -12,7 +14,7 @@ class NumberSeries
         return Math.pow(-1, n) * ((n + 1) / Math.pow(2, n - 1));
     }
 
-    public static double calculate()
+    static double calculate()
     {
         int n = 0;
         double result;
@@ -25,12 +27,12 @@ class NumberSeries
         return result;
     }
 
-    public static double sumFirstMembers(int num)
+    static double sumFirstMembers(int amount)
     {
         double sum = 0;
         double result;
 
-        for (int i = 0, n = 0; i < num; i++, n++)
+        for (int i = 0, n = 0; i < amount; i++, n++)
         {
             result = funcA(n);
             sum += result;
@@ -44,11 +46,11 @@ class NumberSeries
 
 class Calc
 {
-    double t1;
-    double t2;
+    private double t1;
+    private double t2;
 
-    double a;
-    double b;
+    private double a;
+    private double b;
 
 
     //--------------------------------------------------------------------
@@ -94,12 +96,12 @@ class Calc
 }
 
 
-class Array
+class MyArray
 {
     private int[] arr;
 
     //--------------------------------------------------------------------
-    public Array(int size, int low, int high)
+    MyArray(int size, int low, int high)
     {
         arr = new int[size];
         Random rand = new Random();
@@ -107,7 +109,7 @@ class Array
             arr[i] = low + rand.nextInt(high);
     }
 
-    public void show()
+    void show()
     {
         for (int i = 0; i < arr.length; i++)
         {
@@ -116,8 +118,27 @@ class Array
         }
     }
 
-    public void find()
-    {}
+    int find(int amount)
+    {
+        if (arr.length == 0)
+            return -1;
+
+        int sum, max = 0;
+        int index = 0;
+
+        for (int i = 0; i <= arr.length - amount; i++)
+        {
+            sum = 0;
+            for (int j = 0; j < amount; j++)
+                sum += arr[i + j];
+            if (sum > max)
+            {
+                max = sum;
+                index = i;
+            }
+        }
+        return index;
+    }
 
 
 }
@@ -130,8 +151,12 @@ public class Example
         System.out.println(NumberSeries.calculate());
 
 
-        Array array = new Array(200,0, 100);
+        MyArray array = new MyArray(200,0, 100);
         array.show();
+        int amt = 10;
+        System.out.println("Участок из " + amt + " элементов, сумма лялял...");
+        int index = array.find(amt);
+        System.out.println("участок " + index + " : " + (index + amt));
 
 
     }

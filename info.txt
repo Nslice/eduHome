@@ -1,0 +1,5 @@
+Earth        6378.1       5.9726e24     Solar_System
+Mercurial    2439.7       3.33022e23    Solar_System
+Epsilon      60268        5.6866e27     Photon
+GSGiant      71492        1.8986e27     Gliese_G-1
+Stone        24764        1.0243e26     Andromeda
