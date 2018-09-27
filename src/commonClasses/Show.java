@@ -1,10 +1,18 @@
 package commonClasses;
 
+
 public class Show
 {
-    public static void getch() throws java.io.IOException
+    public static void getch()
     {
-        System.in.read();
+        try
+        {
+            System.in.read();
+        }
+        catch (java.io.IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public static void show(int taskNumber)
