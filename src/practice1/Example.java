@@ -122,6 +122,6 @@ public class Example
         tokenizer = new StringTokenizer(str);
         while (tokenizer.hasMoreTokens())
             System.out.println(tokenizer.nextToken());
-
     }
+
 }
