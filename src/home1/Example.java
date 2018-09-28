@@ -1,13 +1,14 @@
 package home1;
 
+import commonClasses.Show;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
+
 class Time
 {
-
     static String dob()
     {
         return Time.dob("dd.MM.yyyy");
@@ -25,8 +26,8 @@ class Time
     {
         return new Date().toString();
     }
-
 }
+
 
 class RightTriangle
 {
@@ -72,8 +73,10 @@ class RightTriangle
     {
         double[] val = new double[3];
         val[0] = 90;
-        if (cathetus1 > cathetus2) val[1] = Math.sin(cathetus1 / hypotenuse) * 180 / Math.PI;
-        else val[1] = Math.cos(cathetus2 / hypotenuse) * 180 / Math.PI;
+        if (cathetus1 > cathetus2)
+            val[1] = Math.toDegrees(Math.sin(cathetus1 / hypotenuse));
+        else
+            val[1] = Math.toDegrees(Math.cos(cathetus2 / hypotenuse));
         val[2] = 180 - val[1] - val[0];
         return val;
     }
@@ -95,21 +98,18 @@ class Week
 
 public class Example
 {
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args)
     {
-//        Date date = new Date();
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.setTime(date);
-//        System.out.println(calendar.getTime());
-//        calendar.add(Calendar.WEEK_OF_MONTH, 1);
-//        SimpleDateFormat simpleFormat = new SimpleDateFormat("dd.MM.yyyy - HH.mm");
-//        System.out.println(simpleFormat.format(calendar.getTime()));
-
-
+        //ex1:
+        Show.show(1);
         System.out.println(Time.dob());
         System.out.println(Time.now());
+        Show.getch();
 
-        System.out.println();
+
+        //ex2:
+        Show.show(2);
+
         if (args.length > 1)
         {
             RightTriangle triangle = new RightTriangle(Double.parseDouble(args[0]), Double.parseDouble(args[1]));
@@ -118,17 +118,24 @@ public class Example
             System.out.printf("%13s %.3f\n", "Area:", triangle.area());
 
             System.out.printf("%13s ", "Angles:");
-            double check = 0;
+            double checkSum = 0;
             for (double i : triangle.angles())
             {
                 System.out.printf("%.3f   ", i);
-                check += i;
+                checkSum += i;
             }
-            System.out.println("\n\ncheck sum " + check);
+            System.out.println("\n\ncheckSum " + checkSum);
         }
+        else System.out.println("Not enough arguments");
 
+        Show.getch();
+
+
+        //ex3:
+        Show.show(3);
         Scanner scn = new Scanner(System.in);
         System.out.print("Entet the day number: ");
         System.out.println(Week.nameOfDay(scn.nextInt()));
     }
+
 }

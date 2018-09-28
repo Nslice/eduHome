@@ -105,13 +105,14 @@ class Planet
 
 public class Example
 {
-    public static void main(String[] args) throws  java.io.IOException
+    public static void main(String[] args) throws java.io.IOException
     {
         if (args.length == 0)
         {
             System.out.println("Not enough arguments");
             return;
         }
+
         File f = new File(args[0]);
         BufferedReader fin = new BufferedReader(new FileReader(f));
 
@@ -122,7 +123,7 @@ public class Example
             int i = 0;
             while ((line = fin.readLine()) != null && i < 5)
             {
-                String[] str = line.split(" +");
+                String[] str = line.split("[ ]+");
                 planets[i++] = new Planet(str[0], Double.parseDouble(str[1]), Double.parseDouble(str[2]), str[3]);
             }
         }
@@ -133,21 +134,24 @@ public class Example
             System.out.println();
         }
 
-        Scanner scanner = new Scanner(System.in);
 
+        Scanner scanner = new Scanner(System.in);
         String str;
         System.out.println("Search. Enter the name: ");
+
         while (!(str = scanner.nextLine()).equals("exit"))
         {
             Planet pl = null;
             for (Planet i : planets)
             {
                 if (str.equals(i.getName()))
+                {
                     pl = new Planet(i);
+                    break;
+                }
             }
             System.out.println(pl);
         }
-
     }
 
 
