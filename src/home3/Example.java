@@ -1,16 +1,12 @@
 package home3;
 
-import commonClasses.Show;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.util.Random;
-import java.util.Scanner;
+
 
 
 class NumberSeries
 {
-    static final double EPS = 0.000_001;
+    static final double EPS = 0.000001;
 
     //--------------------------------------------------------------------
     private static double funcA(int n)
@@ -21,19 +17,21 @@ class NumberSeries
     static double calculate()
     {
         int n = 0;
-        double sum = 0.0, result;
+        double result;
         do
         {
-            result = funcA(n++);
-            sum += result;
+            result = funcA(n);
+            n++;
         } while (Math.abs(result) > EPS);
 
-        return sum;
+        return result;
     }
 
-    static double calculate(int amount)
+    static double sumFirstMembers(int amount)
     {
-        double sum = 0.0, result;
+        double sum = 0;
+        double result;
+
         for (int i = 0, n = 0; i < amount; i++, n++)
         {
             result = funcA(n);
@@ -46,33 +44,54 @@ class NumberSeries
 }
 
 
-@Retention(RetentionPolicy.RUNTIME)
-@interface Formula
-{
-    String description();
-
-    String admissilbeVals();
-}
-
 class Calc
 {
-    @Formula(description = "(1/b^2) * (ln(y/x) + ax/y)",
-            admissilbeVals = "(b,x,y != 0) and ((y>0 and x>0) or (y<0 and x<0))")
-    static double formulaT1(double x, double y)
+    private double t1;
+    private double t2;
+
+    private double a;
+    private double b;
+
+
+    //--------------------------------------------------------------------
+    /**
+     * ОДЗ:
+     * a != 0
+     * b != 0
+     * x != 0
+     * y != 0
+     */
+    public Calc(int x, int y)
     {
-        double a = 2.1, b = 4.7;
-        return (1 / (b * b)) * (Math.log(y / x) + a * x / y);
+        Random rand = new Random();
+        this.a = rand.nextDouble();
+
+    }
+    public double formulaT1()
+    {
+        double y = 2.2, x = 3.1;
+        double b = 2, a = 3;
+        t1 = (1 / (b * b)) * (Math.log(y / x) + a * x / y);
+
+        //---------
+
+
+
+        return 9.9;
     }
 
-
-    @Formula(description = "-(x/a)tg(ax/2) + (2/a^2)ln(sin(ax/2))",
-            admissilbeVals = "(a != 0) and (x > 0)")
-    static double formulaT2(double x)
+    public double formulaT2()
     {
-        double a = 0.7;
+        double y = 2.2, x = 3.1;
+        double b = 2, a = 3;
+
         double op1 = -(x / a) * Math.tan(a * x / 2);
         double op2 = 2 / (a * a) * Math.log(Math.sin(a * x / 2));
-        return op1 + op2;
+        t2 = op1 + op2;
+
+
+
+        return 9.9;
     }
 }
 
@@ -97,7 +116,6 @@ class MyArray
             if (i % 10 == 0) System.out.println();
             System.out.printf("[%4d]%3d ", i, arr[i]);
         }
-        System.out.println();
     }
 
     int find(int amount)
@@ -106,7 +124,7 @@ class MyArray
             return -1;
 
         int sum, max = 0;
-        int index = -1;
+        int index = 0;
 
         for (int i = 0; i <= arr.length - amount; i++)
         {
@@ -119,60 +137,27 @@ class MyArray
                 index = i;
             }
         }
-
         return index;
     }
 
-}
 
+}
 
 public class Example
 {
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args)
     {
-        Scanner in = new Scanner(System.in);
-        /*
-            для кириллицы в консоле:
-            > chcp 1251;
-            > javac -encoding utf8 %1.java
-        */
-
-        //ex1:
-        Show.show(1);
+        System.out.println(NumberSeries.sumFirstMembers(10));
         System.out.println(NumberSeries.calculate());
-        System.out.println(NumberSeries.calculate(10));
-        Show.getch();
 
 
-        //ex2:
-        Show.show(2);
-        Formula anno;
-        double x, y;
-
-        anno = Calc.class.getDeclaredMethod("formulaT1", double.class, double.class).getAnnotation(Formula.class);
-        System.out.println("formula: " + anno.description() + "\n" + anno.admissilbeVals());
-        System.out.println("Enter x, y:");
-        x = in.nextDouble();
-        y = in.nextDouble();
-        System.out.printf("%.4f\n\n", Calc.formulaT1(x, y));
-
-        anno = Calc.class.getDeclaredMethod("formulaT2", double.class).getAnnotation(Formula.class);
-        System.out.println("formula: " + anno.description() + "\n" + anno.admissilbeVals());
-        System.out.println("Enter x:");
-        x = in.nextDouble();
-        System.out.printf("%.4f\n", Calc.formulaT2(x));
-
-        Show.getch();
-
-
-        //ex3:
-        Show.show(3);
-        MyArray array = new MyArray(200, 0, 100);
+        MyArray array = new MyArray(200,0, 100);
         array.show();
-        int amount = 10;
-        amount = in.nextInt();
-        int index = array.find(amount);
-        System.out.println("На участке " + index + " : " + (index + amount) + " сумма максимальна");
-    }
+        int amt = 10;
+        System.out.println("Участок из " + amt + " элементов, сумма лялял...");
+        int index = array.find(amt);
+        System.out.println("участок " + index + " : " + (index + amt));
 
+
+    }
 }
