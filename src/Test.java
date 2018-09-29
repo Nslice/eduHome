@@ -10,14 +10,13 @@ public class Test
         try
         {
             Method m = c.getDeclaredMethod("main", String[].class);
-            m.invoke(null, new Object[] {args});
+            m.invoke(null, new Object[]{args});
         }
         catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException ex)
         {
             ex.printStackTrace();
         }
     }
-
 
 
     public static void main(String[] args)
@@ -27,6 +26,13 @@ public class Test
          * home2("info.txt");
          * home3(
          */
+
+        /*
+            для кириллицы в консоле:
+            > chcp 1251;
+            > javac -encoding utf8 %1.java
+        */
+
 
         test(home1.Example.class, "13", "6.2");
         test(home2.Example.class, "info.txt");
