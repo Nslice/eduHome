@@ -30,6 +30,7 @@ public class Example
         //ex2:
         Show.show(2);
         str2 = "Tool";
+        System.out.println("str1: " + str1 + "  str2: " + str2);
         if (str1.compareTo(str2) > 0)
             System.out.println("str1 follows the str2");
         else if (str1.compareTo(str2) < 0)
@@ -43,6 +44,7 @@ public class Example
         //ex3:
         Show.show(3);
         String myAdress = "Kyrgyzstan, Bihskek, Victory street, house 4, flat 65";
+        System.out.println("Adress: " + myAdress);
         String myStreet = myAdress.substring(21, 35);
         System.out.println("myStreet = " + myStreet);
         System.out.println("myAdress.indexOf(\"street\") = " + myAdress.indexOf("street"));
@@ -96,11 +98,12 @@ public class Example
 
         //ex7:
         Show.show(7);
-        str = "Microphone";
+        str = "micrOphoNe";
+        System.out.println(str);
         str = str.toUpperCase();
-        System.out.println("str = " + str);
+        System.out.println("Upper = " + str);
         str = str.toLowerCase();
-        System.out.println("str = " + str);
+        System.out.println("Lower = " + str);
         Show.getch();
 
 
