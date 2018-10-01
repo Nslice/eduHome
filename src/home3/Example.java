@@ -51,13 +51,13 @@ class NumberSeries
 {
     String description();
 
-    String admissilbeVals();
+    String condition();
 }
 
 class Calc
 {
     @Formula(description = "(1/b^2) * (ln(y/x) + ax/y)",
-            admissilbeVals = "(b,x,y != 0) and ((y>0 and x>0) or (y<0 and x<0))")
+            condition = "(b,x,y != 0) and ((y>0 and x>0) or (y<0 and x<0))")
     static double formulaT1(double x, double y)
     {
         double a = 2.1, b = 4.7;
@@ -66,7 +66,7 @@ class Calc
 
 
     @Formula(description = "-(x/a)tg(ax/2) + (2/a^2)ln(sin(ax/2))",
-            admissilbeVals = "(a != 0) and (x > 0)")
+            condition = "(a != 0) and (x > 0)")
     static double formulaT2(double x)
     {
         double a = 0.7;
@@ -123,6 +123,17 @@ class MyArray
         return index;
     }
 
+    int sum(int pos, int len)
+    {
+        int sum = 0;
+        for (int i = 0; i < len; i++)
+        {
+            sum += arr[pos + i];
+        }
+
+        return sum;
+    }
+
 }
 
 
@@ -139,8 +150,8 @@ public class Example
 
         //ex1:
         Show.show(1);
-        System.out.println(NumberSeries.calculate());
-        System.out.println(NumberSeries.calculate(10));
+        System.out.println("Sum of series:\t\t  " + NumberSeries.calculate());
+        System.out.println("Sum of first 10 term: " + NumberSeries.calculate(10));
         Show.getch();
 
 
@@ -150,14 +161,14 @@ public class Example
         double x, y;
 
         anno = Calc.class.getDeclaredMethod("formulaT1", double.class, double.class).getAnnotation(Formula.class);
-        System.out.println("formula: " + anno.description() + "\n" + anno.admissilbeVals());
+        System.out.println("CONDITION: " + anno.condition() + "\nFORMULA: " + anno.description());
         System.out.println("Enter x, y:");
         x = in.nextDouble();
         y = in.nextDouble();
         System.out.printf("%.4f\n\n", Calc.formulaT1(x, y));
 
         anno = Calc.class.getDeclaredMethod("formulaT2", double.class).getAnnotation(Formula.class);
-        System.out.println("formula: " + anno.description() + "\n" + anno.admissilbeVals());
+        System.out.println("CONDITION: " + anno.condition() + "\nFORMULA: " + anno.description());
         System.out.println("Enter x:");
         x = in.nextDouble();
         System.out.printf("%.4f\n", Calc.formulaT2(x));
@@ -170,9 +181,11 @@ public class Example
         MyArray array = new MyArray(200, 0, 100);
         array.show();
         int amount = 10;
+        System.out.println("Enter the length of the segment to search: ");
         amount = in.nextInt();
         int index = array.find(amount);
-        System.out.println("На участке " + index + " : " + (index + amount) + " сумма максимальна");
+        System.out.print("On the segment " + index + " : " + (index + amount - 1) + " the maximum sum");
+        System.out.println(" (" + array.sum(index, amount) + ")");
     }
 
 }
