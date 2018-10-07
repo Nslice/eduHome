@@ -1,7 +1,6 @@
 package home3;
 
-import commonClasses.Show;
-
+import other.Show;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.Random;

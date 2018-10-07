@@ -1,4 +1,4 @@
-package commonClasses;
+package other;
 
 
 public class Show
