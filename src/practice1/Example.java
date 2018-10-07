@@ -1,6 +1,6 @@
 package practice1;
 
-import commonClasses.Show;
+import other.Show;
 import java.io.StringReader;
 import java.lang.StringBuffer;
 import java.util.Stack;
