@@ -7,7 +7,8 @@ public class Show
     {
         try
         {
-            System.in.read();
+            byte[] bts = new byte[2];
+            System.in.read(bts);
         }
         catch (java.io.IOException e)
         {
