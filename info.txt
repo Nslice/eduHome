@@ -1,5 +1,12 @@
-Earth        6378.1       5.9726e24     Solar_System
-Mercurial    2439.7       3.33022e23    Solar_System
-Epsilon      60268        5.6866e27     Photon
-GSGiant      71492        1.8986e27     Gliese_G-1
-Stone        24764        1.0243e26     Andromeda
+Earth           6371.0       5.9726e24      Solar System
+Mercurial       2439.7       3.33022e23     Solar System
+Epsilon         60268.0      5.6866e27      Photon
+GSGiant         71492.0      1.8986e27      Gliese G-1
+Stone           24764.0      1.0243e26      Andromeda
+Root            56764.0      1.0243e26      Andromeda
+Jupiter         69911.0      1.8986e27      Solar System
+Venus           6051.8       4.8675e24      Solar System
+Neptune         24622.0      1.0243e26      Solar Sysem
+Planet C        8043.8       2.38904e25     PSR 1257+12
+Kepler-452b     10384.73     2.9863e25      Exoplanet
+Ceres           445.5        9.393e20       Asteroids Belt
