@@ -23,12 +23,12 @@ public class Test
     public static void main(String[] args)
     {
         /**
-         * practice1();
-         * practice2();
+         * practice1(void);
+         * practice2(void);
          */
 
+
         test(practice1.Example.class);
-        test(practice2.Example.class);
     }
 }
 

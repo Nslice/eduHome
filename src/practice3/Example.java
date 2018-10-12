@@ -1,7 +1,6 @@
 package practice3;
 
 import other.Show;
-
 import java.util.*;
 
 
@@ -18,15 +17,16 @@ public class Example
     public static void main(String[] args)
     {
         //ex1:
+        Show.show(1);
         int[] ar1 = new int[15];
-        System.out.println("ar1" + Arrays.toString(ar1));
-
         fill(ar1);
+        System.out.println("ar1: " + Arrays.toString(ar1));
+
         int[] ar2 = new int[ar1.length + 10];
         System.arraycopy(ar1, 0, ar2, 0, ar1.length);
         ar1 = ar2;
-        System.out.println(Arrays.toString(ar1));
-
+        System.out.println("ar2: " + Arrays.toString(ar1));
+        Show.getch();
 
         //ex2:
         Show.show(2);
@@ -40,14 +40,14 @@ public class Example
 
         Scanner scanner = new Scanner(System.in);
 
-//        for (int i = 0; i < 4; i++)
-//        {
-//            String reply = map.get(scanner.nextLine());
-//            if (reply == null)
-//                System.out.println("empty");
-//            else
-//                System.out.println(reply);
-//        }
+        for (int i = 0; i < 4; i++)
+        {
+            String reply = map.get(scanner.nextLine());
+            if (reply == null)
+                System.out.println("empty");
+            else
+                System.out.println(reply);
+        }
 
         //ex3:
         int[] arr = {9, 3, 1, 65, 312, 43, 423, 123, 32, 12};
