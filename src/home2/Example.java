@@ -1,106 +1,11 @@
 package home2;
 
+import home2.space.Planet;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.Scanner;
-
-
-class Planet
-{
-    private String name;
-    private double radius;
-    private double weight;
-    private String identification;
-
-
-    public Planet(String name, double radius, double weight, String identification)
-    {
-        this.name = name;
-        this.radius = radius;
-        this.weight = weight;
-        this.identification = identification;
-    }
-
-    public Planet(String name, double radius, double weight)
-    {
-        this(name, radius, weight, "none");
-    }
-
-    public Planet(String name)
-    {
-        this(name, -1.0, -1.0, "none");
-    }
-
-    public Planet()
-    {
-        this("none", -1.0, -1.0, "none");
-    }
-
-    public Planet(Planet obj)
-    {
-        this.name = obj.name;
-        this.radius = obj.radius;
-        this.weight = obj.weight;
-        this.identification = obj.identification;
-    }
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public double getRadius()
-    {
-        return radius;
-    }
-
-    public double getWeight()
-    {
-        return weight;
-    }
-
-    public String getIdentification()
-    {
-        return identification;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
-    public void setRadius(double radius)
-    {
-        this.radius = radius;
-    }
-
-    public void setWeight(double weight)
-    {
-        this.weight = weight;
-    }
-
-    public void setIdentification(String identification)
-    {
-        this.identification = identification;
-    }
-
-    //---------------------------------------------------------------------------------------------
-
-    public void show()
-    {
-        System.out.println("Planet - " + name);
-        System.out.println("Radius - " + radius + " (km)");
-        System.out.println("Weight - " + weight + " (kg)");
-        System.out.println("System - " + identification);
-    }
-
-    @Override
-    public String toString()
-    {
-        return name + " | " + radius + " | " + weight + " | " + identification;
-    }
-}
+import java.util.Vector;
 
 
 public class Example
@@ -116,43 +21,128 @@ public class Example
         File f = new File(args[0]);
         BufferedReader fin = new BufferedReader(new FileReader(f));
 
-        Planet[] planets = new Planet[5];
+        Vector<Planet> planets = new Vector<>(20);
 
         {
             String line;
-            int i = 0;
-            while ((line = fin.readLine()) != null && i < 5)
+            while ((line = fin.readLine()) != null)
             {
-                String[] str = line.split("[ ]+");
-                planets[i++] = new Planet(str[0], Double.parseDouble(str[1]), Double.parseDouble(str[2]), str[3]);
+                String[] str = line.split(" {3,}");
+                planets.add(new Planet(str[0], Double.parseDouble(str[1]), Double.parseDouble(str[2]), str[3]));
             }
         }
 
-        for (Planet i : planets)
-        {
-            i.show();
-            System.out.println();
-        }
+        for (Planet p : planets)
+            System.out.println(p + "\n");
+
+
 
 
         Scanner scanner = new Scanner(System.in);
-        String str;
+        String request;
         System.out.println("Search. Enter the name: ");
 
-        while (!(str = scanner.nextLine()).equals("exit"))
+
+        while (!(request = scanner.nextLine()).equals("exit"))
         {
-            Planet pl = null;
-            for (Planet i : planets)
+            boolean check = false;
+            for (Planet p : planets)
             {
-                if (str.equals(i.getName()))
+                if (request.equals(p.getName()))
                 {
-                    pl = new Planet(i);
-                    break;
+                    System.out.println(p + "\n");
+                    check = true;
                 }
             }
-            System.out.println(pl);
+            if (!check)
+                System.out.println("Not found\n");
         }
-    }
+
+        System.out.println();
+        System.out.println("Enter the name of system:");
+
+
+        while (!(request = scanner.nextLine()).equals("exit"))
+        {
+            boolean check = false;
+            for (Planet p : planets)
+            {
+                if (request.equals(p.getIdentification()))
+                {
+                    check = true;
+                    System.out.println(p + "\n");
+                }
+            }
+            if (!check)
+                System.out.println("Not found\n");
+        }
+
+
+        System.out.println();
+        System.out.println("Search for planets by entered radius (±10%):");
+
+        while (!(request = scanner.nextLine()).equals("exit"))
+        {
+            boolean check = false;
+            double radius = 0;
+            try
+            {
+                radius = Double.parseDouble(request);
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Invalid argument");
+                continue;
+            }
+
+            for (Planet p : planets)
+            {
+                double low = p.getRadius() - p.getRadius() * 10.0 / 100.0;
+                double high = p.getRadius() + p.getRadius() * 10.0 / 100.0;
+                if (radius > low && radius < high)
+                {
+                    check = true;
+                    System.out.println(p + "\n");
+                }
+            }
+            if (!check)
+                System.out.println("Not found\n");
+        }
+
+
+        System.out.println();
+        System.out.println("Search for planets by entered weight (±10%):");
+
+        while (!(request = scanner.nextLine()).equals("exit"))
+        {
+            boolean check = false;
+            double weight = 0;
+            try
+            {
+                weight = Double.parseDouble(request);
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Invalid argument");
+                continue;
+            }
+
+            for (Planet p : planets)
+            {
+                double low = p.getWeight() - p.getWeight() * 10.0 / 100.0;
+                double high = p.getWeight() + p.getWeight() * 10.0 / 100.0;
+                if (weight > low && weight < high)
+                {
+                    check = true;
+                    System.out.println(p + "\n");
+                }
+            }
+            if (!check)
+                System.out.println("Not found\n");
+        }
+
+        System.out.println("Done.");
+    } //end main
 
 
 }
