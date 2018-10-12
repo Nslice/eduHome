@@ -24,7 +24,7 @@ public class Test
         /**
          * home1(double, double);
          * home2("info.txt");
-         * home3(
+         * home3(void);
          */
 
         /*
