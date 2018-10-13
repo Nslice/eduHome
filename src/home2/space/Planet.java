@@ -1,7 +1,7 @@
 package home2.space;
 
 
-public class Planet implements Cloneable
+public class Planet
 {
     private String name;
     private double radius;
@@ -80,12 +80,12 @@ public class Planet implements Cloneable
         this.identification = identification;
     }
 
-    //---------------------------------------------------------------------------------------------
 
     public void show()
     {
         System.out.println(this);
     }
+
 
     @Override
     public String toString()
@@ -93,5 +93,6 @@ public class Planet implements Cloneable
         return "Planet - " + name + "\nRadius - " + radius + "\nWeight - " + weight 
             + "\nSystem - " + identification;
     }
+    
 }
 

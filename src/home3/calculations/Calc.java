@@ -4,7 +4,7 @@ package home3.calculations;
 public class Calc
 {
     @Formula(description = "(1/b^2) * (ln(y/x) + ax/y)",
-            condition = "(b,x,y != 0) and ((y>0 and x>0) or (y<0 and x<0))")
+            condition = "(b != 0) and ((y>0 and x>0) or (y<0 and x<0))")
     public static double formulaT1(double x, double y)
     {
         double a = 2.1, b = 4.7;

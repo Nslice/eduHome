@@ -11,6 +11,7 @@ public class NumberSeries
         return Math.pow(-1, n) * ((n + 1) / Math.pow(2, n - 1));
     }
 
+
     public static double calculate()
     {
         int n = 0;
@@ -24,16 +25,16 @@ public class NumberSeries
         return sum;
     }
 
+
     public static double calculate(int amount)
     {
         double sum = 0.0, result;
-        for (int i = 0, n = 0; i < amount; i++, n++)
+        for (int n = 0; n < amount; n++)
         {
             result = funcA(n);
             sum += result;
             if (Math.abs(result) < EPS) break;
         }
-
         return sum;
     }
 }

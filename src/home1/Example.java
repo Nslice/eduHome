@@ -4,6 +4,7 @@ import other.Show;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Scanner;
 
 
@@ -134,8 +135,10 @@ public class Example
         //ex3:
         Show.show(3);
         Scanner scn = new Scanner(System.in);
+        scn.useLocale(Locale.ENGLISH);
         System.out.print("Entet the day number: ");
         System.out.println(Week.nameOfDay(scn.nextInt()));
+        scn.close();
     }
 
 }
