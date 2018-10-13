@@ -2,6 +2,7 @@ package home3.calculations;
 
 import java.util.Random;
 
+
 public class MyArray
 {
     private int[] arr;
@@ -15,6 +16,7 @@ public class MyArray
             arr[i] = low + rand.nextInt(high);
     }
 
+
     public void show()
     {
         for (int i = 0; i < arr.length; i++)
@@ -25,10 +27,11 @@ public class MyArray
         System.out.println();
     }
 
+
     public int find(int amount)
     {
-        if (arr.length == 0)
-            return -1;
+        if (amount > arr.length || amount <= 0)
+            throw new IndexOutOfBoundsException("int amount = " + amount);
 
         int sum, max = 0;
         int index = -1;
@@ -44,9 +47,9 @@ public class MyArray
                 index = i;
             }
         }
-
         return index;
     }
+
 
     public int sum(int pos, int len)
     {
