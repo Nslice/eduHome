@@ -2,6 +2,8 @@ package home3;
 
 import home3.calculations.*;
 import other.Show;
+
+import java.util.Locale;
 import java.util.Scanner;
 
 
@@ -10,10 +12,11 @@ public class Example
     public static void main(String[] args) throws Exception
     {
         Scanner in = new Scanner(System.in);
+        in.useLocale(Locale.ENGLISH);
 
         //ex1:
         Show.show(1);
-        System.out.println("Sum of series:\t\t  " + NumberSeries.calculate());
+        System.out.println("Sum of series:        " + NumberSeries.calculate());
         System.out.println("Sum of first 10 term: " + NumberSeries.calculate(10));
         Show.getch();
 
@@ -44,11 +47,27 @@ public class Example
         MyArray array = new MyArray(200, 0, 100);
         array.show();
         int amount = 10;
-        System.out.println("Enter the length of the segment to search: ");
-        amount = in.nextInt();
-        int index = array.find(amount);
-        System.out.print("On the segment " + index + " : " + (index + amount - 1) + " the maximum sum");
-        System.out.println(" (" + array.sum(index, amount) + ")");
+        System.out.println("Enter the length of the segment to search ('0' to quit): ");
+
+        while ((amount = in.nextInt()) != 0)
+        {
+            try
+            {
+                int index = array.find(amount);
+                System.out.print("On the segment " + index + " : " + (index + amount - 1) + " the maximum sum");
+                System.out.println(" (" + array.sum(index, amount) + ")");
+            }
+            catch (IndexOutOfBoundsException ex)
+            {
+                System.out.println("Invalid argument");
+                ex.printStackTrace();
+            }
+        }
+
+        in.close();
+        System.out.println("Done.");
+
+
     }
 
 }
