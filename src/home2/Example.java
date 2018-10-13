@@ -3,7 +3,9 @@ package home2;
 import home2.space.Planet;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -17,12 +19,19 @@ public class Example
             System.out.println("Not enough arguments");
             return;
         }
+        BufferedReader fin = null;
+        try
+        {
+            fin = new BufferedReader(new FileReader(new File(args[0])));
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+            return;
+        }
 
-        File f = new File(args[0]);
-        BufferedReader fin = new BufferedReader(new FileReader(f));
 
         Vector<Planet> planets = new Vector<>(20);
-
         {
             String line;
             while ((line = fin.readLine()) != null)
@@ -31,18 +40,16 @@ public class Example
                 planets.add(new Planet(str[0], Double.parseDouble(str[1]), Double.parseDouble(str[2]), str[3]));
             }
         }
-
         for (Planet p : planets)
             System.out.println(p + "\n");
 
 
-
-
         Scanner scanner = new Scanner(System.in);
+        scanner.useLocale(Locale.ENGLISH);
         String request;
+
         System.out.println("Search. Enter the name: ");
-
-
+        System.out.print(" > ");
         while (!(request = scanner.nextLine()).equals("exit"))
         {
             boolean check = false;
@@ -56,14 +63,15 @@ public class Example
             }
             if (!check)
                 System.out.println("Not found\n");
+            System.out.print(" > ");
         }
 
-        System.out.println();
-        System.out.println("Enter the name of system:");
 
-
+        System.out.println("\nEnter the name of system:");
+        System.out.print(" > ");
         while (!(request = scanner.nextLine()).equals("exit"))
         {
+            System.out.print(">");
             boolean check = false;
             for (Planet p : planets)
             {
@@ -75,12 +83,12 @@ public class Example
             }
             if (!check)
                 System.out.println("Not found\n");
+            System.out.print(" > ");
         }
 
 
-        System.out.println();
-        System.out.println("Search for planets by entered radius (±10%):");
-
+        System.out.println("\nSearch for planets by entered radius (±10%):");
+        System.out.print(" > ");
         while (!(request = scanner.nextLine()).equals("exit"))
         {
             boolean check = false;
@@ -107,12 +115,12 @@ public class Example
             }
             if (!check)
                 System.out.println("Not found\n");
+            System.out.print(" > ");
         }
 
 
-        System.out.println();
-        System.out.println("Search for planets by entered weight (±10%):");
-
+        System.out.println("\nSearch for planets by entered weight (±10%):");
+        System.out.print(" > ");
         while (!(request = scanner.nextLine()).equals("exit"))
         {
             boolean check = false;
@@ -139,10 +147,13 @@ public class Example
             }
             if (!check)
                 System.out.println("Not found\n");
+            System.out.print(" > ");
         }
 
+        scanner.close();
         System.out.println("Done.");
-    } //end main
+
+    }
 
 
 }
