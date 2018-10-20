@@ -1,11 +1,20 @@
 package home2.space;
 
 
+/**
+ * класс описывающий планету
+ * @author Talgat
+ * @author some@mail.com
+ * @version 1.0
+ */
 public class Planet
-{
+{   /** название планеты */
     private String name;
+    /** радиус, км */
     private double radius;
+    /** вес, кг */
     private double weight;
+    /** название планетарной системы */
     private String identification;
 
 

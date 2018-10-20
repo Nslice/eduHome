@@ -1,6 +1,7 @@
 package home2;
 
 import home2.space.Planet;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,8 +11,23 @@ import java.util.Scanner;
 import java.util.Vector;
 
 
+
+// > javadoc -d path -encoding utf8 -author -version %1.java %2.java
+
+/**
+ * Тестируюищй класс для класса home2.space.Planet
+ * @author Talgat
+ * @author some@mail.com
+ * @version 1.0
+ */
 public class Example
 {
+    /**
+     * @param args Имя текстового файла с описанием планет, должен быть заполнен по шаблону: <br>
+     * &nbsp; &nbsp;  name(String)    radius(double)    weight(double)    identif.(String) <br>
+     * не менее трех пробелов между столбцами.
+     * @throws java.io.IOException Если возникает ошибка ввода-вывода
+     */
     public static void main(String[] args) throws java.io.IOException
     {
         if (args.length == 0)
@@ -71,7 +87,6 @@ public class Example
         System.out.print(" > ");
         while (!(request = scanner.nextLine()).equals("exit"))
         {
-            System.out.print(">");
             boolean check = false;
             for (Planet p : planets)
             {
