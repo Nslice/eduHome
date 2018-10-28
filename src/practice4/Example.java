@@ -1,6 +1,7 @@
 package practice4;
 
 import other.Show;
+
 import java.text.NumberFormat;
 import java.util.Random;
 
@@ -66,7 +67,7 @@ public class Example
         //ex5:
         Show.show(5);
         double value = 1_623_542.765;
-        NumberFormat formatter = NumberFormat.getInstance();
+        NumberFormat formatter = NumberFormat.getNumberInstance();
         System.out.println(value);
         System.out.println(formatter.format(value));
         Show.getch();
