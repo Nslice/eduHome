@@ -1,11 +1,21 @@
 package home3;
 
-import home3.calculations.*;
+import home3.calculations.Calc;
+import home3.calculations.Formula;
+import home3.calculations.MyArray;
+import home3.calculations.NumberSeries;
 import other.Show;
 
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
+
+
+/**  NumberSeries.calculate передвать точность, поле убрать
+ в myarray разделить создание и иниц. метод. fill, открыть массив
+ в ex2 добавить проверку ввода
+ */
 
 public class Example
 {
@@ -49,19 +59,28 @@ public class Example
         int amount = 10;
         System.out.println("Enter the length of the segment to search ('0' to quit): ");
 
-        while ((amount = in.nextInt()) != 0)
+        try
         {
-            try
+            while ((amount = in.nextInt()) != 0)
             {
-                int index = array.find(amount);
-                System.out.print("On the segment " + index + " : " + (index + amount - 1) + " the maximum sum");
-                System.out.println(" (" + array.sum(index, amount) + ")");
+                try
+                {
+                    int index = array.find(amount);
+                    System.out.print("On the segment " + index + " : " + (index + amount - 1) + " the maximum sum");
+                    System.out.println(" (" + array.sum(index, amount) + ")");
+                }
+                catch (IndexOutOfBoundsException ex)
+                {
+                    System.out.println("Invalid argument");
+                    ex.printStackTrace();
+                }
+
             }
-            catch (IndexOutOfBoundsException ex)
-            {
-                System.out.println("Invalid argument");
-                ex.printStackTrace();
-            }
+        }
+        catch (InputMismatchException ex)       // тут посмотреть, исправить
+        {
+            System.out.println("Invalid argument");
+            ex.printStackTrace();
         }
 
         in.close();
