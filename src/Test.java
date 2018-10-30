@@ -27,7 +27,7 @@ public class Test
          * practice2(void);
          * practice3(void);
          * practice4(void);
-         * practice4("in5.txt);
+         * practice5("in5.txt);
          */
 
 
