@@ -22,7 +22,7 @@ public class Test
     public static void main(String[] args)
     {
         /**
-         * home1(double, double);
+         * home1(double, double);   13, 6.2
          * home2("info.txt");
          * home3(void);
          */
