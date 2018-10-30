@@ -49,53 +49,75 @@ public class Planet
         this.identification = obj.identification;
     }
 
+    /** @return Возвращает название планеты*/
     public String getName()
     {
         return name;
     }
 
+    /** @return Возвращает радиус*/
     public double getRadius()
     {
         return radius;
     }
 
+    /** @return Возвращает вес*/
     public double getWeight()
     {
         return weight;
     }
 
+    /** @return Возвращает название системы*/
     public String getIdentification()
     {
         return identification;
     }
 
+    /**
+     * Устанавливает название планеты
+     * @param name название */
     public void setName(String name)
     {
         this.name = name;
     }
 
+    /**
+     * Устанавливает радиус
+     * @param radius радиус */
     public void setRadius(double radius)
     {
         this.radius = radius;
     }
 
+    /**
+     * Устанавливает вес
+     * @param weight вес */
     public void setWeight(double weight)
     {
         this.weight = weight;
     }
 
+    /**
+     * Устанавливает название системы
+     * @param identification название */
     public void setIdentification(String identification)
     {
         this.identification = identification;
     }
 
 
+    /**
+     * Выводит информацию о планете
+     */
     public void show()
     {
         System.out.println(this);
     }
 
 
+    /**
+     * @return строка, представлющая описание планеты
+     */
     @Override
     public String toString()
     {
