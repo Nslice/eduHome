@@ -3,7 +3,6 @@ package home2;
 import home2.space.Planet;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Locale;
@@ -35,16 +34,18 @@ public class Example
             System.out.println("Not enough arguments");
             return;
         }
-        BufferedReader fin = null;
+        FileReader freader = null;
         try
         {
-            fin = new BufferedReader(new FileReader(new File(args[0])));
+            freader =  new FileReader(args[0]);
         }
         catch (FileNotFoundException e)
         {
             e.printStackTrace();
             return;
         }
+        BufferedReader fin = new BufferedReader(freader);
+
 
 
         Vector<Planet> planets = new Vector<>(20);
@@ -56,6 +57,7 @@ public class Example
                 planets.add(new Planet(str[0], Double.parseDouble(str[1]), Double.parseDouble(str[2]), str[3]));
             }
         }
+        freader.close();
         for (Planet p : planets)
             System.out.println(p + "\n");
 
@@ -167,7 +169,6 @@ public class Example
 
         scanner.close();
         System.out.println("Done.");
-
     }
 
 
