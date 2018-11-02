@@ -42,6 +42,7 @@ public class Example
             else
                 System.out.println(reply);
         }
+        System.out.println("stop");
         Show.getch();
 
 
@@ -57,7 +58,7 @@ public class Example
 
         //ex4:
         Show.show(4);
-        System.out.println("ArratList:");
+        System.out.println("ArrayList:");
         ArrayList<String> list = new ArrayList<>();
         list.add("Word");
         list.add("Excel");
