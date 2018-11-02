@@ -24,7 +24,7 @@ public class Example
 {
     public static void main(String[] args) throws java.io.IOException
     {
-        //ex1:
+        /** ---------------------------------- EX1 --------------------------------- */
         Show.show(1);
         String str = "This is Jim and Timothy";
         Matcher m = Pattern.compile("[TJ]im").matcher(str);
@@ -35,7 +35,7 @@ public class Example
         Show.getch();
 
 
-        //ex2:
+        /** ---------------------------------- EX2 --------------------------------- */
         Show.show(2);
         str = "This is Jim and Tom";
         m.reset(str);
@@ -45,7 +45,7 @@ public class Example
         Show.getch();
 
 
-        //ex3:
+        /** ---------------------------------- EX3 --------------------------------- */
         Show.show(3);
         str = "My dad and My mom";
         System.out.println("before: " + str);
@@ -62,7 +62,7 @@ public class Example
         Show.getch();
 
 
-        //ex4:
+        /** ---------------------------------- EX4 --------------------------------- */
         Show.show(4);
         str = "The words are town torn ton toon house.";
         m = Pattern.compile("\\st(\\w)*o(\\w)*").matcher(str);
@@ -73,7 +73,7 @@ public class Example
         Show.getch();
 
 
-        //ex5:
+        /** ---------------------------------- EX5 --------------------------------- */
         Show.show(5);
         FileReader freader = null;
         try
@@ -106,7 +106,7 @@ public class Example
         Show.getch();
 
 
-        //ex6:
+        /** ---------------------------------- EX6 --------------------------------- */
         Show.show(6);
         str = "This is line 1\nHere is line 2\nThis is line 3\n";
         m = Pattern.compile("\\d$").matcher(str);
