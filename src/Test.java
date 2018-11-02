@@ -28,6 +28,7 @@ public class Test
          * practice3(void);
          * practice4(void);
          * practice5("in5.txt);
+         * practice6("in6.txt", "out6.txt", "projFile.zip", "forZip", "myArchive.zip");
          */
 
 
