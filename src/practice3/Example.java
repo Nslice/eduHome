@@ -36,6 +36,7 @@ public class Example
 
         for (int i = 0; i < 4; i++)
         {
+            System.out.print(" > ");
             String reply = map.get(scanner.nextLine());
             if (reply == null)
                 System.out.println("empty");
