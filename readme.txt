@@ -26,6 +26,7 @@
         SET dest=".\out\classes"
 
         javac -d %dest% -encoding utf8^
+            src\other\Show.java^
             src\home2\space\Planet.java^
             src\home2\Example.java
 
