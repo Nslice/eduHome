@@ -1,5 +1,6 @@
 /out
 /.idea
-/forZip
+/input_6
 *.iml
-out6.txt
+*.bat
+*.sh
