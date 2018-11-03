@@ -23,19 +23,14 @@ public class Test
     {
         /**
          * home1(double, double);   13, 6.2
-         * home2("info2.txt");
+         * home2("input\info2.txt");
          * home3(void);
          */
 
-        /*
-            для кириллицы в консоле:
-            > chcp 1251;
-            > javac -encoding utf8 %1.java
-        */
 
 
         test(home1.Example.class, "13", "6.2");
-        test(home2.Example.class, "info2.txt");
+//        test(home2.Example.class, "input\\info2.txt");
     }
 }
 
