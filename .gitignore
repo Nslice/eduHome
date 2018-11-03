@@ -1,5 +1,5 @@
-/src/myDoc
+/.idea
 /out
 *.iml
-/.idea
-/src/*.sh
+*.bat
+*.sh
