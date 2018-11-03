@@ -75,33 +75,31 @@ public class Example
 
         /** ---------------------------------- EX5 --------------------------------- */
         Show.show(5);
-        FileReader freader = null;
-        try
+        try (BufferedReader fin = new BufferedReader(new FileReader(args[0])))
         {
-            freader = new FileReader(args[0]);
+            m = Pattern.compile("^a").matcher("");
+
+            while ((str = fin.readLine()) != null)
+            {
+                m.reset(str);
+                if (m.find())
+                {
+                    // System.out.println(str.split(" ")[0]); или так, но это не очень
+                    char ch;
+                    int i = m.start();
+                    while (Character.isAlphabetic(ch = str.charAt(i++)) && i < str.length())
+                    {
+                        System.out.print(ch);
+                    }
+                    System.out.println();
+                }
+            }
         }
         catch (FileNotFoundException | ArrayIndexOutOfBoundsException ex)
         {
             ex.printStackTrace();
-            return;
-        }
-        BufferedReader fin = new BufferedReader(freader);
-        m = Pattern.compile("^a").matcher("");
-
-        while ((str = fin.readLine()) != null)
-        {
-            m.reset(str);
-            if (m.find())
-            {
-                // System.out.println(str.split(" ")[0]); или так, но это не очень
-                char ch;
-                int i = m.start();
-                while (Character.isAlphabetic(ch = str.charAt(i++)) && i < str.length())
-                {
-                    System.out.print(ch);
-                }
-                System.out.println();
-            }
+            System.out.println("Check input arguments");
+            System.out.println("Miss 5 task");
         }
         Show.getch();
 
@@ -117,7 +115,6 @@ public class Example
         }
 
 
-        freader.close();
         System.out.println("Done.");
     }
 }
