@@ -23,7 +23,7 @@ public class Test
     {
         /**
          * home1(double, double);   13, 6.2
-         * home2("info.txt");
+         * home2("info2.txt");
          * home3(void);
          */
 
@@ -35,7 +35,7 @@ public class Test
 
 
         test(home1.Example.class, "13", "6.2");
-        test(home2.Example.class, "info.txt");
+        test(home2.Example.class, "info2.txt");
     }
 }
 
