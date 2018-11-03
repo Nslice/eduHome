@@ -1,1 +1,0 @@
-javadoc -d myDoc -encoding utf8 -private -author -version home2\space\Planet.java home2\Example.java
