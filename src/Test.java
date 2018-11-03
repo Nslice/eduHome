@@ -10,14 +10,13 @@ public class Test
         try
         {
             Method m = c.getDeclaredMethod("main", String[].class);
-            m.invoke(null, new Object[] {args});
+            m.invoke(null, new Object[]{args});
         }
         catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException ex)
         {
             ex.printStackTrace();
         }
     }
-
 
 
     public static void main(String[] args)
@@ -27,8 +26,9 @@ public class Test
          * practice2(void);
          * practice3(void);
          * practice4(void);
-         * practice5("in5.txt);
-         * practice6("in6.txt", "out6.txt", "projFile.zip", "forZip", "myArchive.zip");
+         * practice5("input\in5.txt");
+         * practice6("input\in6.txt", "out\out6.txt", "input\projFile.zip",
+         *      "input\forZip", "out\archive.zip");
          */
 
 
