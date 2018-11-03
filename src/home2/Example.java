@@ -10,11 +10,11 @@ import java.util.Scanner;
 import java.util.Vector;
 
 
-
 // > javadoc -d path -encoding utf8 -author -version %1.java %2.java
 
 /**
- * Тестируюищй класс для класса home2.space.Planet
+ * Тестируюищй класс для класса {@link home2.space.Planet}.
+ *
  * @author Talgat
  * @author some@mail.com
  * @version 1.0
@@ -23,8 +23,8 @@ public class Example
 {
     /**
      * @param args Имя текстового файла с описанием планет, должен быть заполнен по шаблону: <br>
-     * &nbsp; &nbsp;  name(String)    radius(double)    weight(double)    identif.(String) <br>
-     * не менее трех пробелов между столбцами.
+     *             name(String)    radius(double)    weight(double)    identif.(String) <br>
+     *             не менее трех пробелов между столбцами.
      * @throws java.io.IOException Если возникает ошибка ввода-вывода
      */
     public static void main(String[] args) throws java.io.IOException
@@ -37,7 +37,7 @@ public class Example
         FileReader freader = null;
         try
         {
-            freader =  new FileReader(args[0]);
+            freader = new FileReader(args[0]);
         }
         catch (FileNotFoundException e)
         {
@@ -45,7 +45,6 @@ public class Example
             return;
         }
         BufferedReader fin = new BufferedReader(freader);
-
 
 
         Vector<Planet> planets = new Vector<>(20);
