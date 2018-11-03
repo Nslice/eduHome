@@ -184,7 +184,10 @@ public class Example
         {
             if (f.isDirectory())
             {
+                //для пустых папок:
+                stream.putNextEntry(new ZipEntry(f.getPath() + "/"));
                 doZip(stream, f);
+                stream.closeEntry();
             }
             else
             {
@@ -196,10 +199,6 @@ public class Example
                 stream.closeEntry();
                 fin.close();
             }
-
-            //для пустых папок:
-            if (f.isDirectory())
-                stream.putNextEntry(new ZipEntry(f.getPath() + "\\"));
         }
 
     }
