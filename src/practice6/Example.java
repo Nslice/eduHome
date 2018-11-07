@@ -3,6 +3,7 @@ package practice6;
 import other.Show;
 
 import java.io.*;
+import java.nio.file.attribute.FileTime;
 import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -104,7 +105,7 @@ public class Example
                 System.out.print((char) code);
             System.out.println();
         }
-        catch (IllegalArgumentException | ArrayIndexOutOfBoundsException| IOException ex)
+        catch (IllegalArgumentException | ArrayIndexOutOfBoundsException | IOException ex)
         {
             ex.printStackTrace();
             return;
@@ -162,40 +163,49 @@ public class Example
             else System.out.println("       " + f.getName());
         }
 
+        long start = System.currentTimeMillis();
         try (ZipOutputStream zipOut = new ZipOutputStream(new FileOutputStream(args[4])))
         {
-            doZip(zipOut, file);
+            byte[] buffer = new byte[8192];
+            doZip(zipOut, file, buffer);
         }
         catch (IOException ex)
         {
             ex.printStackTrace();
             return;
         }
+        long end = System.currentTimeMillis();
 
 
-        System.out.println("\n");
         System.out.println("Done.");
+        System.out.println("Time of operation " + (end - start) + " ms");
     }
 
 
-    public static void doZip(ZipOutputStream stream, File dir) throws IOException
+    public static void doZip(ZipOutputStream stream, File dir, byte[] buffer) throws IOException
     {
         for (File f : dir.listFiles())
         {
             if (f.isDirectory())
             {
                 //для пустых папок:
-                stream.putNextEntry(new ZipEntry(f.getPath() + "/"));
-                doZip(stream, f);
+                ZipEntry entry = new ZipEntry(f.getPath() + "\\");
+                entry.setLastModifiedTime(FileTime.fromMillis(f.lastModified()));
+                stream.putNextEntry(entry);
+
+                doZip(stream, f, buffer); //рекурсивный вызов
                 stream.closeEntry();
             }
             else
             {
-                stream.putNextEntry(new ZipEntry(f.getPath()));
-                int code;
+                ZipEntry entry = new ZipEntry(f.getPath());
+                entry.setLastModifiedTime(FileTime.fromMillis(f.lastModified()));
+                stream.putNextEntry(entry);
+
+                int length;
                 FileInputStream fin = new FileInputStream(f);
-                while ((code = fin.read()) != -1)
-                    stream.write(code);
+                while ((length = fin.read(buffer)) != -1)
+                    stream.write(buffer, 0, length);
                 stream.closeEntry();
                 fin.close();
             }
