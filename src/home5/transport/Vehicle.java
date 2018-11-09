@@ -18,7 +18,7 @@ public abstract class Vehicle implements IManufacturer
     /**
      * Максмимальная скорость
      */
-    protected double maxSpeed;
+    protected double maxSpeed;//.
 
 
     //------------------------------------------------------------------------
