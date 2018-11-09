@@ -4,14 +4,32 @@ import home5.transport.Vehicle;
 
 public class Car extends Vehicle
 {
-    public Car()
+
+    /** Объем двигателя */
+    protected double engineCapacity;
+
+    //------------------------------------------------------------------------
+
+    public Car(int ccode) throws CountryError
     {
+        super(ccode);
     }
 
-    public Car(double weight, double power, double speed)
+    public Car(Vehicle obj, double engineCapacity)
     {
-        super(weight, power, speed);
+        super(obj);
+        this.engineCapacity = engineCapacity;
     }
+
+    public Car(int ccode, double weight, double power, double maxSpeed,
+                    double engineCapacity) throws CountryError
+    {
+        super(ccode, weight, power, maxSpeed);
+        this.engineCapacity = engineCapacity;
+    }
+
+
+
 
     @Override
     public void show()

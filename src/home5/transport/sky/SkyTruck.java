@@ -3,19 +3,17 @@ package home5.transport.sky;
 
 public class SkyTruck extends Airplane
 {
-    public SkyTruck()
-    {
-        super();
-    }
+    /** Грузоподемность */
+    protected double carrying;
 
-    public SkyTruck(double weight, double power, double speed)
-    {
-        super(weight, power, speed);
-    }
+    //------------------------------------------------------------------------
 
-    @Override
-    public void show()
+
+    public SkyTruck(int ccode, double weight, double power, double maxSpeed,
+                    double flightAltitude, double carrying) throws CountryError
     {
-        super.show();
+        super(ccode, weight, power, maxSpeed, flightAltitude);
+        this.carrying = carrying;
     }
 }
+
