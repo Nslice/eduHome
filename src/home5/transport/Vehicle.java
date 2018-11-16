@@ -7,64 +7,63 @@ public abstract class Vehicle implements IManufacturer
      * Производитель
      */
     protected final String country;
+
     /**
-     * Вес
+     * Название модели
+     */
+    protected String model;
+
+    /**
+     * Вес, килограммы (kg)
      */
     protected double weight;
-    /**
-     * Мощность мотора
-     */
-    protected double power;
-    /**
-     * Максмимальная скорость
-     */
-    protected double maxSpeed;//.
 
-
+    /**
+     * Максимальная скорость, километры в час (km/h)
+     */
+    protected double maxSpeed;
     //------------------------------------------------------------------------
-    public class CountryError extends Exception
-    {
 
+
+    /**
+     * Класс исключения`~~~~~~~~~~~
+     */
+    public static class CountryError extends Exception
+    {
     }
 
+
+    /****************************************************
+     *                КОНСТРУКТОРЫ
+     ****************************************************/
 
     public Vehicle(int ccode) throws CountryError
     {
-        this(ccode, 0.0, 0.0, 0.0);
+        this(ccode, "", 0.0, 0.0);
     }
 
-    public Vehicle(int ccode, double weight, double power, double maxSpeed) throws CountryError
+    public Vehicle(int ccode, String model, double weight, double maxSpeed) throws CountryError
     {
         if (ccode >= IManufacturer.countries.length || ccode < 0) throw new CountryError();
         else this.country = IManufacturer.countries[ccode];
 
+        this.model = model;
         this.weight = weight;
-        this.power = power;
         this.maxSpeed = maxSpeed;
     }
 
     public Vehicle(Vehicle obj)
     {
         this.country = obj.country;
+        this.model = obj.model;
         this.weight = obj.weight;
-        this.power = obj.power;
         this.maxSpeed = obj.maxSpeed;
     }
 
-    public double getWeight()
-    {
-        return weight;
-    }
 
-    public double getPower()
-    {
-        return power;
-    }
-
-    public double getMaxSpeed()
-    {
-        return maxSpeed;
-    }
+    /****************************************************
+     *                МЕТОДЫ ДОСТУПА
+     ****************************************************/
 
     @Override
     public String getCountry()
@@ -72,24 +71,33 @@ public abstract class Vehicle implements IManufacturer
         return country;
     }
 
+    public String getModel()
+    {
+        return model;
+    }
+
+    public double getWeight()
+    {
+        return weight;
+    }
+
+    public double getMaxSpeed()
+    {
+        return maxSpeed;
+    }
+
+    public void setModel(String model)
+    {
+        this.model = model;
+    }
+
     public void setWeight(double weight)
     {
         this.weight = weight;
-    }
-
-    public void setPower(double power)
-    {
-        this.power = power;
     }
 
     public void setMaxSpeed(double maxSpeed)
     {
         this.maxSpeed = maxSpeed;
     }
-
-
-    /**
-     * вывод всей информации
-     */
-    public abstract void show();
 }

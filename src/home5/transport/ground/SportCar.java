@@ -1,21 +1,44 @@
 package home5.transport.ground;
 
+import home5.transport.Vehicle;
 
-//public class SportCar extends Car
-//{
-//    public SportCar()
-//    {
-//
-//    }
-//
-//    public SportCar(double weight, double power, double speed)
-//    {
-//        super(weight, power, speed);
-//    }
-//
-//    @Override
-//    public void show()
-//    {
-//        super.show();
-//    }
-//}
+public class SportCar extends Car
+{
+    /**
+     * ПОЛЯ:
+     *
+     */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public SportCar(int ccode) throws CountryError
+    {
+        super(ccode);
+    }
+}

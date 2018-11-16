@@ -14,14 +14,17 @@ public class Planet
      * название планеты
      */
     private String name;
+
     /**
      * радиус, км
      */
     private double radius;
+
     /**
      * вес, кг
      */
     private double weight;
+    
     /**
      * название планетарной системы
      */
