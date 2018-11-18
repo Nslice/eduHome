@@ -1,5 +1,6 @@
 package home2.space;
 
+import java.io.Serializable;
 
 /**
  * Класс описывающий планету.
@@ -8,7 +9,7 @@ package home2.space;
  * @author some@mail.com
  * @version 1.0
  */
-public class Planet
+public class Planet implements Serializable
 {
     /**
      * название планеты
