@@ -30,30 +30,10 @@ public class Airplane extends Vehicle
      */
     protected double fuelTankCapacity;
 
-    /**
+    /**1
      * Общее количество топлива, литры (L)
      */
     protected double fuelLevel;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -63,16 +43,15 @@ public class Airplane extends Vehicle
         super(ccode);
     }
 
-    public Airplane(Vehicle obj, String model)
+    public Airplane(Vehicle obj)
     {
         super(obj);
-        this.model = model;
     }
 
     public Airplane(int ccode, double weight, double power, double maxSpeed)
             throws CountryError
     {
-        super(ccode, weight, power, maxSpeed);
+        super(ccode, "", power, maxSpeed);
     }
 
     /***************************************************

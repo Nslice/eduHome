@@ -6,24 +6,26 @@ import home5.transport.Vehicle;
 public class Car extends Vehicle
 {
     /**
-     * Объем двигателя, литры (L)
-     */
-    protected double engineCapacity;
-
-    /**
      * Мощность двигателя, лошадиные силы (hp)
      */
-    protected double power;
+    protected double power = -1;
 
     /**
      * Максимальный объем бака, литры (L)
      */
-    protected double fuelTankCapacity;
+    protected double fuelTankCapacity = -1;
+
+    /**
+     * Расход на 100 км, литры (L)
+     */
+    protected double fuelConsumption = -1;
 
     /**
      * Количество топлива, литры (L)
      */
-    protected double fuelLevel;
+    protected double fuelLevel = 0.0;
+
+
     //------------------------------------------------------------------------
 
 
@@ -31,7 +33,7 @@ public class Car extends Vehicle
      *                КОНСТРУКТОРЫ
      ****************************************************/
 
-   public Car(int ccode) throws CountryError
+    public Car(int ccode) throws CountryError
     {
         super(ccode);
     }
@@ -47,14 +49,21 @@ public class Car extends Vehicle
         super(obj);
     }
 
+    /**
+     * Проверяет инициализирован объект полностью или нет.
+     *
+     * @return false - если не все поля инициализированы
+     */
+    @Override
+    public boolean constructed()
+    {
+        return super.constructed() &&
+                (power > 0 && fuelTankCapacity > 0 && fuelConsumption > 0);
+    }
 
     /****************************************************
      *                МЕТОДЫ ДОСТУПА
      ****************************************************/
-    public double getEngineCapacity()
-    {
-        return engineCapacity;
-    }
 
     public double getPower()
     {
@@ -66,14 +75,14 @@ public class Car extends Vehicle
         return fuelTankCapacity;
     }
 
+    public double getFuelConsumption()
+    {
+        return fuelConsumption;
+    }
+
     public double getFuelLevel()
     {
         return fuelLevel;
-    }
-
-    public void setEngineCapacity(double engineCapacity)
-    {
-        this.engineCapacity = engineCapacity;
     }
 
     public void setPower(double power)
@@ -86,9 +95,17 @@ public class Car extends Vehicle
         this.fuelTankCapacity = fuelTankCapacity;
     }
 
+    public void setFuelConsumption(double fuelConsumption)
+    {
+        this.fuelConsumption = fuelConsumption;
+    }
+
     public void setFuelLevel(double fuelLevel)
     {
-        this.fuelLevel = fuelLevel;
+        if (fuelLevel > fuelTankCapacity)
+            this.fuelLevel = fuelTankCapacity;
+        else
+            this.fuelLevel = fuelLevel;
     }
 
 
@@ -98,43 +115,61 @@ public class Car extends Vehicle
 
     /**
      * Заправить бак.
+     *
      * @param liters кол-во литров
-     * @return false, если не вместилось
+     * @return false, если не вместилось или объект недоинициализирован
      */
     public boolean fillTank(double liters)
     {
+        if (!constructed())
+            return false;
         if (fuelLevel + liters <= fuelTankCapacity)
         {
             fuelLevel += liters;
             return true;
         }
-        else
-            return false;
+        else return false;
     }
 
-
+    /**
+     * Ехать.
+     *
+     * @param kilometres сколько надо ехать
+     * @return километров проехано
+     */
     public int drive(int kilometres)
     {
-        /*
-           Формула расхода
-           1300 кг
-           1.5 литров объем, 110 л.с, speed
+        if (!constructed())
+            return 0;
+        int resM = 0;
+        final double litresOnKm = fuelConsumption / 100; //расход на 1 км
 
-         */
-        return 0;
+        while ((fuelLevel - litresOnKm) > 0 && kilometres > 0)
+        {
+            kilometres--;
+            resM++;
+            fuelLevel -= litresOnKm;
+        }
+        return resM;
     }
 
-    //    @Override
-//    public String toString()
-//    {
-//        String str = "Country: " + country + "\n" +
-//                "Model: " + model + "\n" +
-//                "Weight: " + weight + " kg\n" +
-//                "Power: " + power + " hp\n" +
-//                "Max.speed: " + maxSpeed + " km/h\n" +
-//                "Engine capacity: " + engineCapacity + " L\u00B3";
-//        return str;
-//    }
-
+    /**
+     * Выводит всю информацию.
+     *
+     * @return
+     */
+    @Override
+    public String toString()
+    {
+        String str = "Country: " + country + "\n" +
+                "Model: " + model + "\n" +
+                "Weight: " + weight + " kg\n" +
+                "Max.speed: " + maxSpeed + " km/h\n" +
+                "Power: " + power + " hp\n" +
+                "Fuel tank capacity: " + fuelTankCapacity + " L\n" +
+                "Fuel consumption on 100 km: " + fuelConsumption + " L\n" +
+                "Fuel level: " + fuelLevel + " L";
+        return str;
+    }
 
 }

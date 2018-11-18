@@ -11,17 +11,17 @@ public abstract class Vehicle implements IManufacturer
     /**
      * Название модели
      */
-    protected String model;
+    protected String model = null;
 
     /**
      * Вес, килограммы (kg)
      */
-    protected double weight;
+    protected double weight = -1;
 
     /**
      * Максимальная скорость, километры в час (km/h)
      */
-    protected double maxSpeed;
+    protected double maxSpeed = -1;
     //------------------------------------------------------------------------
 
 
@@ -39,7 +39,8 @@ public abstract class Vehicle implements IManufacturer
 
     public Vehicle(int ccode) throws CountryError
     {
-        this(ccode, "", 0.0, 0.0);
+        if (ccode >= IManufacturer.countries.length || ccode < 0) throw new CountryError();
+        else this.country = IManufacturer.countries[ccode];
     }
 
     public Vehicle(int ccode, String model, double weight, double maxSpeed) throws CountryError
@@ -58,6 +59,16 @@ public abstract class Vehicle implements IManufacturer
         this.model = obj.model;
         this.weight = obj.weight;
         this.maxSpeed = obj.maxSpeed;
+    }
+
+    /**
+     * Проверяет инициализирован объект полностью или нет.
+     *
+     * @return false - если не все поля инициализированы
+     */
+    public boolean constructed()
+    {
+        return (model != null && weight > 0 && maxSpeed > 0);
     }
 
 

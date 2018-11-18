@@ -22,11 +22,16 @@ public class Example
 
         try
         {
-            Airplane arp  = new Airplane(2, 2, 2,2 );
-            System.out.println(arp);
-            System.out.println("arp.getCountry() = " + arp.getCountry());
-            Car car = new Car(arp, "Volkswagen");
-            System.out.println("car = " + car);
+            Car car = new Car(2);
+            car.setFuelConsumption(10.3);
+            car.setFuelTankCapacity(70);
+            car.setFuelLevel(45);
+            car.setPower(232);
+            System.out.println("car.constructed() = " + car.constructed());
+            System.out.println(car);
+            System.out.println("car.fillTank() = " + car.fillTank(23));
+            System.out.println("car.getFuelLevel() = " + car.getFuelLevel());
+            System.out.println(car.getModel());
         }
         catch (Vehicle.CountryError ex)
         {
