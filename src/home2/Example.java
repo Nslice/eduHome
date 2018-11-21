@@ -34,20 +34,9 @@ public class Example
             System.out.println("Not enough arguments");
             return;
         }
-        FileReader freader = null;
-        try
-        {
-            freader = new FileReader(args[0]);
-        }
-        catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-            return;
-        }
-        BufferedReader fin = new BufferedReader(freader);
-
 
         Vector<Planet> planets = new Vector<>(20);
+        try (BufferedReader fin = new BufferedReader(new FileReader(args[0])))
         {
             String line;
             while ((line = fin.readLine()) != null)
@@ -56,7 +45,13 @@ public class Example
                 planets.add(new Planet(str[0], Double.parseDouble(str[1]), Double.parseDouble(str[2]), str[3]));
             }
         }
-        freader.close();
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+            return;
+        }
+
+
         for (Planet p : planets)
             System.out.println(p + "\n");
 
