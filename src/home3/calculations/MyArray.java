@@ -12,8 +12,9 @@ public class MyArray
     {
         arr = new int[size];
         Random rand = new Random();
+        int range = high - low;
         for (int i = 0; i < arr.length; i++)
-            arr[i] = low + rand.nextInt(high);
+            arr[i] = low + rand.nextInt(range);
     }
 
 
