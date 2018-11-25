@@ -26,8 +26,9 @@ public class Example
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String line;
         while (!(line = reader.readLine()).equals("quit"))
-            sb.append(line).append("\n");
-        System.out.println("THIS: " + sb);
+            sb.append(line + " ");
+        line = sb.toString();
+        System.out.println("THIS: " + line);
         Show.getch();
 
 
@@ -42,15 +43,15 @@ public class Example
         /** ---------------------------------- EX3 --------------------------------- */
         Show.show(3);
         Calendar c = Calendar.getInstance();
-        System.out.format("%td.%tm.%tY%n", c, c, c);
-        System.out.format(Locale.ENGLISH, "%tB %te, %tY%n", c, c, c);
+        System.out.format("%td.%tm.%tY \n", c, c, c);
+        System.out.format(Locale.ENGLISH, "%tB %td, %tY \n", c, c, c);
         Show.getch();
 
 
         /** ---------------------------------- EX4 --------------------------------- */
         Show.show(4);
         c.set(1997, 7, 19);
-        System.out.println(String.format(Locale.ENGLISH, "My birthday: %tB %te, %tY%n", c, c, c));
+        System.out.println(String.format(Locale.ENGLISH, "My birthday: %tB %td, %tY%n", c, c, c));
         Show.getch();
 
 
@@ -60,11 +61,12 @@ public class Example
         try (BufferedReader fin = new BufferedReader(new FileReader(args[0]));
                 BufferedWriter fout = new BufferedWriter(new FileWriter(args[1])))
         {
-            int code;
-            while ((code = fin.read()) != -1)
+            char[] buffer = new char[250];
+            int length;
+            while ((length = fin.read(buffer)) != -1)
             {
-                System.out.print((char) code);
-                fout.write(code);
+                System.out.print(String.valueOf(buffer, 0, length));
+                fout.write(buffer, 0, length);
             }
             System.out.println();
         }
@@ -100,9 +102,10 @@ public class Example
             System.out.println("length of file: " + rndfin.length());
             System.out.println();
             rndfin.seek(20);
-            int code;
-            while ((code = rndfin.read()) != -1)
-                System.out.print((char) code);
+            byte[] buffer = new byte[250];
+            int length;
+            while ((length = rndfin.read(buffer)) != -1)
+                System.out.print(new String(buffer, 0, length));
             System.out.println();
         }
         catch (IllegalArgumentException | ArrayIndexOutOfBoundsException | IOException ex)
@@ -177,8 +180,8 @@ public class Example
         long end = System.currentTimeMillis();
 
 
-        System.out.println("Done.");
         System.out.println("Time of operation " + (end - start) + " ms");
+        System.out.println("Done.");
     }
 
 
