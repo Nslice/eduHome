@@ -20,7 +20,7 @@
 
 
 Компиляция и запуск из командной строки для Windows (в линукс терминале и в intelliJ с кодировками все ок):
-    runScript.bat:
+    runScript.bat:  (можно настроить консоль на utf8 (chcp 65001) и тогда -encoding не нужен)
         REM mkdir classes
         chcp 1251
         SET dest=".\out\classes"
