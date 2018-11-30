@@ -2,35 +2,51 @@ package home5.transport.sky;
 
 import home5.transport.Vehicle;
 
-
 public class Airplane extends Vehicle
 {
-    /**
-     * Высота полета, метры (m)
-     */
-    protected double flightAltitude = 0.0;
+    private double maxWeight;
+    private double emptyWeight;
+    private double loadWeight;
+    private double travelSpeed;
+    private double flyHours;
+    private double consumption;
+    private double maxFuel;
+    private double kerosinStorage;
 
-    /**
-     * Максимальный объем бака, литры (L)
-     */
-    protected double fuelTankCapacity = -1;
+    public Airplane(double maxWeight, double emptyWeight, double loadWeight,
+                    double travelSpeed, double flyHours, double consumption,
+                    double maxFuel, double kerosinStorage) throws CountryError
+    {
+        super(1);
+        this.maxWeight = maxWeight;
+        this.emptyWeight = emptyWeight;
+        this.loadWeight = loadWeight;
+        this.travelSpeed = travelSpeed;
+        this.flyHours = flyHours;
+        this.consumption = consumption;
+        this.maxFuel = maxFuel;
+        this.kerosinStorage = kerosinStorage < this.maxFuel
+                ? kerosinStorage
+                : this.maxFuel;
+    }
 
-    /**
-     * Расход на 100 км, литры (L)
-     */
-    protected double fuelConsumption = -1;
 
-
-    /**
-     * Общее количество топлива, литры (L)
-     */
-    protected double fuelLevel = 0.0;
-
-
-    //------------------------------------------------------------------------
     public Airplane(int ccode) throws CountryError
     {
         super(ccode);
+    }
+
+    public Airplane(int ccode, String model, double weight, double maxSpeed)
+            throws CountryError
+    {
+        super(ccode, model, weight, maxSpeed);
+    }
+
+    public Airplane(int ccode, String model, double weight, double maxSpeed, double consumption)
+            throws CountryError
+    {
+        super(ccode, model, weight, maxSpeed);
+        this.consumption = consumption;
     }
 
     public Airplane(Vehicle obj)
@@ -38,79 +54,216 @@ public class Airplane extends Vehicle
         super(obj);
     }
 
-    public Airplane(int ccode, double weight, double power, double maxSpeed)
-            throws CountryError
-    {
-        super(ccode, "", power, maxSpeed);
-    }
 
-    @Override
-    public boolean constructed()
-    {
-        return super.constructed();
-    }
-
-
-    /***************************************************
+    /****************************************************
      *                МЕТОДЫ ДОСТУПА
      ****************************************************/
 
-    public double getFlightAltitude()
+    public double getMaxWeight()
     {
-        return flightAltitude;
+        return maxWeight;
     }
 
-    public double getFuelTankCapacity()
+    public double getEmptyWeight()
     {
-        return fuelTankCapacity;
+        return emptyWeight;
     }
 
-    public double getFuelConsumption()
+    public double getLoadWeight()
     {
-        return fuelConsumption;
+        return loadWeight;
     }
 
-    public double getFuelLevel()
+    public double getTravelSpeed()
     {
-        return fuelLevel;
+        return travelSpeed;
+    }
+
+    public double getFlyHours()
+    {
+        return flyHours;
+    }
+
+    public double getConsumption()
+    {
+        return consumption;
+    }
+
+    public double getMaxFuel()
+    {
+        return maxFuel;
+    }
+
+    public double getKerosinStorage()
+    {
+        return kerosinStorage;
     }
 
 
-    public void setFlightAltitude(double flightAltitude)
+    public Airplane setMaxWeight(double maxWeight)
     {
-        this.flightAltitude = flightAltitude;
+        this.maxWeight = maxWeight;
+        return this;
     }
 
-    public void setFuelTankCapacity(double fuelTankCapacity)
+    public Airplane setEmptyWeight(double emptyWeight)
     {
-        this.fuelTankCapacity = fuelTankCapacity;
+        this.emptyWeight = emptyWeight;
+        return this;
     }
 
-    public void setFuelConsumption(double fuelConsumption)
+    public Airplane setLoadWeight(double loadWeight)
     {
-        this.fuelConsumption = fuelConsumption;
+        this.loadWeight = loadWeight;
+        return this;
     }
 
-    public void setFuelLevel(double fuelLevel)
+    public Airplane setTravelSpeed(double travelSpeed)
     {
-        this.fuelLevel = fuelLevel;
+        this.travelSpeed = travelSpeed;
+        return this;
     }
 
+    public Airplane setFlyHours(double flyHours)
+    {
+        this.flyHours = flyHours;
+        return this;
+    }
+
+    public Airplane setConsumption(double consumption)
+    {
+        this.consumption = consumption;
+        return this;
+    }
+
+    public Airplane setMaxFuel(double maxFuel)
+    {
+        this.maxFuel = maxFuel;
+        return this;
+    }
+
+    public Airplane setKerosinStorage(double kerosinStorage)
+    {
+        this.kerosinStorage = this.kerosinStorage + kerosinStorage > maxFuel
+                ? maxFuel : this.kerosinStorage + kerosinStorage;
+        return this;
+    }
+
+
+
+    /*
+        Returns the total weight of the plane. Which is: emptyWeight +
+            weight of load + weight of kerosin.
+            Expect 1 liter Kerosin as 0.8 kg.
+    */
+    public double getTotalWeight()
+    {
+        return emptyWeight + loadWeight
+                + (kerosinStorage * 0.8);
+    }
+
+    /*
+        How far can the plane fly with the current kerosin storage?
+    */
+
+    public double getMaxReach()
+    {
+        return (kerosinStorage / consumption) * travelSpeed;
+    }
+
+    /*
+        Prevent flying further then possible (with the current kerosin) !
+    */
 
     /****************************************************
      *                ДРУГИЕ МЕТОДЫ
      ****************************************************/
 
-//    @Override
-//    public String toString()
-//    {
-//        String str = "Country: " + country + "\n" +
-//                "Model: " + model + "\n" +
-//                "Weight: " + weight + " kg\n" +
-//                "Power: " + power + " hp\n" +
-//                "Max.speed: " + maxSpeed + " km/h\n" +
-//                "Flight altitude: " + flightAltitude + " m";
-//        return str;
-//    }
+    public boolean fly(double km)
+    {
+        if (km <= 0 || getMaxReach() < km || getTotalWeight() > maxWeight)
+        {
+            return false;
+        }
 
+        flyHours += (km / travelSpeed);
+        kerosinStorage -= (km / travelSpeed) * consumption;
+
+        return true;
+    }
+
+    /*
+        ! The parameter 'liter' can be a negative number.
+        Doesn't have to be overfilled.
+        Prevent a negative number as value of the 'kerosinStorage' property !
+    */
+    public void fillUp(double liter)
+    {
+        if ((kerosinStorage + liter) > maxFuel)
+        {
+            kerosinStorage = maxFuel;
+        }
+        else if ((kerosinStorage + liter) < 0)
+        {
+            kerosinStorage = 0;
+        }
+        else
+        {
+            kerosinStorage += liter;
+        }
+    }
+
+    /*
+        Prevent illogical value-assignments !
+    */
+    public boolean load(double kg)
+    {
+
+        if ((loadWeight + emptyWeight + kg) > maxWeight)
+        {
+            return false;
+        }
+        else if ((emptyWeight + kg) < 0)
+        {
+            loadWeight = 0;
+            return true;
+        }
+        else
+        {
+            loadWeight += kg;
+            return true;
+        }
+    }
+
+    // Display flying hours, kerosin storage & total weight on t. terminal.
+    public void info()
+    {
+        System.out.println("Flying hours: " + flyHours + ", Kerosin: "
+                + kerosinStorage + ", Weight: " + getTotalWeight());
+    }
+
+
+
+
+
+
+    public static void main(String[] args) throws Vehicle.CountryError
+    {
+        Airplane jet = new Airplane( 70000, 35000, 10000,
+                800, 500, 2500, 25000, 8000);
+
+        jet.info();
+
+        jet.setKerosinStorage(1000);
+        System.out.println(jet.getKerosinStorage());
+        System.out.println(jet.getTotalWeight());
+        System.out.println("Maximal reach: " + jet.getMaxReach());
+
+        System.out.println("Fly hours 1: " + jet.getFlyHours());
+        jet.fly(5000);
+        System.out.println("Fly hours 1: " + jet.getFlyHours());
+
+        jet.load(10000);
+        jet.info();
+    }
 }
