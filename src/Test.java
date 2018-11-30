@@ -31,7 +31,6 @@ public class Test
          *      "input\forZip", "out\archive.zip");
          */
 
-s
         test(practice1.Example.class);
     }
 }
