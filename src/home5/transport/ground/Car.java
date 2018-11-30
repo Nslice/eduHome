@@ -5,23 +5,12 @@ import home5.transport.Vehicle;
 
 public class Car extends Vehicle
 {
-    /**
-     * Максимальный объем бака, литры (L)
-     */
-    protected double fuelTankCapacity = -1;
-
-    /**
-     * Расход на 100 км, литры (L)
-     */
-    protected double fuelConsumption = -1;
-
-    /**
-     * Количество топлива, литры (L)
-     */
-    protected double fuelLevel = 0.0;
+    protected double tankVolume = -1;  // Максимальный объем бака, литры (L)
+    protected double consumption = -1; // Расход на 100 км, литры (L)
+    protected double fuelLevel = 0.0;  // Количество топлива, литры (L)
     //------------------------------------------------------------------------
 
-
+    
     /****************************************************
      *                КОНСТРУКТОРЫ
      ****************************************************/
@@ -50,7 +39,7 @@ public class Car extends Vehicle
     @Override
     public boolean constructed()
     {
-        return super.constructed() && (fuelTankCapacity > 0 && fuelConsumption > 0);
+        return super.constructed() && (tankVolume > 0 && consumption > 0);
     }
 
 
@@ -58,14 +47,14 @@ public class Car extends Vehicle
      *                МЕТОДЫ ДОСТУПА
      ****************************************************/
 
-    public double getFuelTankCapacity()
+    public double getTankVolume()
     {
-        return fuelTankCapacity;
+        return tankVolume;
     }
 
-    public double getFuelConsumption()
+    public double getConsumption()
     {
-        return fuelConsumption;
+        return consumption;
     }
 
     public double getFuelLevel()
@@ -74,22 +63,22 @@ public class Car extends Vehicle
     }
 
 
-    public Car setFuelTankCapacity(double fuelTankCapacity)
+    public Car setTankVolume(double tankVolume)
     {
-        this.fuelTankCapacity = fuelTankCapacity;
+        this.tankVolume = tankVolume;
         return this;
     }
 
-    public Car setFuelConsumption(double fuelConsumption)
+    public Car setConsumption(double consumption)
     {
-        this.fuelConsumption = fuelConsumption;
+        this.consumption = consumption;
         return this;
     }
 
     public Car setFuelLevel(double fuelLevel)
     {
-        if (fuelLevel > fuelTankCapacity)
-            this.fuelLevel = fuelTankCapacity;
+        if (fuelLevel > tankVolume)
+            this.fuelLevel = tankVolume;
         else
             this.fuelLevel = fuelLevel;
         return this;
@@ -110,7 +99,7 @@ public class Car extends Vehicle
     {
         if (!constructed())
             return false;
-        if (fuelLevel + liters <= fuelTankCapacity)
+        if (fuelLevel + liters <= tankVolume)
         {
             fuelLevel += liters;
             return true;
@@ -131,7 +120,7 @@ public class Car extends Vehicle
         if (!constructed())
             return 0;
         int resM = 0;
-        double litresOnKm = fuelConsumption / 100; //расход на 1 км
+        double litresOnKm = consumption / 100; //расход на 1 км
         System.out.print("Driving:");
 
         while ((fuelLevel - litresOnKm) >= 0 && kilometres > 0)
@@ -159,8 +148,8 @@ public class Car extends Vehicle
                 "Model: " + model + "\n" +
                 "Weight: " + weight + " kg\n" +
                 "Max.speed: " + maxSpeed + " km/h\n" +
-                "Fuel tank capacity: " + fuelTankCapacity + " L\n" +
-                "Fuel consumption on 100 km: " + fuelConsumption + " L\n" +
+                "Fuel tank volume: " + tankVolume + " L\n" +
+                "Fuel consumption on 100 km: " + consumption + " L\n" +
                 "Fuel level: " + fuelLevel + " L";
         return str;
     }
