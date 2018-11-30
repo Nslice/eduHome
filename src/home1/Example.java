@@ -50,14 +50,14 @@ public class Example
 {
     public static void main(String[] args)
     {
-        //ex1:
+        /** ---------------------------------- EX1 --------------------------------- */
         Show.show(1);
         System.out.println(Time.dob());
         System.out.println(Time.now());
         Show.getch();
 
 
-        //ex2:
+        /** ---------------------------------- EX2 --------------------------------- */
         Show.show(2);
 
         if (args.length > 1)
@@ -81,7 +81,7 @@ public class Example
         Show.getch();
 
 
-        //ex3:
+        /** ---------------------------------- EX3 --------------------------------- */
         Show.show(3);
         Scanner scn = new Scanner(System.in);
         scn.useLocale(Locale.ENGLISH);

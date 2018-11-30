@@ -98,7 +98,7 @@ public class Example
         }
 
 
-        System.out.println("\nSearch for planets by entered radius (±10%):");
+        System.out.println("\nSearch planet by entered radius (±10%):");
         System.out.print(" > ");
         while (!(request = scanner.nextLine()).equals("exit"))
         {
@@ -130,7 +130,7 @@ public class Example
         }
 
 
-        System.out.println("\nSearch for planets by entered weight (±10%):");
+        System.out.println("\nSearch planet by entered weight (±10%):");
         System.out.print(" > ");
         while (!(request = scanner.nextLine()).equals("exit"))
         {
