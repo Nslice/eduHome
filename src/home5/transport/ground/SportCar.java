@@ -12,31 +12,6 @@ public class SportCar extends Car
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public SportCar(int ccode) throws CountryError
     {
         super(ccode);

@@ -6,11 +6,6 @@ import home5.transport.Vehicle;
 public class Car extends Vehicle
 {
     /**
-     * Мощность двигателя, лошадиные силы (hp)
-     */
-    protected double power = -1;
-
-    /**
      * Максимальный объем бака, литры (L)
      */
     protected double fuelTankCapacity = -1;
@@ -24,8 +19,6 @@ public class Car extends Vehicle
      * Количество топлива, литры (L)
      */
     protected double fuelLevel = 0.0;
-
-
     //------------------------------------------------------------------------
 
 
@@ -52,23 +45,18 @@ public class Car extends Vehicle
     /**
      * Проверяет инициализирован объект полностью или нет.
      *
-     * @return false - если не все поля инициализированы
+     * @return false - если не все поля инициализированы.
      */
     @Override
     public boolean constructed()
     {
-        return super.constructed() &&
-                (power > 0 && fuelTankCapacity > 0 && fuelConsumption > 0);
+        return super.constructed() && (fuelTankCapacity > 0 && fuelConsumption > 0);
     }
+
 
     /****************************************************
      *                МЕТОДЫ ДОСТУПА
      ****************************************************/
-
-    public double getPower()
-    {
-        return power;
-    }
 
     public double getFuelTankCapacity()
     {
@@ -85,27 +73,26 @@ public class Car extends Vehicle
         return fuelLevel;
     }
 
-    public void setPower(double power)
-    {
-        this.power = power;
-    }
 
-    public void setFuelTankCapacity(double fuelTankCapacity)
+    public Car setFuelTankCapacity(double fuelTankCapacity)
     {
         this.fuelTankCapacity = fuelTankCapacity;
+        return this;
     }
 
-    public void setFuelConsumption(double fuelConsumption)
+    public Car setFuelConsumption(double fuelConsumption)
     {
         this.fuelConsumption = fuelConsumption;
+        return this;
     }
 
-    public void setFuelLevel(double fuelLevel)
+    public Car setFuelLevel(double fuelLevel)
     {
         if (fuelLevel > fuelTankCapacity)
             this.fuelLevel = fuelTankCapacity;
         else
             this.fuelLevel = fuelLevel;
+        return this;
     }
 
 
@@ -116,8 +103,8 @@ public class Car extends Vehicle
     /**
      * Заправить бак.
      *
-     * @param liters кол-во литров
-     * @return false, если не вместилось или объект недоинициализирован
+     * @param liters кол-во литров.
+     * @return false, если не вместилось или объект недоинициализирован.
      */
     public boolean fillTank(double liters)
     {
@@ -128,30 +115,37 @@ public class Car extends Vehicle
             fuelLevel += liters;
             return true;
         }
-        else return false;
+        else
+            return false;
     }
+
 
     /**
      * Ехать.
      *
-     * @param kilometres сколько надо ехать
-     * @return километров проехано
+     * @param kilometres сколько надо ехать.
+     * @return километров проехано.
      */
     public int drive(int kilometres)
     {
         if (!constructed())
             return 0;
         int resM = 0;
-        final double litresOnKm = fuelConsumption / 100; //расход на 1 км
+        double litresOnKm = fuelConsumption / 100; //расход на 1 км
+        System.out.print("Driving:");
 
-        while ((fuelLevel - litresOnKm) > 0 && kilometres > 0)
+        while ((fuelLevel - litresOnKm) >= 0 && kilometres > 0)
         {
             kilometres--;
             resM++;
             fuelLevel -= litresOnKm;
+            System.out.print("-");
         }
+
+        System.out.println();
         return resM;
     }
+
 
     /**
      * Выводит всю информацию.
@@ -165,7 +159,6 @@ public class Car extends Vehicle
                 "Model: " + model + "\n" +
                 "Weight: " + weight + " kg\n" +
                 "Max.speed: " + maxSpeed + " km/h\n" +
-                "Power: " + power + " hp\n" +
                 "Fuel tank capacity: " + fuelTankCapacity + " L\n" +
                 "Fuel consumption on 100 km: " + fuelConsumption + " L\n" +
                 "Fuel level: " + fuelLevel + " L";

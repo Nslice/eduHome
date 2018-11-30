@@ -8,33 +8,23 @@ public class Airplane extends Vehicle
     /**
      * Высота полета, метры (m)
      */
-    protected double flightAltitude;
+    protected double flightAltitude = 0.0;
 
     /**
-     * Количество двигателей
+     * Максимальный объем бака, литры (L)
      */
-    protected int engineCount;
+    protected double fuelTankCapacity = -1;
 
     /**
-     * Мощность одного двигателя, лошадиные силы (hp)
+     * Расход на 100 км, литры (L)
      */
-    protected double power; //110_000 лс.
+    protected double fuelConsumption = -1;
+
 
     /**
-     * Количество баков
-     */
-    protected int tankCount;
-
-    /**
-     * Максимальный объем одного бака, литры (L)
-     */
-    protected double fuelTankCapacity;
-
-    /**1
      * Общее количество топлива, литры (L)
      */
-    protected double fuelLevel;
-
+    protected double fuelLevel = 0.0;
 
 
     //------------------------------------------------------------------------
@@ -54,8 +44,61 @@ public class Airplane extends Vehicle
         super(ccode, "", power, maxSpeed);
     }
 
+    @Override
+    public boolean constructed()
+    {
+        return super.constructed();
+    }
+
+
     /***************************************************
      *                МЕТОДЫ ДОСТУПА
+     ****************************************************/
+
+    public double getFlightAltitude()
+    {
+        return flightAltitude;
+    }
+
+    public double getFuelTankCapacity()
+    {
+        return fuelTankCapacity;
+    }
+
+    public double getFuelConsumption()
+    {
+        return fuelConsumption;
+    }
+
+    public double getFuelLevel()
+    {
+        return fuelLevel;
+    }
+
+
+    public void setFlightAltitude(double flightAltitude)
+    {
+        this.flightAltitude = flightAltitude;
+    }
+
+    public void setFuelTankCapacity(double fuelTankCapacity)
+    {
+        this.fuelTankCapacity = fuelTankCapacity;
+    }
+
+    public void setFuelConsumption(double fuelConsumption)
+    {
+        this.fuelConsumption = fuelConsumption;
+    }
+
+    public void setFuelLevel(double fuelLevel)
+    {
+        this.fuelLevel = fuelLevel;
+    }
+
+
+    /****************************************************
+     *                ДРУГИЕ МЕТОДЫ
      ****************************************************/
 
 //    @Override
