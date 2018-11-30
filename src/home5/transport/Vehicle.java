@@ -3,25 +3,10 @@ package home5.transport;
 
 public abstract class Vehicle implements IManufacturer
 {
-    /**
-     * Производитель
-     */
-    protected final String country;
-
-    /**
-     * Название модели
-     */
-    protected String model = null;
-
-    /**
-     * Вес, килограммы (kg)
-     */
-    protected double weight = -1;
-
-    /**
-     * Максимальная скорость, километры в час (km/h)
-     */
-    protected double maxSpeed = -1;
+    private final String country; // Производитель
+    private String model = null;  // Название модели
+    private double weight = -1;   // Вес, килограммы (kg)
+    private double maxSpeed = -1; // Максимальная скорость, километры в час (km/h)
     //------------------------------------------------------------------------
 
 

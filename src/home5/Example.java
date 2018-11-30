@@ -34,8 +34,8 @@ public class Example
 //            System.out.printf("fuelLevel = %.3f\n", car.getFuelLevel());
 
             Truck car = new Truck(2, "Volvo", 2700, 100);
-            car.setFuelConsumption(25.5);
-            car.setFuelTankCapacity(530);
+            car.setConsumption(25.5);
+            car.setTankVolume(530);
             car.setFuelLevel(245);
             car.setLoadCapacity(10250);
             System.out.println(car);

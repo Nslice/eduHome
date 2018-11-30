@@ -5,12 +5,12 @@ import home5.transport.Vehicle;
 
 public class Car extends Vehicle
 {
-    protected double tankVolume = -1;  // Максимальный объем бака, литры (L)
-    protected double consumption = -1; // Расход на 100 км, литры (L)
-    protected double fuelLevel = 0.0;  // Количество топлива, литры (L)
+    private double tankVolume = -1;  // Максимальный объем бака, литры (L)
+    private double consumption = -1; // Расход на 100 км, литры (L)
+    private double fuelLevel = 0.0;  // Количество топлива, литры (L)
     //------------------------------------------------------------------------
 
-    
+
     /****************************************************
      *                КОНСТРУКТОРЫ
      ****************************************************/
@@ -112,10 +112,10 @@ public class Car extends Vehicle
     /**
      * Ехать.
      *
-     * @param kilometres сколько надо ехать.
+     * @param km сколько надо ехать.
      * @return километров проехано.
      */
-    public int drive(int kilometres)
+    public int drive(int km)
     {
         if (!constructed())
             return 0;
@@ -123,9 +123,9 @@ public class Car extends Vehicle
         double litresOnKm = consumption / 100; //расход на 1 км
         System.out.print("Driving:");
 
-        while ((fuelLevel - litresOnKm) >= 0 && kilometres > 0)
+        while ((fuelLevel - litresOnKm) >= 0 && km > 0)
         {
-            kilometres--;
+            km--;
             resM++;
             fuelLevel -= litresOnKm;
             System.out.print("-");
@@ -144,10 +144,10 @@ public class Car extends Vehicle
     @Override
     public String toString()
     {
-        String str = "Country: " + country + "\n" +
-                "Model: " + model + "\n" +
-                "Weight: " + weight + " kg\n" +
-                "Max.speed: " + maxSpeed + " km/h\n" +
+        String str = "Country: " + getCountry() + "\n" +
+                "Model: " + getModel() + "\n" +
+                "Weight: " + getWeight() + " kg\n" +
+                "Max.speed: " + getMaxSpeed() + " km/h\n" +
                 "Fuel tank volume: " + tankVolume + " L\n" +
                 "Fuel consumption on 100 km: " + consumption + " L\n" +
                 "Fuel level: " + fuelLevel + " L";

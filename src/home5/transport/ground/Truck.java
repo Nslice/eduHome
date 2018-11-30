@@ -5,15 +5,8 @@ import home5.transport.Vehicle;
 
 public class Truck extends Car
 {
-    /**
-     * Грузоподъемность, килограммы (kg).
-     */
-    protected double loadCapacity = -1;
-
-    /**
-     * Всего загружено (kg).
-     */
-    protected double loadLevel = 0.0;
+    private double loadCapacity = -1; // Грузоподъемность, килограммы (kg).
+    private double loadLevel = 0.0;   // Всего загружено (kg).
     //------------------------------------------------------------------------
 
 
@@ -40,7 +33,7 @@ public class Truck extends Car
     /**
      * Проверяет инициализирован объект полностью или нет.
      *
-     * @return false - если не все поля инициализированы.
+     * @return false - если поля не инициализированы кроме loadLevel.
      */
     @Override
     public boolean constructed()
@@ -92,7 +85,7 @@ public class Truck extends Car
         else
         {
             loadLevel += load;
-            super.weight += loadLevel;
+            super.setWeight(super.getWeight() + loadLevel);
             return true;
         }
     }
@@ -115,7 +108,7 @@ public class Truck extends Car
         else
         {
             loadLevel -= load;
-            super.weight -= loadLevel;
+            super.setWeight(super.getWeight() - loadLevel);
             return true;
         }
     }
@@ -129,15 +122,15 @@ public class Truck extends Car
     @Override
     public String toString()
     {
-        String str = "Country: " + country + "\n" +
-                "Model: " + model + "\n" +
-                "Weight: " + weight + " kg\n" +
-                "Max.speed: " + maxSpeed + " km/h\n" +
+        String str = "Country: " + getCountry() + "\n" +
+                "Model: " + getModel() + "\n" +
+                "Weight: " + getWeight() + " kg\n" +
+                "Max.speed: " + getMaxSpeed() + " km/h\n" +
                 "Load capacity: " + loadCapacity + " kg\n" +
                 "Load level: " + loadLevel + " kg\n" +
-                "Fuel tank capacity: " + fuelTankCapacity + " L\n" +
-                "Fuel consumption on 100 km: " + fuelConsumption + " L\n" +
-                "Fuel level: " + fuelLevel + " L";
+                "Fuel tank volume: " + getTankVolume() + " L\n" +
+                "Fuel consumption on 100 km: " + getConsumption() + " L\n" +
+                "Fuel level: " + getFuelLevel() + " L";
         return str;
     }
 }
