@@ -135,7 +135,6 @@ public class Car extends Vehicle
         return resM;
     }
 
-
     /**
      * Выводит всю информацию.
      *

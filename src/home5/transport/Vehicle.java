@@ -11,7 +11,7 @@ public abstract class Vehicle implements IManufacturer
 
 
     /**
-     * Класс исключения`~~~~~~~~~~~
+     * Класс исключения
      */
     public static class CountryError extends Exception
     {
@@ -96,4 +96,5 @@ public abstract class Vehicle implements IManufacturer
     {
         this.maxSpeed = maxSpeed;
     }
+
 }

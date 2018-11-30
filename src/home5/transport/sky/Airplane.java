@@ -2,6 +2,7 @@ package home5.transport.sky;
 
 import home5.transport.Vehicle;
 
+
 public class Airplane extends Vehicle
 {
     private double tankVolume = -1;  // Максимальный объем бака, литры (L)
@@ -19,14 +20,6 @@ public class Airplane extends Vehicle
     public Airplane(int ccode) throws CountryError
     {
         super(ccode);
-    }
-
-    public Airplane(int ccode, double tankVolume, double consumption)
-            throws CountryError
-    {
-        super(ccode);
-        this.tankVolume = tankVolume;
-        this.consumption = consumption;
     }
 
     public Airplane(int ccode, String model, double weight, double maxSpeed)
@@ -59,6 +52,7 @@ public class Airplane extends Vehicle
         return super.constructed() &&
                 (tankVolume > 0 && consumption > 0 && speed > 0);
     }
+
 
     /****************************************************
      *                МЕТОДЫ ДОСТУПА
@@ -179,7 +173,6 @@ public class Airplane extends Vehicle
             return false;
     }
 
-
     /**
      * Выводит всю информацию.
      *
@@ -200,29 +193,29 @@ public class Airplane extends Vehicle
         return str;
     }
 
-    public static void main(String[] args) throws Vehicle.CountryError
-    {
-        Airplane plane = new Airplane(1, "Boeing 747-400", 395_700,
-                917);
-        plane.setTankVolume(216_840).setConsumption(2600).setFuelLevel(50_000)
-                .setSpeed(755).setFlyHours(735.2);
-
-        System.out.println("plane.constructed() = " + plane.constructed());
-        System.out.println(plane + "\n\n\n");
-
-        System.out.printf("%-25s %20.3f km\n", "Maximal reach:", plane.getMaxReach());
-        System.out.printf("%-25s %20s\n", "Fill up 160 343 liters:", plane.fillTank(160_343));
-        System.out.printf("%-25s %20.3f km\n", "Maximal reach:", plane.getMaxReach());
-
-        System.out.printf("%-25s %20.3f L\n", "Fuel level before:", plane.getFuelLevel());
-        System.out.printf("%-25s %20.3f h\n", "Fly hours before:", plane.getFlyHours());
-        System.out.println("plane.fly(32322) = " + plane.fly(32322));
-        System.out.printf("%-25s %20.3f L\n", "Fuel level after:", plane.getFuelLevel());
-        System.out.printf("%-25s %20.3f h\n", "Fly hours after:", plane.getFlyHours());
 
 
-
-    }
+//    public static void main(String[] args) throws Vehicle.CountryError
+//    {
+//        Airplane plane = new Airplane(1, "Boeing 747-400", 395_700,
+//                917);
+//        plane.setTankVolume(216_840).setConsumption(2600).setFuelLevel(50_000)
+//                .setSpeed(755).setFlyHours(735.2);
+//
+//        System.out.println("plane.constructed() = " + plane.constructed());
+//        System.out.println(plane + "\n\n\n");
+//
+//        System.out.printf("%-25s %20.3f km\n", "Maximal reach:", plane.getMaxReach());
+//        System.out.printf("%-25s %20s\n", "Fill up 160 343 liters:", plane.fillTank(160_343));
+//        System.out.printf("%-25s %20.3f km\n", "Maximal reach:", plane.getMaxReach());
+//
+//        System.out.printf("%-25s %20.3f L\n", "Fuel level before:", plane.getFuelLevel());
+//        System.out.printf("%-25s %20.3f h\n", "Fly hours before:", plane.getFlyHours());
+//        System.out.println("plane.fly(32322) = " + plane.fly(32322));
+//        System.out.printf("%-25s %20.3f L\n", "Fuel level after:", plane.getFuelLevel());
+//        System.out.printf("%-25s %20.3f h\n", "Fly hours after:", plane.getFlyHours());
+//
+//    }
 
 
 }

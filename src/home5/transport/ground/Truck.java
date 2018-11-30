@@ -5,8 +5,8 @@ import home5.transport.Vehicle;
 
 public class Truck extends Car
 {
-    private double loadCapacity = -1; // Грузоподъемность, килограммы (kg).
-    private double loadLevel = 0.0;   // Всего загружено (kg).
+    private double loadCapacity = -1; // Грузоподъемность, килограммы (kg)
+    private double loadLevel = 0.0;   // Всего загружено (kg)
     //------------------------------------------------------------------------
 
 
@@ -62,6 +62,23 @@ public class Truck extends Car
         return this;
     }
 
+    @Override
+    public Truck setTankVolume(double tankVolume)
+    {
+        return (Truck) super.setTankVolume(tankVolume);
+    }
+
+    @Override
+    public Truck setConsumption(double consumption)
+    {
+        return (Truck) super.setConsumption(consumption);
+    }
+
+    @Override
+    public Truck setFuelLevel(double fuelLevel)
+    {
+        return (Truck) super.setFuelLevel(fuelLevel);
+    }
 
     /****************************************************
      *                ДРУГИЕ МЕТОДЫ
@@ -90,9 +107,8 @@ public class Truck extends Car
         }
     }
 
-
     /**
-     * Рагрузка.
+     * Разгрузка.
      *
      * @param load кол-во килограмм.
      * @return false, если нечего или объект недоинициализирован.
@@ -113,7 +129,6 @@ public class Truck extends Car
         }
     }
 
-
     /**
      * Выводит всю информацию.
      *
@@ -133,4 +148,6 @@ public class Truck extends Car
                 "Fuel level: " + getFuelLevel() + " L";
         return str;
     }
+
+
 }

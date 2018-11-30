@@ -1,60 +1,92 @@
 package home5;
 
-
 import home5.transport.IManufacturer;
 import home5.transport.Vehicle;
+import home5.transport.ground.Car;
 import home5.transport.ground.Truck;
+import home5.transport.sky.Airplane;
+import home5.transport.sky.Warplane;
 
 
-/**
- * НАПИСАТЬ ГДЕ downcast, а где upcast
- */
+
 
 
 public class Example
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws Vehicle.CountryError
     {
-        IManufacturer prod;
+        Airplane plane = new Airplane(1, "Boeing 747-400", 395_700,
+                917);
+        plane.setTankVolume(216_840).setConsumption(2600).setFuelLevel(50_000)
+                .setSpeed(755).setFlyHours(735.2);
 
-        try
+        System.out.println(plane.getClass().getName() + " plane.constructed() = " + plane.constructed());
+        System.out.println(plane + "\n\n");
+
+        System.out.printf("%-25s %20.3f km\n", "Maximal reach:", plane.getMaxReach());
+        System.out.printf("%-25s %20s\n", "Fill up 160 343 liters:", plane.fillTank(160_343));
+        System.out.printf("%-25s %20.3f km\n", "Maximal reach:", plane.getMaxReach());
+
+        System.out.printf("%-25s %20.3f L\n", "Fuel level before:", plane.getFuelLevel());
+        System.out.printf("%-25s %20.3f h\n", "Fly hours before:", plane.getFlyHours());
+        System.out.println("plane.fly(32322) = " + plane.fly(32322));
+        System.out.printf("%-25s %20.3f L\n", "Fuel level after:", plane.getFuelLevel());
+        System.out.printf("%-25s %20.3f h\n", "Fly hours after:", plane.getFlyHours());
+
+
+        /** ------------------------------------------------------------------------------- */
+
+
+        System.out.println("\n---------------------------------------------------------\n");
+        Truck truck = new Truck(2, "Volvo", 2700, 100);
+        truck.setConsumption(25.5).setTankVolume(530).setFuelLevel(245).setLoadCapacity(10250);
+        System.out.println(truck.getClass().getName() + " truck.constructed() = " + truck.constructed());
+        System.out.println(truck + "\n\n");
+
+
+        System.out.printf("%-25s %20s\n", "Loading 7435 kg: ", truck.loading(7435));
+        System.out.printf("%-25s %20.3f kg\n", "Load level:", truck.getLoadLevel());
+        System.out.printf("%-25s %20.3f kg\n\n", "Truck weight:", truck.getWeight());
+
+        System.out.printf("%-25s %20s\n\n", "Loading 5435 kg:", truck.loading(5435));
+        System.out.printf("%-25s %20s\n", "Unloading 3000kg:", truck.unloading(3000));
+        System.out.printf("%-25s %20s\n", "Loading 5435 kg:", truck.loading(5435));
+
+        System.out.printf("%-25s %20.3f kg\n", "Load level:", truck.getLoadLevel());
+        System.out.printf("%-25s %20.3f km\n\n", "Truck weight:", truck.getWeight());
+
+        System.out.printf("%-25s %20.3f L\n", "Fuel level:", truck.getFuelLevel());
+        System.out.println(truck.drive(654) + "km");
+        System.out.printf("%-25s %20.3f L\n", "Fuel level:", truck.getFuelLevel());
+
+
+        System.out.println("\n---------------------------------------------------------\n");
+
+        Car audi = new Car(2, "Audi 2321", 785, 230);
+        audi.setTankVolume(120).setConsumption(8.45);
+
+        IManufacturer prd[] = {plane, new Warplane(7), truck, new Car(9)};
+
+        for (IManufacturer obj : prd)
         {
-//            Car car = new Car(2, "Audi", 700, 230);
-//            car.setFuelConsumption(10.3);
-//            car.setFuelTankCapacity(70);
-//            car.setFuelLevel(45);
-//            System.out.println("car.constructed() = " + car.constructed());
-//            System.out.println(car);
-//
-//            System.out.println("\n\ncar.fillTank(23) = " + car.fillTank(23));
-//            System.out.printf("fuelLevel = %.3f\n", car.getFuelLevel());
-//
-//
-//            car.drive(542);
-//            System.out.printf("fuelLevel = %.3f\n", car.getFuelLevel());
-
-            Truck car = new Truck(2, "Volvo", 2700, 100);
-            car.setConsumption(25.5);
-            car.setTankVolume(530);
-            car.setFuelLevel(245);
-            car.setLoadCapacity(10250);
-            System.out.println(car);
-
-            System.out.println("\n\n " + car.loading(7435));
-            System.out.println("car.getLoadLevel() = " + car.getLoadLevel());
-            System.out.println("car.getWeight() = " + car.getWeight());
-            System.out.println("\n\n " + car.loading(5435));
-            System.out.println("unloading: " + car.unloading(3000));
-            System.out.println("\n\n " + car.loading(5435));
-            System.out.println("car.getLoadLevel() = " + car.getLoadLevel());
-            System.out.println("car.getWeight() = " + car.getWeight());
-
-
-        }
-        catch (Vehicle.CountryError ex)
-        {
-            ex.printStackTrace();
+            System.out.println(obj.getCountry());
+            if (obj instanceof Car)
+            {
+                Car tmp = (Car) obj;
+                System.out.println("\n" + tmp + " \n");
+            }
         }
 
+        showModelNames(truck, audi, plane);
+
+
+    }
+
+
+    public static void showModelNames(Vehicle... objs)
+    {
+        System.out.println("\nExample.showModelNames()");
+        for (Vehicle o : objs)
+            System.out.println(o.getModel());
     }
 }
