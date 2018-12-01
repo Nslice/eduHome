@@ -1,14 +1,10 @@
 package home5;
 
-import home5.transport.IManufacturer;
 import home5.transport.Vehicle;
 import home5.transport.ground.Car;
 import home5.transport.ground.Truck;
 import home5.transport.sky.Airplane;
 import home5.transport.sky.Warplane;
-
-
-
 
 
 public class Example
@@ -65,28 +61,36 @@ public class Example
         Car audi = new Car(2, "Audi 2321", 785, 230);
         audi.setTankVolume(120).setConsumption(8.45);
 
-        IManufacturer prd[] = {plane, new Warplane(7), truck, new Car(9)};
+        Vehicle[] product = {plane, new Warplane(7), truck, new Car(9)};
+        ((Warplane) product[1]).setRockets(5);
 
-        for (IManufacturer obj : prd)
+
+        for (Vehicle obj : product)
         {
             System.out.println(obj.getCountry());
             if (obj instanceof Car)
             {
-                Car tmp = (Car) obj;
+                Car tmp = (Car) obj;   
                 System.out.println("\n" + tmp + " \n");
             }
         }
 
-        showModelNames(truck, audi, plane);
 
+        showAndFill(truck, audi, plane, new Warplane(7, "Crouch", 1200, 500));
 
     }
 
 
-    public static void showModelNames(Vehicle... objs)
+    public static void showAndFill(Vehicle... objs)
     {
         System.out.println("\nExample.showModelNames()");
         for (Vehicle o : objs)
-            System.out.println(o.getModel());
+        {
+            System.out.println(o);
+            System.out.print(o.getModel());
+            System.out.println("      " + o.getFuelLevel());
+            o.setFuelLevel(o.getFuelLevel() + 32);
+        }
+
     }
 }

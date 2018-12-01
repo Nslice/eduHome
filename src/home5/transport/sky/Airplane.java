@@ -68,10 +68,6 @@ public class Airplane extends Vehicle
         return consumption;
     }
 
-    public double getFuelLevel()
-    {
-        return fuelLevel;
-    }
 
     public double getSpeed()
     {
@@ -82,7 +78,6 @@ public class Airplane extends Vehicle
     {
         return flyHours;
     }
-
 
     public Airplane setTankVolume(double tankVolume)
     {
@@ -96,15 +91,6 @@ public class Airplane extends Vehicle
         return this;
     }
 
-    public Airplane setFuelLevel(double fuelLevel)
-    {
-        if (fuelLevel > tankVolume)
-            this.fuelLevel = tankVolume;
-        else
-            this.fuelLevel = fuelLevel;
-        return this;
-    }
-
     public Airplane setSpeed(double speed)
     {
         this.speed = speed > getMaxSpeed() ? getMaxSpeed() : speed;
@@ -114,6 +100,22 @@ public class Airplane extends Vehicle
     public Airplane setFlyHours(double flyHours)
     {
         this.flyHours = flyHours;
+        return this;
+    }
+
+    @Override
+    public double getFuelLevel()
+    {
+        return fuelLevel;
+    }
+
+    @Override
+    public Airplane setFuelLevel(double fuelLevel)
+    {
+        if (fuelLevel > tankVolume)
+            this.fuelLevel = tankVolume;
+        else
+            this.fuelLevel = fuelLevel;
         return this;
     }
 

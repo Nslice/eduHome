@@ -61,7 +61,6 @@ public abstract class Vehicle implements IManufacturer
      *                МЕТОДЫ ДОСТУПА
      ****************************************************/
 
-    @Override
     public String getCountry()
     {
         return country;
@@ -97,4 +96,7 @@ public abstract class Vehicle implements IManufacturer
         this.maxSpeed = maxSpeed;
     }
 
+
+    public abstract Vehicle setFuelLevel(double lvl);
+    public abstract double getFuelLevel();
 }

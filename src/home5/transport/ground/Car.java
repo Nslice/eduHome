@@ -56,13 +56,7 @@ public class Car extends Vehicle
     {
         return consumption;
     }
-
-    public double getFuelLevel()
-    {
-        return fuelLevel;
-    }
-
-
+    
     public Car setTankVolume(double tankVolume)
     {
         this.tankVolume = tankVolume;
@@ -75,6 +69,13 @@ public class Car extends Vehicle
         return this;
     }
 
+    @Override
+    public double getFuelLevel()
+    {
+        return fuelLevel;
+    }
+
+    @Override
     public Car setFuelLevel(double fuelLevel)
     {
         if (fuelLevel > tankVolume)
@@ -107,7 +108,6 @@ public class Car extends Vehicle
         else
             return false;
     }
-
 
     /**
      * Ехать.
