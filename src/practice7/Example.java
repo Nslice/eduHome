@@ -3,7 +3,9 @@ package practice7;
 import other.Show;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
+import java.util.List;
 import java.util.Random;
 
 public class Example
@@ -22,8 +24,8 @@ public class Example
             Show.show(1);
             File file = new File(outPath + "newFile.txt");
             System.out.println("create: " + file.createNewFile());
-            System.out.println("create tmp-file: " +
-                    File.createTempFile("smth", ".tmp", new File(outPath)));
+//            System.out.println("create tmp-file: " +
+//                    File.createTempFile("smth", ".tmp", new File(outPath)));
 //            Show.getch();
 
 
@@ -96,19 +98,19 @@ public class Example
 
 
             /** ---------------------------------- EX9 --------------------------------- */
-            Show.show(9);
-            file = new File(inPath + "projFile.zip");
-            System.out.println("file = " + file);
-            System.out.println(file + " - Exists? = " + file.exists());
-            System.out.println("Absolute path: " + file.getAbsolutePath());
-
-
-            /** ---------------------------------- EX10 --------------------------------- */
-            Show.show(10);
-            System.out.println("file = " + file);
-            System.out.println("file.isDirectory() = " + file.isDirectory());
-            System.out.println("file.isFile() = " + file.isFile());
-
+//            Show.show(9);
+//            file = new File(inPath + "projFile.zip");
+//            System.out.println("file = " + file);
+//            System.out.println(file + " - Exists? = " + file.exists());
+//            System.out.println("Absolute path: " + file.getAbsolutePath());
+//
+//
+//            /** ---------------------------------- EX10 --------------------------------- */
+//            Show.show(10);
+//            System.out.println("file = " + file);
+//            System.out.println("file.isDirectory() = " + file.isDirectory());
+//            System.out.println("file.isFile() = " + file.isFile());
+//
 
             /** ---------------------------------- EX11 --------------------------------- */
 //            Show.show(11);
@@ -124,8 +126,11 @@ public class Example
             System.out.println("\nList of files and folders for archiving:");
 //            tree(file, "___");
             File[] arr = {file};
-            RecursivePrint(arr, 0,0);
+//            RecursivePrint(arr, 0,0);
 
+
+            System.out.println("\n\n\n\n\n\nTREE");
+            tree(file, 0);
 
         }
         catch (IOException ex)
@@ -164,20 +169,40 @@ public class Example
         RecursivePrint(arr, ++index, level);
     }
 
-    public static void tree(File dir, String space)
+
+
+    public static void tree(File dir, int level)
     {
-        space += "___";
-//        System.out.print(space);
+
         for (File f : dir.listFiles())
         {
-            if (f.isDirectory())
+            if (f.isFile())
             {
-                System.out.println(space + f.getName());
-                tree(f, space);
+                System.out.print("\u2502");  // '|'
+                for (int i = 0; i <= level; i++)
+                    System.out.print("\t");
+
+
+                System.out.println(f.getName());
             }
-            else System.out.println(space + f.getName());
+
         }
+
+        File[] list = dir.listFiles();
+        for (int n = 0; n < list.length - 1; n++)
+        {
+            if (list[n].isDirectory())
+            {
+                System.out.print("\u251c");  // '|-'
+                for (int i = 0; i <= level; i++)
+                    System.out.print("\u2500\u2500\u2500"); // '───'
+                System.out.println(list[n].getName());
+                tree(list[n], level + 1);
+            }
+        }
+
     }
+
 
     public static void showFiles(File dir)
     {
@@ -191,4 +216,7 @@ public class Example
             else System.out.println("       " + f.getName());
         }
     }
+
+
+
 }
