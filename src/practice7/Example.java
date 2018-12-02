@@ -3,8 +3,11 @@ package practice7;
 import other.Show;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Example
 {
@@ -117,34 +120,32 @@ public class Example
 //            System.out.println("\nList of files and folders for archiving:");
 //            showFiles(file);
 
-
-            /** ---------------------------------- EX13 --------------------------------- */
-            Show.show(13);
-            file = new File(inPath + "filesPr7");
-            System.out.println("\nList of files and folders for archiving:");
-//            tree(file, "___");
-            File[] arr = {file};
-//            RecursivePrint(arr, 0,0);
+            /** ---------------------------------- EX12 --------------------------------- */
+            Show.show(12);
+            HTMLFileFilter filter = new HTMLFileFilter();
+            filter.dirs(new File(inPath + "filesPr7"), 0);
 
 
-            dirs(file);
+            /** ---------------------------------- TEST --------------------------------- */
+//            Show.show(13);
+//            file = new File(inPath + "filesPr7");
+//            System.out.println("\nList of files and folders for archiving:");
+//            dirs(file);
 
         }
         catch (IOException ex)
         {
             ex.printStackTrace();
         }
-
-
     }
-
 
     public static void dirs(File file)
     {
+        if (!file.isDirectory()) return;
         dirs(file, 0);
     }
 
-    public static void dirs(File file, int level)
+    private static void dirs(File file, int level)
     {
         for (File f : file.listFiles())
         {
@@ -171,6 +172,44 @@ public class Example
                 showFiles(f);
             }
             else System.out.println("       " + f.getName());
+        }
+    }
+}
+
+class HTMLFileFilter implements FileFilter
+{
+    // \w{1,}\s{0,}.*\.html$
+    static Pattern pattern = Pattern.compile("\\w+\\s*.*\\.html$");
+    static Matcher matcher = pattern.matcher("");
+
+    @Override
+    public boolean accept(File pathname)
+    {
+        matcher.reset(pathname.getName());
+        return matcher.find();
+    }
+
+    public void dirs(File file, int level)
+    {
+        for (File f : file.listFiles())
+        {
+            for (int i = 0; i < level; i++)
+            {
+                System.out.print("\t");
+            }
+
+            if (f.isDirectory())
+            {
+                System.out.println(f.getName() + "/");
+                dirs(f, level + 1);
+            }
+            else if (accept(f))
+            {
+                System.out.println(f.getName());
+            }
+            else
+                for (int i = 0; i < level; i++)
+                    System.out.print("\b");
         }
     }
 }
