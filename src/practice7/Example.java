@@ -3,9 +3,7 @@ package practice7;
 import other.Show;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.io.IOException;
-import java.util.List;
 import java.util.Random;
 
 public class Example
@@ -129,8 +127,7 @@ public class Example
 //            RecursivePrint(arr, 0,0);
 
 
-            System.out.println("\n\n\n\n\n\nTREE");
-            tree(file, 0);
+            dirs(file);
 
         }
         catch (IOException ex)
@@ -142,67 +139,27 @@ public class Example
     }
 
 
-    static void RecursivePrint(File[] arr, int index, int level)
+    public static void dirs(File file)
     {
-        // terminate condition
-        if (index == arr.length)
-            return;
-
-        // tabs for internal levels
-        for (int i = 0; i < level; i++)
-            System.out.print("\t");
-
-        // for files
-        if (arr[index].isFile())
-            System.out.println(arr[index].getName());
-
-            // for sub-directories
-        else if (arr[index].isDirectory())
-        {
-            System.out.println("[" + arr[index].getName() + "]");
-
-            // recursion for sub-directories
-            RecursivePrint(arr[index].listFiles(), 0, level + 1);
-        }
-
-        // recursion for main directory
-        RecursivePrint(arr, ++index, level);
+        dirs(file, 0);
     }
 
-
-
-    public static void tree(File dir, int level)
+    public static void dirs(File file, int level)
     {
-
-        for (File f : dir.listFiles())
+        for (File f : file.listFiles())
         {
-            if (f.isFile())
+            for (int i = 0; i < level; i++)
+                System.out.print("\t");
+
+            if (f.isDirectory())
             {
-                System.out.print("\u2502");  // '|'
-                for (int i = 0; i <= level; i++)
-                    System.out.print("\t");
-
-
+                System.out.println(f.getName() + "/");
+                dirs(f, level + 1);
+            }
+            else
                 System.out.println(f.getName());
-            }
-
         }
-
-        File[] list = dir.listFiles();
-        for (int n = 0; n < list.length - 1; n++)
-        {
-            if (list[n].isDirectory())
-            {
-                System.out.print("\u251c");  // '|-'
-                for (int i = 0; i <= level; i++)
-                    System.out.print("\u2500\u2500\u2500"); // '───'
-                System.out.println(list[n].getName());
-                tree(list[n], level + 1);
-            }
-        }
-
     }
-
 
     public static void showFiles(File dir)
     {
@@ -216,7 +173,4 @@ public class Example
             else System.out.println("       " + f.getName());
         }
     }
-
-
-
 }
