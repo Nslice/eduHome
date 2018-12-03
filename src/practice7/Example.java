@@ -121,16 +121,16 @@ public class Example
 //            showFiles(file);
 
             /** ---------------------------------- EX12 --------------------------------- */
-            Show.show(12);
-            HTMLFileFilter filter = new HTMLFileFilter();
-            filter.dirs(new File(inPath + "filesPr7"), 0);
-
+//            Show.show(12);
+//            HTMLFileFilter filter = new HTMLFileFilter();
+//            filter.dirs(new File(inPath + "filesPr7"), 0);
+//
 
             /** ---------------------------------- TEST --------------------------------- */
-//            Show.show(13);
-//            file = new File(inPath + "filesPr7");
-//            System.out.println("\nList of files and folders for archiving:");
-//            dirs(file);
+            Show.show(13);
+            file = new File(inPath + "filesPr7");
+            System.out.println("\nList of files and folders for archiving:");
+            dirs(file, 0);
 
         }
         catch (IOException ex)
@@ -139,11 +139,7 @@ public class Example
         }
     }
 
-    public static void dirs(File file)
-    {
-        if (!file.isDirectory()) return;
-        dirs(file, 0);
-    }
+
 
     private static void dirs(File file, int level)
     {
@@ -174,12 +170,21 @@ public class Example
             else System.out.println("       " + f.getName());
         }
     }
+    public static void dirs(File file)
+    {
+        if (!file.isDirectory()) return;
+        dirs(file, 0);
+    }
+
 }
+
+
+
 
 class HTMLFileFilter implements FileFilter
 {
     // \w{1,}\s{0,}.*\.html$
-    static Pattern pattern = Pattern.compile("\\w+\\s*.*\\.html$");
+    static Pattern pattern = Pattern.compile("\\.html$");
     static Matcher matcher = pattern.matcher("");
 
     @Override
