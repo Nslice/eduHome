@@ -1,6 +1,7 @@
 package home8;
 
 import java.io.*;
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -31,22 +32,20 @@ public class TxtFile
     public void filterShow(int num, OutputStream os) throws IOException
     {
         BufferedReader fin = new BufferedReader(new FileReader(txt));
-
         Scanner scanner = new Scanner(txt).useDelimiter("[.?!](\\s+|$)");
         String token;
+
         while (scanner.hasNext())
         {
             token = scanner.next();
             if (token.split("\\s+").length == num)
             {
                 token = token.replaceAll("(\r\n)|\n", " ");
-                os.write((token + ".").getBytes());
-                if (scanner.hasNext())
-                    os.write(new byte[]{'\r', '\n'});
+                os.write((token + ".\r\n").getBytes());
             }
         }
 
-
         fin.close();
+        scanner.close();
     }
 }
