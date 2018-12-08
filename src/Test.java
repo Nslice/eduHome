@@ -26,6 +26,9 @@ public class Test
          * home1(double, double);   13, 6.2
          * home2("input\info2.txt");
          * home3(void);
+         * home5(void);
+         * home6(void);
+         * home8("input/in8.txt", "out/words.txt");
          */
 
         /*
