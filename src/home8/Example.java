@@ -2,9 +2,9 @@ package home8;
 
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 
 public class Example
@@ -21,7 +21,11 @@ public class Example
 
         TxtFile file = new TxtFile(args[0]);
 
-        int num = 10;
+        int num;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter word count: ");
+        num = scan.nextInt();
+
         try (PrintStream stream = new PrintStream(new File(args[1])))
         {
             file.filterShow(num, System.out);
@@ -32,5 +36,6 @@ public class Example
             e.printStackTrace();
         }
 
+        scan.close();
     }
 }

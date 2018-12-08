@@ -1,19 +1,15 @@
 package home7;
 
-import home7.space.Planet;
 import home7.calculations.Calc;
+import home7.space.Planet;
 
 import java.util.Locale;
 import java.util.Scanner;
 
 public class Example
 {
-
-
     public static void main(String[] args)
     {
-        System.out.println("Example.main");
-
         try
         {
             Planet pl = new Planet("Earth", 4325, 5345, "Solar");
@@ -21,43 +17,49 @@ public class Example
             System.out.println("pl = " + pl);
             pl.setName("Er");
             System.out.println("pl = " + pl);
+            pl.setWeight(-2);
 
         }
-        catch (IllegalArgumentException e)
+        catch (IllegalArgumentException ex)
         {
-            e.printStackTrace();
-            e.getMessage();
-            return;
+            ex.printStackTrace();
+            System.out.println("exp.message: \"" + ex.getMessage() + "\"");
         }
         System.out.println("\n");
+
+
 
         Scanner in = new Scanner(System.in);
         in.useLocale(Locale.ENGLISH);
 
-        double x, y;
-
-        try
+        while (true)
         {
-            System.out.println("-(b != 0) and ((y>0 and x>0) or (y<0 and x<0))");
-            System.out.println("Enter x, y:");
-            x = in.nextDouble();
-            y = in.nextDouble();
-            System.out.printf("%.4f\n\n", Calc.formulaT1(x, y));
+            try
+            {
+                double x, y;
+                System.out.println("Condition: ((y>0 and x>0) or (y<0 and x<0))");
+                System.out.println("Enter x, y:");
+                x = in.nextDouble();
+                y = in.nextDouble();
+                System.out.printf("%.4f\n\n", Calc.formulaT1(x, y));
 
-            System.out.println("(a != 0) and (x > 0)");
-            System.out.println("Enter x:");
-            x = in.nextDouble();
-            System.out.printf("%.4f\n", Calc.formulaT2(x));
+                System.out.println("Condition: (x > 0)");
+                System.out.println("Enter x:");
+                x = in.nextDouble();
+                System.out.printf("%.4f\n", Calc.formulaT2(x));
+                break;
+            }
+            catch (Calc.CalcErr ex)
+            {
+                System.out.println("EXCEPTION");
+                System.out.println("exp.message: \"" + ex.getMessage() + "\"");
+                System.out.println("\n-----------------Enter again\n");
+                continue;
+            }
         }
-        catch (Calc.CalcErr ex)
-        {
-            ex.printStackTrace();
-            ex.getMessage();
-            return;
-        }
 
 
+        in.close();
         System.out.println("Done.");
-
     }
 }

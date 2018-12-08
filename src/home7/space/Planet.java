@@ -2,33 +2,12 @@ package home7.space;
 
 import java.io.Serializable;
 
-/**
- * Класс описывающий планету.
- *
- * @author Talgat
- * @author some@mail.com
- * @version 1.0
- */
+
 public class Planet implements Serializable
 {
-    /**
-     * название планеты
-     */
     private String name;
-
-    /**
-     * радиус, км
-     */
     private double radius;
-
-    /**
-     * вес, кг
-     */
     private double weight;
-
-    /**
-     * название планетарной системы
-     */
     private String planetSystem;
 
 
@@ -36,6 +15,7 @@ public class Planet implements Serializable
     {
         if (radius <= 0 || weight <= 0)
             throw new IllegalArgumentException("radius = " + radius + ", weight = " + weight);
+
         this.name = name;
         this.radius = radius;
         this.weight = weight;
@@ -116,4 +96,3 @@ public class Planet implements Serializable
     }
 
 }
-

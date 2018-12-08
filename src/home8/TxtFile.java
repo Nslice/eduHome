@@ -32,7 +32,6 @@ public class TxtFile
      */
     public void filterShow(int num, PrintStream os) throws IOException
     {
-        BufferedReader fin = new BufferedReader(new FileReader(txt));
         Scanner scanner = new Scanner(txt).useDelimiter("[.?!](\\s+|$)");
         String token;
 
@@ -46,7 +45,6 @@ public class TxtFile
             }
         }
 
-        fin.close();
         scanner.close();
     }
 }
