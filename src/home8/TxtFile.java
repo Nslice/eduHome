@@ -1,17 +1,18 @@
 package home8;
 
 import java.io.*;
-import java.util.Locale;
 import java.util.Scanner;
 
-/**
- * класс
- */
 public class TxtFile
 {
     private File txt;
 
 
+    /**
+     * Открывает txt файл.
+     *
+     * @param path путь к файлу.
+     */
     public TxtFile(String path)
     {
         txt = new File(path);
@@ -23,13 +24,13 @@ public class TxtFile
     }
 
     /**
-     * Показать предложения только с заданным количеством слов.
+     * Выводит предложения только с заданным количеством слов.
      *
      * @param num кол-во слов в предложении.
      * @param os  поток для вывода.
      * @throws IOException ошибки ввода/вывода.
      */
-    public void filterShow(int num, OutputStream os) throws IOException
+    public void filterShow(int num, PrintStream os) throws IOException
     {
         BufferedReader fin = new BufferedReader(new FileReader(txt));
         Scanner scanner = new Scanner(txt).useDelimiter("[.?!](\\s+|$)");
@@ -41,7 +42,7 @@ public class TxtFile
             if (token.split("\\s+").length == num)
             {
                 token = token.replaceAll("(\r\n)|\n", " ");
-                os.write((token + ".\r\n").getBytes());
+                os.println(token + ".");
             }
         }
 
