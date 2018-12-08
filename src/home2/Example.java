@@ -10,7 +10,7 @@ import java.util.Scanner;
 import java.util.Vector;
 
 
-// > javadoc -d path -encoding utf8 -author -version %1.java %2.java
+// > javadoc -d path -encoding utf8 -private -author -version %1.java %2.java
 
 /**
  * Тестируюищй класс для класса {@link home2.space.Planet}.
@@ -86,7 +86,7 @@ public class Example
             boolean check = false;
             for (Planet p : planets)
             {
-                if (request.equals(p.getIdentification()))
+                if (request.equals(p.getPlanetSystem()))
                 {
                     check = true;
                     System.out.println(p + "\n");

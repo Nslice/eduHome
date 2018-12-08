@@ -25,27 +25,27 @@ public class Planet implements Serializable
      * вес, кг
      */
     private double weight;
-    
+
     /**
      * название планетарной системы
      */
-    private String identification;
+    private String planetSystem;
 
 
     /**
      * Инициализирует все поля, описывающие планету.
      *
-     * @param name           название планеты
-     * @param radius         радиус, км
-     * @param weight         вес, кг
-     * @param identification название системы
+     * @param name         название планеты
+     * @param radius       радиус, км
+     * @param weight       вес, кг
+     * @param planetSystem название системы
      */
-    public Planet(String name, double radius, double weight, String identification)
+    public Planet(String name, double radius, double weight, String planetSystem)
     {
         this.name = name;
         this.radius = radius;
         this.weight = weight;
-        this.identification = identification;
+        this.planetSystem = planetSystem;
     }
 
     /**
@@ -54,7 +54,7 @@ public class Planet implements Serializable
      * @param name   название планеты
      * @param radius раидус, км
      * @param weight вес, кг
-     * @see #Planet(String name, double radius, double weight, String identification)
+     * @see #Planet(String name, double radius, double weight, String planetSystem)
      */
     public Planet(String name, double radius, double weight)
     {
@@ -65,7 +65,7 @@ public class Planet implements Serializable
      * Инициализирует название, остальное по умолчанию.
      *
      * @param name название планеты
-     * @see #Planet(String name, double radius, double weight, String identification)
+     * @see #Planet(String name, double radius, double weight, String planetSystem)
      * @see #Planet()
      */
     public Planet(String name)
@@ -76,7 +76,7 @@ public class Planet implements Serializable
     /**
      * Конструктор по умолчаннию.
      *
-     * @see #Planet(String name, double radius, double weight, String identification)
+     * @see #Planet(String name, double radius, double weight, String planetSystem)
      */
     public Planet()
     {
@@ -87,7 +87,7 @@ public class Planet implements Serializable
      * Конструктор копирования.
      *
      * @param obj другой объект класса Planet
-     * @see #Planet(String name, double radius, double weight, String identification)
+     * @see #Planet(String name, double radius, double weight, String planetSystem)
      */
     @Deprecated
     public Planet(Planet obj)
@@ -95,7 +95,7 @@ public class Planet implements Serializable
         this.name = obj.name;
         this.radius = obj.radius;
         this.weight = obj.weight;
-        this.identification = obj.identification;
+        this.planetSystem = obj.planetSystem;
     }
 
     /**
@@ -131,11 +131,11 @@ public class Planet implements Serializable
     /**
      * Возвращает название системы.
      *
-     * @return название системы - {@link Planet#identification}
+     * @return название системы - {@link Planet#planetSystem}
      */
-    public String getIdentification()
+    public String getPlanetSystem()
     {
-        return identification;
+        return planetSystem;
     }
 
     /**
@@ -171,11 +171,11 @@ public class Planet implements Serializable
     /**
      * Устанавливает название системы.
      *
-     * @param identification название
+     * @param planetSystem название
      */
-    public void setIdentification(String identification)
+    public void setPlanetSystem(String planetSystem)
     {
-        this.identification = identification;
+        this.planetSystem = planetSystem;
     }
 
 
@@ -195,7 +195,7 @@ public class Planet implements Serializable
     public String toString()
     {
         return "Planet - " + name + "\nRadius - " + radius + "\nWeight - " + weight
-                + "\nSystem - " + identification;
+                + "\nSystem - " + planetSystem;
     }
 
 }
