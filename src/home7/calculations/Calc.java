@@ -1,8 +1,6 @@
 package home7.calculations;
 
 
-import com.sun.org.apache.xalan.internal.xsltc.dom.CachedNodeListIterator;
-
 public class Calc
 {
 
