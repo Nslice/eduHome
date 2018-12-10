@@ -3,142 +3,153 @@ package practice7;
 import other.Show;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Example
 {
     static final String SP = File.separator;
+    static final String outPath = "out" + SP + "pr7" + SP;
+    static final String inPath = "input" + SP;
 
     public static void main(String[] args) throws IOException
     {
-        String outPath = "out" + SP + "pr7" + SP;
-        String inPath = "input" + SP;
         Random rand = new Random();
+        File file;
         /** ---------------------------------- EX1 --------------------------------- */
         Show.show(1);
-        File file = new File(outPath + "newFile.txt");
+        file = new File(outPath + "newFile.txt");
         System.out.println("create: " + file.createNewFile());
-//            System.out.println("create tmp-file: " +
-//                    File.createTempFile("smth", ".tmp", new File(outPath)));
-//            Show.getch();
+        System.out.println("create tmp-file: " +
+                File.createTempFile("smth", ".tmp", new File(outPath)));
+        Show.getch();
 
 
         /** ---------------------------------- EX2 --------------------------------- */
-//            Show.show(2);
-//            String mytxt = "myfile.txt";
-//            file = new File(outPath + mytxt);
-//            System.out.println("create \"" + mytxt + "\" = " + file.createNewFile());
-//
-//            mytxt = rand.nextInt(500) + "renamed.txt";
-//            System.out.print("Push button for rename file");
-//            Show.getch();
-//            System.out.println("rename to \"" + mytxt + "\" = " + file.renameTo(new File(outPath + mytxt)));
-//
-//            // переименование директории:
-//            file = new File(outPath);
-//            System.out.println("\n" + file + "\nfile.isDirectory() = " + file.isDirectory());
-//            String dirName = file.getParent() + File.separator + "MY_DIR";
-//            System.out.println("rename to \"" + dirName + "\" = " + file.renameTo(new File(dirName)));
-//
-//            System.out.print("Push button for rename directory again");
-//            Show.getch();
-//            file = new File(dirName);
-//            System.out.println("rename again = " + file.renameTo(new File(outPath)));
-//            Show.getch();
+        Show.show(2);
+        String mytxt = "myfile.txt";
+        file = new File(outPath + mytxt);
+        System.out.println("create \"" + mytxt + "\" = " + file.createNewFile());
+
+        mytxt = rand.nextInt(500) + "renamed.txt";
+        System.out.print("Push button for rename file");
+        Show.getch();
+        System.out.println("rename to \"" + mytxt + "\" = " + file.renameTo(new File(outPath + mytxt)));
+
+        // переименование директории:
+        System.out.print("\nPush button for rename directory");
+        Show.getch();
+        file = new File(outPath);
+        System.out.println(file + " - isDirectory() = " + file.isDirectory());
+        String dirName = file.getParent() + SP + "MY_DIR";
+        System.out.println("rename to \"" + dirName + "\" = " + file.renameTo(new File(dirName)));
+
+        // переименование директории:
+        System.out.print("\nPush button for rename directory again");
+        Show.getch();
+        file = new File(dirName);
+        System.out.println("rename again = " + file.renameTo(new File(outPath)));
+        Show.getch();
 
 
         /** ---------------------------------- EX3 --------------------------------- */
-//            Show.show(3);
-//            file = new File(outPath + mytxt);
-//            System.out.println("delete \"" + mytxt + "\" = " + file.delete());
-//            Show.getch();
+        Show.show(3);
+        file = new File(outPath + mytxt);
+        System.out.println("delete \"" + mytxt + "\" = " + file.delete());
+        Show.getch();
 
 
         /** ---------------------------------- EX4 --------------------------------- */
-//            Show.show(4);
-//            file = new File(outPath + "newFile.txt");
-//            System.out.println("Writable? = " + file.canWrite());
-//            file.setWritable(false);
-//            System.out.println("Writable? = " + file.canWrite());
+        Show.show(4);
+        file = new File(outPath + "newFile.txt");
+        System.out.println("Writable? = " + file.canWrite());
+        file.setWritable(false);
+        System.out.println("Writable? = " + file.canWrite());
+        Show.getch();
 
 
         /** ---------------------------------- EX5 --------------------------------- */
-//            Show.show(5);
-//            System.out.println("before last modified = " + new Date(file.lastModified()));
-//            file.setLastModified(file.lastModified() - 5 * 86_400_000);
-//            System.out.println(" after last modified = " + new Date(file.lastModified()));
-//            Show.getch();
+        Show.show(5);
+        System.out.println("before last modified = " + new Date(file.lastModified()));
+        file.setLastModified(file.lastModified() - 5 * 86_400_000);
+        System.out.println(" after last modified = " + new Date(file.lastModified()));
+        Show.getch();
 
 
         /** ---------------------------------- EX6 --------------------------------- */
-//            Show.show(6);
-//            file = new File(inPath + "projFile.zip");
-//            System.out.println(file + "\nsize = " + file.length() + "  bytes");
-//
-//
-//            /** ---------------------------------- EX7 --------------------------------- */
-//            Show.show(7);
-//            System.out.println(file + " - Exists? = " + file.exists());
-//            file = new File(inPath + "readme.txt");
-//            System.out.println(file + " - Exists? = " + file.exists());
-//
-//
-//            /** ---------------------------------- EX8 --------------------------------- */
-//            Show.show(8);
-//            file = new File(inPath + "projFile.zip");
-//            System.out.println(file + " - Exists? = " + file.exists());
-//
-//            System.out.println("rename = " + file.renameTo(new File(outPath + "projFile.zip")));
+        Show.show(6);
+        file = new File(inPath + "projFile.zip");
+        System.out.println(file + "\nsize = " + file.length() + "  bytes");
+        Show.getch();
+
+
+        /** ---------------------------------- EX7 --------------------------------- */
+        Show.show(7);
+        System.out.println(file + " - Exists? = " + file.exists());
+        file = new File(inPath + "readme.txt");
+        System.out.println(file + " - Exists? = " + file.exists());
+        Show.getch();
+
+
+        /** ---------------------------------- EX8 --------------------------------- */
+        Show.show(8);
+        file = new File(inPath + "projFile.zip");
+        System.out.println(file + " - Exists? = " + file.exists());
+        System.out.println("rename = " + file.renameTo(new File(outPath + "projFile.zip")));
+        Show.getch();
 
 
         /** ---------------------------------- EX9 --------------------------------- */
-//            Show.show(9);
-//            file = new File(inPath + "projFile.zip");
-//            System.out.println("file = " + file);
-//            System.out.println(file + " - Exists? = " + file.exists());
-//            System.out.println("Absolute path: " + file.getAbsolutePath());
-//
-//
-//            /** ---------------------------------- EX10 --------------------------------- */
-//            Show.show(10);
-//            System.out.println("file = " + file);
-//            System.out.println("file.isDirectory() = " + file.isDirectory());
-//            System.out.println("file.isFile() = " + file.isFile());
-//
+        Show.show(9);
+        file = new File(inPath + "copy.zip");
+        System.out.println("file = " + file);
+        System.out.println(file + " - Exists? = " + file.exists());
+        System.out.println("Absolute path: " + file.getAbsolutePath());
+        Show.getch();
+
+
+        /** ---------------------------------- EX10 --------------------------------- */
+        Show.show(10);
+        System.out.println("file = " + file);
+        System.out.println("file.isDirectory() = " + file.isDirectory());
+        System.out.println("file.isFile() = " + file.isFile());
+        Show.getch();
+
 
         /** ---------------------------------- EX11 --------------------------------- */
-//        Show.show(11);
-//        file = new File(inPath + "filesPr7");
-//        printDir(file);
+        Show.show(11);
+        file = new File(inPath + "filesPr7");
+        printDir(file);
+        Show.getch();
+
 
         /** ---------------------------------- EX12 --------------------------------- */
-//        Show.show(12);
-//        HTMLFileFilter filter = new HTMLFileFilter();
-//        file = new File(inPath + "filesPr7");
-//        filter.printDir(file);
-//
-//
-//        /** ---------------------------------- EX13 --------------------------------- */
-//        Show.show(13);
-//        file = new File(outPath + "newDir" + SP + "sources" + SP + "some");
-//        System.out.println("file.mkdirs() = " + file.mkdirs());
-//        file = new File(outPath + "newDir" + SP + "other" + SP + "pics");
-//        System.out.println("file.mkdirs() = " + file.mkdirs());
+        Show.show(12);
+        System.out.println("HTML-FILES");
+        HTMLFileFilter filter = new HTMLFileFilter();
+        file = new File(inPath + "filesPr7");
+        filter.printDir(file);
+        Show.getch();
 
-        /** ---------------------------------- TEST --------------------------------- */
+
+        /** ---------------------------------- EX13 --------------------------------- */
+        Show.show(13);
+        file = new File(outPath + "newDir" + SP + "sources" + SP + "some");
+        System.out.println("file.mkdirs() = " + file.mkdirs());
+        file = new File(outPath + "newDir" + SP + "other" + SP + "pics");
+        System.out.println("file.mkdirs() = " + file.mkdirs());
     }
 
-    static void printDir(File folder)
+
+    public static void printDir(File folder)
     {
+        // https://www.compart.com/en/unicode/block/U+2500
         System.out.println(folder.getName());
         printDir(folder, "");
     }
 
-    static void printDir(File folder, String prefix)
+    private static void printDir(File folder, String prefix)
     {
         File file;
         File[] fileList = folder.listFiles();
@@ -163,85 +174,6 @@ public class Example
 
     }
 
-    private static void printDir2(File file, int level)
-    {
-        for (File f : file.listFiles())
-        {
-            for (int i = 0; i < level; i++)
-                System.out.print("\t");
-
-            if (f.isDirectory())
-            {
-                System.out.println(f.getName() + "/");
-                printDir2(f, level + 1);
-            }
-            else
-                System.out.println(f.getName());
-        }
-    }
-
-    public static void showFiles(File dir)
-    {
-        for (File f : dir.listFiles())
-        {
-            if (f.isDirectory())
-            {
-                System.out.println("<DIR>  " + f.getName());
-                showFiles(f);
-            }
-            else System.out.println("       " + f.getName());
-        }
-    }
 }
 
 
-class HTMLFileFilter implements FileFilter
-{
-    @Override
-    public boolean accept(File file)
-    {
-        if (file.isDirectory())
-            return true;
-        return file.getName().endsWith(".html");
-    }
-
-    public void printDir(File folder)
-    {
-        System.out.println(folder.getName());
-        printDir(folder, "");
-    }
-
-    /*
-        Сделать так чтобы директории в которых нет html-файлов не отображались
-     */
-    private void printDir(File folder, String prefix)
-    {
-        File file;
-        File[] fileList = folder.listFiles(this::accept);
-
-
-        for (int index = 0; index < fileList.length; index++)
-        {
-            file = fileList[index];
-
-            if (index == fileList.length - 1)
-            {
-                System.out.println(prefix + "┗━━━" + file.getName());  // '┗' ==\u2517, '━' == \u2501
-                if (file.isDirectory())
-                    printDir(file, prefix + "    ");
-            }
-            else
-            {
-                System.out.println(prefix + "┣━━━" + file.getName()); // '┣' == \u2523
-                if (file.isDirectory())
-                    printDir(file, prefix + "┃   "); // '┃' == \u2503
-            }
-        }
-
-    }
-
-
-
-
-
-}
