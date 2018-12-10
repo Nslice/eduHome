@@ -11,26 +11,23 @@ import java.util.regex.Pattern;
 
 public class Example
 {
-    public static void main(String[] args)
+    static final String SP = File.separator;
+
+    public static void main(String[] args) throws IOException
     {
-        final String SP = File.separator;
-
-
         String outPath = "out" + SP + "pr7" + SP;
         String inPath = "input" + SP;
         Random rand = new Random();
-        try
-        {
-            /** ---------------------------------- EX1 --------------------------------- */
-            Show.show(1);
-            File file = new File(outPath + "newFile.txt");
-            System.out.println("create: " + file.createNewFile());
+        /** ---------------------------------- EX1 --------------------------------- */
+        Show.show(1);
+        File file = new File(outPath + "newFile.txt");
+        System.out.println("create: " + file.createNewFile());
 //            System.out.println("create tmp-file: " +
 //                    File.createTempFile("smth", ".tmp", new File(outPath)));
 //            Show.getch();
 
 
-            /** ---------------------------------- EX2 --------------------------------- */
+        /** ---------------------------------- EX2 --------------------------------- */
 //            Show.show(2);
 //            String mytxt = "myfile.txt";
 //            file = new File(outPath + mytxt);
@@ -54,14 +51,14 @@ public class Example
 //            Show.getch();
 
 
-            /** ---------------------------------- EX3 --------------------------------- */
+        /** ---------------------------------- EX3 --------------------------------- */
 //            Show.show(3);
 //            file = new File(outPath + mytxt);
 //            System.out.println("delete \"" + mytxt + "\" = " + file.delete());
 //            Show.getch();
 
 
-            /** ---------------------------------- EX4 --------------------------------- */
+        /** ---------------------------------- EX4 --------------------------------- */
 //            Show.show(4);
 //            file = new File(outPath + "newFile.txt");
 //            System.out.println("Writable? = " + file.canWrite());
@@ -69,7 +66,7 @@ public class Example
 //            System.out.println("Writable? = " + file.canWrite());
 
 
-            /** ---------------------------------- EX5 --------------------------------- */
+        /** ---------------------------------- EX5 --------------------------------- */
 //            Show.show(5);
 //            System.out.println("before last modified = " + new Date(file.lastModified()));
 //            file.setLastModified(file.lastModified() - 5 * 86_400_000);
@@ -77,7 +74,7 @@ public class Example
 //            Show.getch();
 
 
-            /** ---------------------------------- EX6 --------------------------------- */
+        /** ---------------------------------- EX6 --------------------------------- */
 //            Show.show(6);
 //            file = new File(inPath + "projFile.zip");
 //            System.out.println(file + "\nsize = " + file.length() + "  bytes");
@@ -98,7 +95,7 @@ public class Example
 //            System.out.println("rename = " + file.renameTo(new File(outPath + "projFile.zip")));
 
 
-            /** ---------------------------------- EX9 --------------------------------- */
+        /** ---------------------------------- EX9 --------------------------------- */
 //            Show.show(9);
 //            file = new File(inPath + "projFile.zip");
 //            System.out.println("file = " + file);
@@ -113,35 +110,60 @@ public class Example
 //            System.out.println("file.isFile() = " + file.isFile());
 //
 
-            /** ---------------------------------- EX11 --------------------------------- */
-//            Show.show(11);
+        /** ---------------------------------- EX11 --------------------------------- */
+//        Show.show(11);
+//        file = new File(inPath + "filesPr7");
+//        printDir(file);
+
+        /** ---------------------------------- EX12 --------------------------------- */
+//        Show.show(12);
+//        HTMLFileFilter filter = new HTMLFileFilter();
+//        file = new File(inPath + "filesPr7");
+//        filter.printDir(file);
 //
-//            file = new File(inPath + "filesPr7");
-//            System.out.println("\nList of files and folders for archiving:");
-//            showFiles(file);
-
-            /** ---------------------------------- EX12 --------------------------------- */
-//            Show.show(12);
-//            HTMLFileFilter filter = new HTMLFileFilter();
-//            filter.dirs(new File(inPath + "filesPr7"), 0);
 //
+//        /** ---------------------------------- EX13 --------------------------------- */
+//        Show.show(13);
+//        file = new File(outPath + "newDir" + SP + "sources" + SP + "some");
+//        System.out.println("file.mkdirs() = " + file.mkdirs());
+//        file = new File(outPath + "newDir" + SP + "other" + SP + "pics");
+//        System.out.println("file.mkdirs() = " + file.mkdirs());
 
-            /** ---------------------------------- TEST --------------------------------- */
-            Show.show(13);
-            file = new File(inPath + "filesPr7");
-            System.out.println("\nList of files and folders for archiving:");
-            dirs(file, 0);
-
-        }
-        catch (IOException ex)
-        {
-            ex.printStackTrace();
-        }
+        /** ---------------------------------- TEST --------------------------------- */
     }
 
+    static void printDir(File folder)
+    {
+        System.out.println(folder.getName());
+        printDir(folder, "");
+    }
 
+    static void printDir(File folder, String prefix)
+    {
+        File file;
+        File[] fileList = folder.listFiles();
 
-    private static void dirs(File file, int level)
+        for (int index = 0; index < fileList.length; index++)
+        {
+            file = fileList[index];
+
+            if (index == fileList.length - 1)
+            {
+                System.out.println(prefix + "┗━━━" + file.getName());  // '┗' ==\u2517, '━' == \u2501
+                if (file.isDirectory())
+                    printDir(file, prefix + "    ");
+            }
+            else
+            {
+                System.out.println(prefix + "┣━━━" + file.getName()); // '┣' == \u2523
+                if (file.isDirectory())
+                    printDir(file, prefix + "┃   "); // '┃' == \u2503
+            }
+        }
+
+    }
+
+    private static void printDir2(File file, int level)
     {
         for (File f : file.listFiles())
         {
@@ -151,7 +173,7 @@ public class Example
             if (f.isDirectory())
             {
                 System.out.println(f.getName() + "/");
-                dirs(f, level + 1);
+                printDir2(f, level + 1);
             }
             else
                 System.out.println(f.getName());
@@ -170,51 +192,56 @@ public class Example
             else System.out.println("       " + f.getName());
         }
     }
-    public static void dirs(File file)
-    {
-        if (!file.isDirectory()) return;
-        dirs(file, 0);
-    }
-
 }
-
-
 
 
 class HTMLFileFilter implements FileFilter
 {
-    // \w{1,}\s{0,}.*\.html$
-    static Pattern pattern = Pattern.compile("\\.html$");
-    static Matcher matcher = pattern.matcher("");
-
     @Override
-    public boolean accept(File pathname)
+    public boolean accept(File file)
     {
-        matcher.reset(pathname.getName());
-        return matcher.find();
+        if (file.isDirectory())
+            return true;
+        return file.getName().endsWith(".html");
     }
 
-    public void dirs(File file, int level)
+    public void printDir(File folder)
     {
-        for (File f : file.listFiles())
-        {
-            for (int i = 0; i < level; i++)
-            {
-                System.out.print("\t");
-            }
+        System.out.println(folder.getName());
+        printDir(folder, "");
+    }
 
-            if (f.isDirectory())
+    /*
+        Сделать так чтобы директории в которых нет html-файлов не отображались
+     */
+    private void printDir(File folder, String prefix)
+    {
+        File file;
+        File[] fileList = folder.listFiles(this::accept);
+
+
+        for (int index = 0; index < fileList.length; index++)
+        {
+            file = fileList[index];
+
+            if (index == fileList.length - 1)
             {
-                System.out.println(f.getName() + "/");
-                dirs(f, level + 1);
-            }
-            else if (accept(f))
-            {
-                System.out.println(f.getName());
+                System.out.println(prefix + "┗━━━" + file.getName());  // '┗' ==\u2517, '━' == \u2501
+                if (file.isDirectory())
+                    printDir(file, prefix + "    ");
             }
             else
-                for (int i = 0; i < level; i++)
-                    System.out.print("\b");
+            {
+                System.out.println(prefix + "┣━━━" + file.getName()); // '┣' == \u2523
+                if (file.isDirectory())
+                    printDir(file, prefix + "┃   "); // '┃' == \u2503
+            }
         }
+
     }
+
+
+
+
+
 }
