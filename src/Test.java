@@ -29,6 +29,8 @@ public class Test
          * practice5("input\in5.txt");
          * practice6("input\in6.txt", "out\out6.txt", "input\projFile.zip",
          *      "input\forZip", "out\archive.zip");
+         * practice7(void);
+         * practice8(void);
          */
 
         test(practice1.Example.class);
