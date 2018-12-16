@@ -84,14 +84,7 @@ public class Example
                 m.reset(str);
                 if (m.find())
                 {
-                    // System.out.println(str.split(" ")[0]); или так, но это не очень
-                    char ch;
-                    int i = m.start();
-                    while (Character.isAlphabetic(ch = str.charAt(i++)) && i < str.length())
-                    {
-                        System.out.print(ch);
-                    }
-                    System.out.println();
+                    System.out.println(str.split("\\b")[0]);
                 }
             }
         }
