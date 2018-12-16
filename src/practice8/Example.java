@@ -80,7 +80,7 @@ public class Example
 
         for (Field i : Calendar.class.getDeclaredFields())
         {
-            if (i.toString().substring(0, 6).equals("public")) continue;
+            if (Modifier.isPublic(i.getModifiers())) continue;
             System.out.printf("%-100s%-30s\n", i, i.getName());
         }
 
@@ -114,7 +114,6 @@ public class Example
         {
             ex.printStackTrace();
         }
-
 
         System.out.println("Done.");
     }
