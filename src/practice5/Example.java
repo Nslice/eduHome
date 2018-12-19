@@ -84,7 +84,7 @@ public class Example
                 m.reset(str);
                 if (m.find())
                 {
-                    System.out.println(str.split("\\b")[0]);
+                    System.out.println(str.split("([!?.,] *| +)")[0]);
                 }
             }
         }
@@ -92,7 +92,7 @@ public class Example
         {
             ex.printStackTrace();
             System.out.println("Check input arguments");
-            System.out.println("Miss 5 task");
+            System.out.println("Miss task #5");
         }
         Show.getch();
 
