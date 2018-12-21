@@ -40,7 +40,7 @@ public class TxtFile
             token = scanner.next();
             if (token.split("\\s+").length == num)
             {
-                token = token.replaceAll("(\r\n)|\n", " ");
+                token = token.replaceAll("\r\n|\n", " ");
                 os.println(token + ".");
             }
         }
