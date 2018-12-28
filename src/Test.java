@@ -28,6 +28,7 @@ public class Test
          * home3(void);
          * home5(void);
          * home6(void);
+         * home7(void);
          * home8("input/in8.txt", "out/words.txt");
          * home11(void);
          */
