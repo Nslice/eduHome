@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Example
 {
-    static String fromBinToOctString(String bin) throws NumberFormatException
+    static String fromBinToOctString(String bin)
     {
         int str = Integer.parseInt(bin, 2);
         StringBuffer octStr = new StringBuffer(20);
@@ -48,7 +48,7 @@ public class Example
     }
 
 
-    static String fromBinToHexString(String bin) throws NumberFormatException
+    static String fromBinToHexString(String bin)
     {
         int str = Integer.parseInt(bin, 2);
         StringBuffer hexStr = new StringBuffer(20);
