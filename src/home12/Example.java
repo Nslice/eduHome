@@ -1,45 +1,8 @@
 package home12;
 
-import java.nio.charset.Charset;
-import java.util.Comparator;
-import java.util.Locale;
-import java.util.Random;
+import other.Show;
+
 import java.util.Scanner;
-
-class ThreadEx1 extends Thread
-{
-    ThreadEx1(String name)
-    {
-        super(name);
-        System.out.println(getName() + " STARTED");
-    }
-
-    @Override
-    public void run()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            try
-            {
-                System.out.println("message " + i);
-                Thread.sleep(900);
-            }
-            catch (InterruptedException e)
-            {
-                e.printStackTrace();
-            }
-        }
-        System.gc();
-        System.runFinalization();
-    }
-
-    @Override
-    protected void finalize() throws Throwable
-    {
-        System.out.println(getName() + " STOPPED");
-    }
-}
-
 
 class SubThread1 extends Thread
 {
@@ -82,132 +45,67 @@ class SubThread2 extends Thread
 }
 
 
-class ThreadEx3 extends Thread
-{
-    private static int sNumber = 0;
-    private int threadNumber;
-    private int count = 5;
-
-    public ThreadEx3()
-    {
-        this.threadNumber = ++sNumber;
-    }
-
-    public void run()
-    {
-        while (true)
-        {
-            System.out.println("Thread #" + threadNumber + " (" + count + ")");
-            count--;
-            try
-            {
-                Thread.sleep(300);
-            }
-            catch (InterruptedException e)
-            {
-                e.printStackTrace();
-            }
-            if (count == 0)
-            {
-                System.out.println("Thread #" + threadNumber + " stopped ");
-                return;
-            }
-        }
-    }
-
-}
-
-
-class ThreadEx4 implements Runnable
-{
-    Thread th;
-    int iter;
-
-    public ThreadEx4(String name, int iter)
-    {
-        this.iter = iter;
-        th = new Thread(this, name);
-        th.start();
-    }
-
-    @Override
-    public void run()
-    {
-        synchronized (System.out)
-        {
-            for (int i = 1; i <= iter; i++)
-            {
-                try
-                {
-                    System.out.print(th.getName() + " - " + i + "; ");
-                    Thread.sleep(new Random().nextInt(500));
-                }
-                catch (InterruptedException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-            System.out.println();
-        }
-    }
-}
-
-
 public class Example
 {
 
 
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args)
     {
-
-        System.out.println("Example.main");
-        Thread th = null;
-//        for (int i = 0; i < 5; i++)
-//        {
-//            th = new ThreadEx3();
-//            th.start();
-//        }
-//        try
-//        {
-//            th.join();
-//        }
-//        catch (InterruptedException e)
-//        {
-//            e.printStackTrace();
-//        }
-
-        ThreadEx1 t = new ThreadEx1("thread ex1");
-        t.start();
-        ThreadEx1 t2 = new ThreadEx1("thread2 ex1");
-        t2.start();
+        /** ---------------------------------- EX1 --------------------------------- */
+        Show.show(1);
+        try
+        {
+            new ThreadEx1("thread1 ex1");
+            new ThreadEx1("thread2 ex1").join();
+            System.gc();
+            System.runFinalization();
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
 
 
-        t.join();
-        t2.join();
-
-        int n = 2, m = 5;
-
-        Scanner scanner = new Scanner(System.in);
-        scanner.useLocale(Locale.ENGLISH);
-
-//        n = scanner.nextInt();
-//        m = scanner.nextInt();
-//
-//
-//
-//        for (int i = 0; i < n; i++)
-//        {
-//            new ThreadEx4("Thread_" + i, m);
-//        }
-
+        /** ---------------------------------- EX3 --------------------------------- */
+        Show.show(3);
+        try
+        {
+            Thread th = null;
+            for (int i = 0; i < 5; i++)
+            {
+                th = new ThreadEx3();
+                th.start();
+            }
+            th.join();
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
 
 
-        
+        /** ---------------------------------- EX4 --------------------------------- */
+        Show.show(4);
+        Scanner scanner = null;
+        try
+        {
+            int n = 2, m = 5;
+            scanner = new Scanner(System.in);
+            System.out.println("Enter N, M: ");
+            n = scanner.nextInt();
+            m = scanner.nextInt();
 
-
-
-
+            ThreadEx4 th = null;
+            for (int i = 0; i < n; i++)
+                th = new ThreadEx4("Thread_" + i, m);
+            th.th.join();
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
 
         scanner.close();
+        System.out.println("Done.");
     }
 }
