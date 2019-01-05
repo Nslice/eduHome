@@ -1,31 +1,42 @@
 package home14;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Date;
 
 public class Server implements Runnable
 {
-    private ServerSocket server;
     private Socket connection;
+    private ServerSocket server;
     private ObjectInputStream input;
     private ObjectOutputStream output;
+    private boolean isRunning = true;
+
 
     @Override
     public void run()
     {
         try
         {
-            server = new ServerSocket(1177);
+            String request = "";
+            server = new ServerSocket(1234);
             while (true)
             {
                 connection = server.accept();
-                connection = server.accept();
                 output = new ObjectOutputStream(connection.getOutputStream());
-                output.flush();
                 input = new ObjectInputStream(connection.getInputStream());
-                output.writeObject("Вы прислали: " + input.readObject());
-                output.flush();
+                request = (String) input.readObject();
+                switch (request)
+                {
+                case "date":
+                    output.writeObject(new Date().toString());
+                    break;
+                default:
+                    output.writeObject("Unknown: " + request);
+                }
             }
         }
         catch (Exception e)
@@ -39,6 +50,7 @@ public class Server implements Runnable
                 input.close();
                 output.close();
                 connection.close();
+                isRunning = false;
             }
             catch (IOException e)
             {

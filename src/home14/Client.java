@@ -4,49 +4,47 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
-import java.net.InetAddress;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 public class Client extends JFrame implements Runnable
 {
     private Socket connection;
-    private InputStream input;
-    private OutputStream output;
+    private ObjectInputStream input;
+    private ObjectOutputStream output;
+    private boolean isRunning = true;
 
-    Client()
+    private JLabel label;
+
+    public Client()
     {
         setLayout(new FlowLayout());
-        setSize(450, 300);
+        pack();
+        setSize(340, 340);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
         setLocationRelativeTo(null);
+        setVisible(true);
 
+        label = new JLabel("Connecting...");
         JTextField field = new JTextField(10);
-        JButton button = new JButton("send");
-        button.addActionListener(new ActionListener()
+
+
+        JButton send = new JButton("send");
+        send.addActionListener(new ActionListener()
         {
+            @Override
             public void actionPerformed(ActionEvent e)
             {
-                if (e.getSource() == button)
-                {
-//                    System.out.println(field.getText());
-//                    sendData(field.getText());
-                    try
-                    {
-                        output.write(25354);
-                    }
-                    catch (IOException e1)
-                    {
-                        e1.printStackTrace();
-                    }
-                }
+                sendData(field.getText());
+                field.setText("");
             }
         });
 
+        add(send);
         add(field);
-        add(button);
+        add(label);
     }
 
 
@@ -55,46 +53,47 @@ public class Client extends JFrame implements Runnable
     {
         try
         {
-            while (true)
+            while (isRunning)
             {
-
-                connection = new Socket(InetAddress.getByName("127.0.0.1"), 1177);
-                input = connection.getInputStream();
-                output = connection.getOutputStream();
-//                JOptionPane.showMessageDialog(null,
-//                        (String) input.readObject());
-//                System.out.println(input);
-//                System.out.println(output);
-                output.write(44);
+                connection = new Socket("127.0.0.1", 1234);
+                output = new ObjectOutputStream(connection.getOutputStream());
+                input = new ObjectInputStream(connection.getInputStream());
+                label.setText("Connected");
+                JOptionPane.showMessageDialog(null, (String) input.readObject());
             }
         }
-        catch (UnknownHostException ex)
+        catch (Exception e)
         {
-            System.out.println("UnknownHost");
-            ex.printStackTrace();
+            e.printStackTrace();
         }
-        catch ( IOException ex)
+        finally
         {
-            ex.printStackTrace();
+            try
+            {
+                input.close();
+                output.close();
+                connection.close();
+                isRunning = false;
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
         }
-
-
     }
 
-    private void sendData(Object obj)
+
+    public void sendData(String str)
     {
-//        System.out.println((String) obj);
-//        System.out.println(Thread.currentThread().getName());
-//        try
-//        {
-//            output.flush();
-//            output.writeObject(obj);
-//        }
-//        catch (IOException e)
-//        {
-//            e.printStackTrace();
-//            System.out.println("wtf");
-//        }
+        try
+        {
+            output.flush();
+            output.writeObject(str);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
     }
 }
