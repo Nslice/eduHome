@@ -15,6 +15,11 @@ public class Server implements Runnable
     private ObjectOutputStream output;
     private boolean isRunning = true;
 
+    public static void main(String[] args)
+    {
+        System.out.println("Server started  ");
+        new Thread(new Server()).start();
+    }
 
     @Override
     public void run()
@@ -26,6 +31,7 @@ public class Server implements Runnable
             while (true)
             {
                 connection = server.accept();
+                System.out.println(connection.getInetAddress());
                 output = new ObjectOutputStream(connection.getOutputStream());
                 input = new ObjectInputStream(connection.getInputStream());
                 request = (String) input.readObject();
