@@ -22,15 +22,17 @@ public class Test
     public static void main(String[] args)
     {
         /**
-         * Serialize("input\info2.txt", "out\binObj.bin");
+         * Serialize("input/info2.txt", "out/binObj.bin");
          * home1(double, double);   13, 6.2
-         * home2("input\info2.txt");
+         * home2("input/info2.txt");
          * home3(void);
          * home5(void);
          * home6(void);
          * home7(void);
          * home8("input/in8.txt", "out/words.txt");
          * home11(void);
+         * home12(void);
+         * home14(void);
          */
 
         /*

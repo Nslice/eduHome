@@ -4,46 +4,6 @@ import other.Show;
 
 import java.util.Scanner;
 
-class SubThread1 extends Thread
-{
-    Thread thread;
-
-    public SubThread1()
-    {
-    }
-
-    public SubThread1(Thread otherThread)
-    {
-        this.thread = otherThread;
-    }
-
-    @Override
-    public void run()
-    {
-        while (true)
-        {
-            try
-            {
-                System.out.println("SubThread 1 ");
-                Thread.sleep(900);
-            }
-            catch (InterruptedException e)
-            {
-                e.printStackTrace();
-            }
-        }
-    }
-}
-
-class SubThread2 extends Thread
-{
-    @Override
-    public void run()
-    {
-
-    }
-}
-
 
 public class Example
 {

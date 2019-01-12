@@ -118,7 +118,7 @@ public class Example
             {
                 double low = p.getRadius() - p.getRadius() * 10.0 / 100.0;
                 double high = p.getRadius() + p.getRadius() * 10.0 / 100.0;
-                if (radius > low && radius < high)
+                if (radius >= low && radius <= high)
                 {
                     check = true;
                     System.out.println(p + "\n");
@@ -150,7 +150,7 @@ public class Example
             {
                 double low = p.getWeight() - p.getWeight() * 10.0 / 100.0;
                 double high = p.getWeight() + p.getWeight() * 10.0 / 100.0;
-                if (weight > low && weight < high)
+                if (weight >= low && weight <= high)
                 {
                     check = true;
                     System.out.println(p + "\n");

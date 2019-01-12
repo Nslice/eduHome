@@ -28,7 +28,7 @@ public class Server implements Runnable
         {
             String request = "";
             server = new ServerSocket(1234);
-            while (true)
+            while (isRunning)
             {
                 connection = server.accept();
                 System.out.println(connection.getInetAddress());

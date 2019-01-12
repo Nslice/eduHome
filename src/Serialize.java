@@ -3,11 +3,6 @@ import home2.space.Planet;
 import java.io.*;
 import java.util.Vector;
 
-/**
- * ДОБАВИТЬ (де)сериализацию c JSON
- * http://qaru.site/questions/16517/java-json-serialization-best-practice
- */
-
 
 public class Serialize
 {
@@ -31,7 +26,6 @@ public class Serialize
             ex.printStackTrace();
             return;
         }
-
 
 
         /** СЕРИАЛИЗАЦИЯ */
@@ -63,5 +57,6 @@ public class Serialize
             System.out.println(p + "\n");
 
 
+        System.out.println("Done.");
     }
 }

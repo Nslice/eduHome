@@ -74,10 +74,9 @@ public class Example
                     System.out.println("Invalid argument");
                     ex.printStackTrace();
                 }
-
             }
         }
-        catch (InputMismatchException ex)       // тут посмотреть, исправить
+        catch (InputMismatchException ex)
         {
             System.out.println("Invalid argument");
             ex.printStackTrace();
@@ -85,8 +84,6 @@ public class Example
 
         in.close();
         System.out.println("Done.");
-
-
     }
 
 }
