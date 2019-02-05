@@ -1,4 +1,4 @@
-package practice2;
+package p2.practice;
 
 import other.Show;
 import java.text.DateFormat;
@@ -25,6 +25,7 @@ class Time
 }
 
 
+@SuppressWarnings("deprecation")
 public class Example
 {
     public static void main(String[] args) throws java.text.ParseException
@@ -61,7 +62,7 @@ public class Example
         //ex5:
         Show.show(5);
         String dateString = "12.10.1996";
-        DateFormat dateForm = DateFormat.getDateInstance();
+        DateFormat dateForm = DateFormat.getDateInstance(DateFormat.SHORT);
         date = dateForm.parse(dateString);
         System.out.println(date);
         Show.getch();
@@ -127,6 +128,7 @@ public class Example
         System.out.println("Average = " + (double)sum / arr.length);
         long end = System.currentTimeMillis();
         System.out.println("Time of operation = " + (end - start) + " milliseconds");
-    }
 
+        System.out.println("Done.");
+    }
 }

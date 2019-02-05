@@ -1,4 +1,4 @@
-package practice1;
+package p1.practice;
 
 import other.Show;
 import java.io.StringReader;
@@ -125,6 +125,7 @@ public class Example
         tokenizer = new StringTokenizer(str);
         while (tokenizer.hasMoreTokens())
             System.out.println(tokenizer.nextToken());
-    }
 
+        System.out.println("Done.");
+    }
 }
