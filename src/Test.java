@@ -23,8 +23,8 @@ public class Test
     {
         /**
          * Serialize("input/info2.txt", "out/binObj.bin");
-         * home1(double, double);   13, 6.2
-         * home2("input/info2.txt");
+         * p1.home(double, double);   13, 6.2
+         * p2.home("input/info2.txt");
          * home3(void);
          * home5(void);
          * home6(void);
@@ -39,8 +39,8 @@ public class Test
           ³ = "\u00B3"
          */
 
-        test(home1.Example.class, "13", "6.2");
-//        test(home2.Example.class, "input\\info2.txt");
+        test(p1.home.Example.class, "13", "6.2");
+//        test(p2.home.Example.class, "input\\info2.txt");
     }
 }
 

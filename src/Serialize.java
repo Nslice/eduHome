@@ -1,4 +1,4 @@
-import home2.space.Planet;
+import p2.home.space.Planet;
 
 import java.io.*;
 import java.util.Vector;
