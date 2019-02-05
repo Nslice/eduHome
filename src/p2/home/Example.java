@@ -1,6 +1,6 @@
-package home2;
+package p2.home;
 
-import home2.space.Planet;
+import p2.home.space.Planet;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -13,7 +13,7 @@ import java.util.Vector;
 // > javadoc -d path -encoding utf8 -private -author -version %1.java %2.java
 
 /**
- * Тестируюищй класс для класса {@link home2.space.Planet}.
+ * Тестируюищй класс для класса {@link p2.home.space.Planet}.
  *
  * @author Talgat
  * @author some@mail.com

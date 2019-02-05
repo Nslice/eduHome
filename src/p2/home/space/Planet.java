@@ -1,4 +1,4 @@
-package home2.space;
+package p2.home.space;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package home1;
+package p1.home;
 
 import other.Show;
 
