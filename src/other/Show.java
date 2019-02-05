@@ -1,5 +1,7 @@
 package other;
 
+import java.io.IOException;
+
 
 public class Show
 {
@@ -7,10 +9,9 @@ public class Show
     {
         try
         {
-            byte[] bts = new byte[2];
-            System.in.read(bts);
+            System.in.readAllBytes();
         }
-        catch (java.io.IOException e)
+        catch (IOException e)
         {
             e.printStackTrace();
         }
@@ -22,5 +23,4 @@ public class Show
         System.out.printf("%17s %d\n", "Task", taskNumber);
         System.out.println("------------------------------------");
     }
-
 }

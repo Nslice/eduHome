@@ -4,7 +4,7 @@
 *.iml
 *.bat
 *.sh
-src/practice8/Calendar.java
+src/p8.practice/Calendar.java
 =======
 /.idea
 /out

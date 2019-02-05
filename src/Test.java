@@ -22,40 +22,40 @@ public class Test
     public static void main(String[] args)
     {
         /**
-<<<<<<< HEAD
-         * p1.practice(void);
-         * p2.practice(void);
-         * practice3(void);
-         * practice4(void);
-         * practice5("input\in5.txt");
-         * practice6("input\in6.txt", "out\out6.txt", "input\projFile.zip",
-         *      "input\forZip", "out\archive.zip");
-         * practice7(void);
-         * practice8(void);
-         */
-
-        test(p1.practice.Example.class);
-=======
-         * Serialize("input/info2.txt", "out/binObj.bin");
-         * p1.home(double, double);   13, 6.2
-         * p2.home("input/info2.txt");
-         * home3(void);
-         * home5(void);
-         * home6(void);
-         * home7(void);
-         * home8("input/in8.txt", "out/words.txt");
-         * home11(void);
-         * home12(void);
-         * home14(void);
-         */
-
-        /*
-          ³ = "\u00B3"
-         */
-
-        test(p1.home.Example.class, "13", "6.2");
-//        test(p2.home.Example.class, "input\\info2.txt");
->>>>>>> merger/master
+//<<<<<<< HEAD
+//         * p1.practice(void);
+//         * p2.practice(void);
+//         * p3.practice(void);
+//         * p4.practice(void);
+//         * p5.practice("input\in5.txt");
+//         * p6.practice("input\in6.txt", "out\out6.txt", "input\projFile.zip",
+//         *      "input\forZip", "out\archive.zip");
+//         * p7.practice(void);
+//         * p8.practice(void);
+//         */
+//
+//        test(p1.practice.Example.class);
+//=======
+//         * Serialize("input/info2.txt", "out/binObj.bin");
+//         * p1.home(double, double);   13, 6.2
+//         * p2.home("input/info2.txt");
+//         * p3.home(void);
+//         * p5.home(void);
+//         * p6.home(void);
+//         * p7.home(void);
+//         * p8.home("input/in8.txt", "out/words.txt");
+//         * p11.home(void);
+//         * p12.home(void);
+//         * p14.home(void);
+//         */
+//
+//        /*
+//          ³ = "\u00B3"
+//         */
+//
+//        test(p1.home.Example.class, "13", "6.2");
+////        test(p2.home.Example.class, "input\\info2.txt");
+//>>>>>>> merger/master
     }
 }
 
