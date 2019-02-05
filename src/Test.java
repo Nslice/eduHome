@@ -22,8 +22,8 @@ public class Test
     public static void main(String[] args)
     {
         /**
-         * practice1(void);
-         * practice2(void);
+         * p1.practice(void);
+         * p2.practice(void);
          * practice3(void);
          * practice4(void);
          * practice5("input\in5.txt");
@@ -33,7 +33,7 @@ public class Test
          * practice8(void);
          */
 
-        test(practice1.Example.class);
+        test(p1.practice.Example.class);
     }
 }
 
