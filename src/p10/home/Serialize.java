@@ -1,3 +1,5 @@
+package p10.home;
+
 import p2.home.space.Planet;
 
 import java.io.*;
@@ -8,7 +10,7 @@ public class Serialize
 {
     public static void main(String[] args)
     {
-        /** СЧИТЫВАНИЕ ИЗ .txt */
+        /** СЧИТЫВАНИЕ ИЗ txt */
         Vector<Planet> planets = new Vector<>(20);
 
         try (BufferedReader freader = new BufferedReader(new FileReader(args[0])))

@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+
 public class Client extends JFrame implements Runnable
 {
     private Socket connection;
@@ -17,6 +18,7 @@ public class Client extends JFrame implements Runnable
     private boolean isRunning = true;
 
     private JLabel label;
+
 
     public Client()
     {

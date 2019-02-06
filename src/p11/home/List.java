@@ -1,5 +1,6 @@
 package p11.home;
 
+
 @FunctionalInterface
 interface ArrayCreator<R>
 {
@@ -26,7 +27,6 @@ public class List<T>
             this.next = next;
             this.prev = prev;
         }
-
     }
 
 
@@ -122,5 +122,4 @@ public class List<T>
         }
         return ar;
     }
-
 }

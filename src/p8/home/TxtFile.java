@@ -1,12 +1,14 @@
 package p8.home;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.Scanner;
+
 
 public class TxtFile
 {
     private File txt;
-
 
     /**
      * Открывает txt файл.
@@ -14,11 +16,6 @@ public class TxtFile
      * @param path путь к файлу.
      */
     public TxtFile(String path)
-    {
-        txt = new File(path);
-    }
-
-    public void open(String path)
     {
         txt = new File(path);
     }

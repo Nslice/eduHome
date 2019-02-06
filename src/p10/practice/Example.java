@@ -5,6 +5,7 @@ import other.Show;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class Example
 {
     static String fromBinToOctString(String bin)
@@ -32,6 +33,7 @@ public class Example
         }
         return octStr.toString().replaceFirst("\\b0+", "");
     }
+
 
     static String fromBinToDecString(String bin)
     {
@@ -94,6 +96,7 @@ public class Example
         String binStr = fromOctToBinString(oct).replace(" ", "");
         return fromBinToDecString(binStr);
     }
+
 
     static String fromHexToBinString(String hex)
     {
@@ -177,8 +180,6 @@ public class Example
             num = num / 2;
             count++;
         }
-
-
         return binStr.reverse().toString();
     }
 
@@ -191,7 +192,6 @@ public class Example
 //////// НЕ СДЕЛАНО
         return octStr.reverse().toString();
     }
-
 
 
     public static void main(String[] args)
@@ -265,6 +265,5 @@ public class Example
 //        snum = "765F";
 //        System.out.println(Integer.toOctalString(Integer.parseInt(snum, 16)));
 
-        System.out.println("synch");
     }
 }

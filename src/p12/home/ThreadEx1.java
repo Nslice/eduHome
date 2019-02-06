@@ -1,5 +1,7 @@
 package p12.home;
 
+
+@SuppressWarnings("deprecation")
 public class ThreadEx1 extends Thread
 {
     ThreadEx1(String name)
@@ -8,7 +10,7 @@ public class ThreadEx1 extends Thread
         System.out.println(getName() + " STARTED");
         start();
     }
-
+    
     @Override
     public void run()
     {

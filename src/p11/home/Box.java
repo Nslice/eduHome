@@ -2,16 +2,16 @@ package p11.home;
 
 import java.util.ArrayList;
 
+
 public class Box<T>
 {
     private ArrayList<T> list;
-    //-------------------------------------------------------------------------------
+
 
     public Box()
     {
         this.list = new ArrayList<T>();
     }
-
 
     public Box(T... args)
     {
@@ -20,18 +20,15 @@ public class Box<T>
             this.push_back(obj);
     }
 
-
     public int size()
     {
         return list.size();
     }
 
-
     public void clear()
     {
         list.clear();
     }
-
 
     public void push_back(T... data)
     {
@@ -39,12 +36,10 @@ public class Box<T>
             push_back(obj);
     }
 
-
     public void push_back(T data)
     {
         list.add(list.size(), data);
     }
-
 
     public T pop_back()
     {
@@ -56,7 +51,6 @@ public class Box<T>
         }
         else return null;
     }
-
 
     public void show()
     {

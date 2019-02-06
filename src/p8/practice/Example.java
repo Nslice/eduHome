@@ -13,12 +13,11 @@ import java.util.Date;
 
 public class Example
 {
-
     public static void main(String[] args)
     {
         /** ---------------------------------- EX1 --------------------------------- */
         Show.show(1);
-        Class<?> cls = "".getClass();
+        Class<?> cls = String.class;
         System.out.println(cls);
         Show.getch();
 

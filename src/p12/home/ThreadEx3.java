@@ -1,10 +1,12 @@
 package p12.home;
 
+
 public class ThreadEx3 extends Thread
 {
     private static int sId = 0;
     private int id;
     private int count = 5;
+
 
     public ThreadEx3()
     {
@@ -27,7 +29,5 @@ public class ThreadEx3 extends Thread
             }
         }
         System.out.println("Thread #" + id + " stopped ");
-
     }
-
 }

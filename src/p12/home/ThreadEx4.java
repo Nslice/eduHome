@@ -2,6 +2,7 @@ package p12.home;
 
 import java.util.Random;
 
+
 public class ThreadEx4 implements Runnable
 {
     Thread th;

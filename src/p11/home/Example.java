@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
 
 public class Example
 {
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args)
     {
         for (Method m : Planet.class.getDeclaredMethods())
             System.out.println(m);
@@ -17,11 +17,8 @@ public class Example
         Box<Planet> list = new Box<>();
         list.pop_back();
 
-        list.push_back(new Planet("Earth"),
-                new Planet("Mars"),
-                new Planet("Venus"),
-                new Planet("Neptune"));
-
+        list.push_back(new Planet("Earth"), new Planet("Mars"),
+                       new Planet("Venus"), new Planet("Neptune"));
         list.show();
 
         System.out.println("\n\n\n");
@@ -35,6 +32,4 @@ public class Example
 
         System.out.println("Done.");
     }
-
-
 }

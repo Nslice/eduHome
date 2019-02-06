@@ -7,6 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
 
+
 public class Server implements Runnable
 {
     private Socket connection;
@@ -14,6 +15,7 @@ public class Server implements Runnable
     private ObjectInputStream input;
     private ObjectOutputStream output;
     private boolean isRunning = true;
+
 
     public static void main(String[] args)
     {
@@ -35,6 +37,7 @@ public class Server implements Runnable
                 output = new ObjectOutputStream(connection.getOutputStream());
                 input = new ObjectInputStream(connection.getInputStream());
                 request = (String) input.readObject();
+
                 switch (request)
                 {
                 case "date":
@@ -63,6 +66,5 @@ public class Server implements Runnable
                 e.printStackTrace();
             }
         }
-
     }
 }

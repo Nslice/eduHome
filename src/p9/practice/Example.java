@@ -1,93 +1,68 @@
 package p9.practice;
 
-class NewThread extends Thread
-{
 
+class MyThread1 extends Thread
+{
     @Override
     public void run()
     {
-        for (int i = 0; i < 15; i++)
+        try
         {
-            System.out.println("Running extends Thread");
-            try {
+            for (int i = 0; i < 5; i++)
+            {
+                System.out.println("Running... (extends Thread)");
                 Thread.sleep(500);
             }
-            catch (Exception ex)
-            {
-                ex.printStackTrace();
-            }
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
         }
     }
 }
 
 
-
-class NewThread2 implements Runnable
+class MyThread2 implements Runnable
 {
-    NewThread2()
+    MyThread2()
     {
         new Thread(this).start();
     }
 
-
     @Override
     public void run()
     {
-        for (int i = 0; i < 15; i++)
+        try
         {
-            System.out.println("Running implements Runnable");
-            try {
+            for (int i = 0; i < 5; i++)
+            {
+                System.out.println("Running... (implements Runnable)");
                 Thread.sleep(500);
             }
-            catch (Exception ex)
-            {
-                ex.printStackTrace();
-            }
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
         }
     }
 }
 
 
-
-class MyThread
+class MyThread3
 {
     Thread th;
-    MyThread()
+
+    MyThread3(Runnable thread)
     {
-
-        th = new Thread()
-        {
-            @Override
-            public void run()
-            {
-                for (int i = 0; i < 15; i++)
-                {
-                    System.out.println("Running annonym class");
-                    try {
-                        Thread.sleep(500);
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.printStackTrace();
-                    }
-                }
-            }
-        };
-
-
+        th = new Thread(thread);
+        th.start();
     }
 }
 
 
-class MyThread2 extends Thread
+class MyThread4 extends Thread
 {
-
     boolean done = false;
-    MyThread2()
-    {
-        super();
-
-    }
 
     @Override
     public void run()
@@ -95,11 +70,11 @@ class MyThread2 extends Thread
         int n = 0;
         while (!done)
         {
-
-            n++;
-            if (n >= 10) shutDown();
-            System.out.println("Running EX4");
-            try {
+            try
+            {
+                n++;
+                if (n >= 10) shutDown();
+                System.out.println("MyThread4 running, n = " + n);
                 Thread.sleep(500);
             }
             catch (Exception ex)
@@ -107,53 +82,46 @@ class MyThread2 extends Thread
                 ex.printStackTrace();
             }
         }
-
     }
-
 
     void shutDown()
     {
         done = true;
-
-
     }
 }
-
-
 
 
 public class Example
 {
     public static void main(String[] args) throws Exception
     {
-        // new NewThread().start();
-        // new NewThread2().start();
-        MyThread2 thread = new MyThread2();
-        thread.start();
-
-        // Thread.sleep(4000);
-        // thread.shutDown();
-
-        // Thread.sleep(4000);
+        new MyThread1().start();
+        new MyThread2();
 
 
-        // new Thead()
-        // {
-        // 	@Override
-        // 	public void run()
-        // 	{
-        // 		System.out.println("Running annonym class");
-        // 		try {
-        // 			Thread.sleep(500);
-        // 		}
-        // 		catch (Exception ex)
-        // 		{
-        // 			ex.printStackTrace();
-        // 		}
-        // 	}
-        // }
+        new MyThread3(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                try
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        System.out.println("Running from annonym class");
+                        Thread.sleep(500);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
+        }).th.join();
 
 
+        new MyThread4().start();
 
+        System.out.println("MAIN THREAD STOPPED.");
     }
 }

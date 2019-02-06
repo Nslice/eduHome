@@ -2,6 +2,7 @@ package p11.home.space;
 
 import java.io.Serializable;
 
+
 public class Planet implements Serializable
 {
     private String name;
@@ -93,6 +94,5 @@ public class Planet implements Serializable
         return "Planet - " + name + "\nRadius - " + radius + "\nWeight - " + weight
                 + "\nSystem - " + planetSystem + "\n";
     }
-
 }
 
