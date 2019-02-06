@@ -3,9 +3,10 @@ package p6.practice;
 import other.Show;
 
 import java.io.*;
-import java.nio.file.attribute.FileTime;
-import java.util.*;
-import java.util.zip.ZipEntry;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Formatter;
+import java.util.Locale;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
@@ -36,7 +37,9 @@ public class Example
         Show.show(2);
         float hits = 10, a = 3;
         System.out.println(String.format("hits / a = %.3f", hits / a));
-        System.out.println(new Formatter().format("hits / a = %.3f", hits / a));
+        Formatter formatter = new Formatter();
+        System.out.println(formatter.format("hits / a = %.3f", hits / a));
+        formatter.close();
         Show.getch();
 
 
@@ -70,7 +73,7 @@ public class Example
             }
             System.out.println();
         }
-        catch (ArrayIndexOutOfBoundsException | IOException ex)
+        catch (ArrayIndexOutOfBoundsException ex)
         {
             ex.printStackTrace();
             return;
@@ -118,21 +121,12 @@ public class Example
 
         /** ---------------------------------- EX8 --------------------------------- */
         Show.show(8);
-        try (ZipFile zfile = new ZipFile(args[2]))
+        try (ZipFile file = new ZipFile((args[2])))
         {
-            System.out.println("archive name: " + zfile.getName());
-            System.out.println(zfile.getComment());
-            System.out.println("count of entries: " + zfile.size());
-
-            Enumeration<? extends ZipEntry> nm = zfile.entries();
-            System.out.println();
-
-            while (nm.hasMoreElements())
-            {
-                ZipEntry entry = nm.nextElement();
-                if (entry.isDirectory()) System.out.println("<DIR>  " + entry.getName());
-                else System.out.println("       " + entry.getName());
-            }
+            System.out.println("archive name: " + file.getName());
+            System.out.println("comment: " + file.getComment());
+            System.out.println("entries " + file.size());
+            p6.practice.Zip.showZip(file);
         }
         catch (ArrayIndexOutOfBoundsException | IOException ex)
         {
@@ -147,30 +141,25 @@ public class Example
         if (args.length < 5) return;
         Show.show(9);
 
-        // определяет текущую директорию:
         String currrentDir = System.getProperty("user.dir");
         System.out.println("current dir: " + currrentDir);
-        //класс File не только файлы открывает, можно и директории (папки),
-        //можно просто передать точку, тогда откроется текущая директория (т.е проекта)
 
         File file = new File(args[3]);
         System.out.println("file.getAbsolutePath() = " + file.getAbsolutePath());
         System.out.println("file.getPath() = " + file.getPath());
-        //если в конструкторе передать точку, то не будет известна директория выше
         System.out.println("file.getParent() = " + file.getParent());
 
-        System.out.println("\nList of files and folders for archiving:");
         for (File f : file.listFiles())
         {
             if (f.isDirectory()) System.out.println("<DIR>  " + f.getName());
             else System.out.println("       " + f.getName());
         }
 
+
         long start = System.currentTimeMillis();
         try (ZipOutputStream zipOut = new ZipOutputStream(new FileOutputStream(args[4])))
         {
-            byte[] buffer = new byte[8192];
-            doZip(zipOut, file, buffer);
+            p6.practice.Zip.doZip(zipOut, file);
         }
         catch (IOException ex)
         {
@@ -178,43 +167,8 @@ public class Example
             return;
         }
         long end = System.currentTimeMillis();
-
-
         System.out.println("Time of operation " + (end - start) + " ms");
+
         System.out.println("Done.");
     }
-
-
-    public static void doZip(ZipOutputStream stream, File dir, byte[] buffer) throws IOException
-    {
-        for (File f : dir.listFiles())
-        {
-            if (f.isDirectory())
-            {
-                //для пустых папок:
-                ZipEntry entry = new ZipEntry(f.getPath() + "\\");
-                entry.setLastModifiedTime(FileTime.fromMillis(f.lastModified()));
-                stream.putNextEntry(entry);
-
-                doZip(stream, f, buffer); //рекурсивный вызов
-                stream.closeEntry();
-            }
-            else
-            {
-                ZipEntry entry = new ZipEntry(f.getPath());
-                entry.setLastModifiedTime(FileTime.fromMillis(f.lastModified()));
-                stream.putNextEntry(entry);
-
-                int length;
-                FileInputStream fin = new FileInputStream(f);
-                while ((length = fin.read(buffer)) != -1)
-                    stream.write(buffer, 0, length);
-                stream.closeEntry();
-                fin.close();
-            }
-        }
-
-    }
-
-
 }

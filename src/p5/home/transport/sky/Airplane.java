@@ -196,7 +196,6 @@ public class Airplane extends Vehicle
     }
 
 
-
 //    public static void main(String[] args) throws Vehicle.CountryError
 //    {
 //        Airplane plane = new Airplane(1, "Boeing 747-400", 395_700,

@@ -197,6 +197,5 @@ public class Planet implements Serializable
         return "Planet - " + name + "\nRadius - " + radius + "\nWeight - " + weight
                 + "\nSystem - " + planetSystem;
     }
-
 }
 

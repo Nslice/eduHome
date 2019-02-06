@@ -164,6 +164,4 @@ public class Example
         scanner.close();
         System.out.println("Done.");
     }
-
-
 }

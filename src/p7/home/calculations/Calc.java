@@ -17,7 +17,7 @@ public class Calc
     {
         if (!((y > 0 && x > 0) || (y < 0 && x < 0)))
             throw new CalcErr("x = " + x + ", y = " + y);
-        
+
         double a = 2.1, b = 4.7;
         return (1 / (b * b)) * (Math.log(y / x) + a * x / y);
     }

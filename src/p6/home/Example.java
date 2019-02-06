@@ -1,6 +1,5 @@
 package p6.home;
 
-
 import p6.home.time.MyDate;
 
 import java.util.Calendar;
@@ -60,8 +59,6 @@ public class Example
         System.out.println();
         System.out.println(new MyDate().nameDayOfWeek());
         System.out.println(new MyDate().currentDayOfWeek());
-
-
     }
 
 
@@ -79,6 +76,4 @@ public class Example
         System.out.print(calendar.getTime());
         System.out.println(" = " + calendar.get(Calendar.WEEK_OF_YEAR));
     }
-
-
 }

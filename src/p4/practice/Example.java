@@ -128,6 +128,7 @@ public class Example
         value = 125.5;
         System.out.println("log(" + value + ") = " + log(125.5));
         System.out.println("log10(" + value + ") = " + log10(125.5));
-    }
 
+        System.out.println("Done.");
+    }
 }

@@ -114,7 +114,5 @@ public class Warplane extends Airplane
                 "Rockets: " + rockets;
         return str;
     }
-
-
 }
 

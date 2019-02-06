@@ -1,21 +1,15 @@
 package p3.home;
 
+import other.Show;
 import p3.home.calculations.Calc;
 import p3.home.calculations.Formula;
 import p3.home.calculations.MyArray;
 import p3.home.calculations.NumberSeries;
-import other.Show;
 
 import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
-
-
-/**  NumberSeries.calculate передвать точность, поле убрать
- в myarray разделить создание и иниц. метод. fill, открыть массив
- в ex2 добавить проверку ввода
- */
 
 public class Example
 {
@@ -48,7 +42,6 @@ public class Example
         System.out.println("Enter x:");
         x = in.nextDouble();
         System.out.printf("%.4f\n", Calc.formulaT2(x));
-
         Show.getch();
 
 
@@ -85,5 +78,4 @@ public class Example
         in.close();
         System.out.println("Done.");
     }
-
 }

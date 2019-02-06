@@ -1,8 +1,8 @@
 package p1.practice;
 
 import other.Show;
+
 import java.io.StringReader;
-import java.lang.StringBuffer;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
@@ -87,9 +87,9 @@ public class Example
         while (!stack.empty())
         {
             if (revStr.length() != 0)
-                revStr.insert(revStr.length(), " " );
+                revStr.insert(revStr.length(), " ");
 
-            revStr.insert(revStr.length(), stack.pop() );
+            revStr.insert(revStr.length(), stack.pop());
         }
 
         System.out.println(str + "\n" + revStr);

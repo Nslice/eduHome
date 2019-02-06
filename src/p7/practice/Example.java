@@ -7,12 +7,19 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Random;
 
+
 public class Example
 {
     static final String SP = File.separator;
     static final String outPath = "out" + SP + "pr7" + SP;
     static final String inPath = "input" + SP;
 
+    static
+    {
+        new File(outPath).mkdirs();
+    }
+
+    
     public static void main(String[] args) throws IOException
     {
         Random rand = new Random();
@@ -22,7 +29,7 @@ public class Example
         file = new File(outPath + "newFile.txt");
         System.out.println("create: " + file.createNewFile());
         System.out.println("create tmp-file: " +
-                File.createTempFile("smth", ".tmp", new File(outPath)));
+                                   File.createTempFile("smth", ".tmp", new File(outPath)));
         Show.getch();
 
 
@@ -81,7 +88,6 @@ public class Example
         Show.show(6);
         file = new File(inPath + "projFile.zip");
         System.out.println(file + "\nsize = " + file.length() + "  bytes");
-
         Show.getch();
 
 
@@ -99,11 +105,13 @@ public class Example
         System.out.println(file + " - Exists? = " + file.exists());
         System.out.println("rename = " + file.renameTo(new File(outPath + "projFile.zip")));
         Show.getch();
+        //вернуть обратно
+        new File(outPath + "projFile.zip").renameTo(new File(inPath + "projFile.zip"));
 
 
         /** ---------------------------------- EX9 --------------------------------- */
         Show.show(9);
-        file = new File(inPath + "copy.zip");
+        file = new File(inPath + "projFile.zip");
         System.out.println("file = " + file);
         System.out.println(file + " - Exists? = " + file.exists());
         System.out.println("Absolute path: " + file.getAbsolutePath());
@@ -140,77 +148,9 @@ public class Example
         System.out.println("file.mkdirs() = " + file.mkdirs());
         file = new File(outPath + "newDir" + SP + "other" + SP + "pics");
         System.out.println("file.mkdirs() = " + file.mkdirs());
-    }
 
-
-}
-
-
-class Dir
-{
-    // https://www.compart.com/en/unicode/block/U+2500
-
-    private static int maxLvl;
-    //------------------------------------------------------------------------
-
-    /**
-     * Выводит дерево директорий и папок, включая все вложенные.
-     *
-     * @param folder директория.
-     */
-    public static void printDir(File folder)
-    {
-        maxLvl = -1;
-        System.out.println(folder.getAbsolutePath());
-        printDir(folder, "", 0);
-    }
-
-    /**
-     * Выводит дерево директорий и папок, включая вложенные до заданной глубины.
-     *
-     * @param folder директория.
-     * @param level  уровень вложенности.
-     */
-    public static void printDir(File folder, int level)
-    {
-        maxLvl = level;
-        System.out.println(folder.getAbsolutePath());
-        printDir(folder, "", 0);
-    }
-
-    /**
-     * Напрямую этот метод не вызывается.
-     *
-     * @param folder     директория.
-     * @param prefix     строка с пробелами и спец. символами.
-     * @param currentLvl текущий уровень вложенности.
-     */
-    private static void printDir(File folder, String prefix, int currentLvl)
-    {
-        if (currentLvl == maxLvl) return;
-
-        File file;
-        File[] fileList = folder.listFiles();
-
-
-        for (int index = 0; index < fileList.length; index++)
-        {
-            file = fileList[index];
-            if (file.isHidden()) continue;
-
-            if (index == fileList.length - 1)
-            {
-                System.out.println(prefix + "┗━━━" + file.getName());  // '┗' ==\u2517, '━' == \u2501
-                if (file.isDirectory())
-                    printDir(file, prefix + "    ", currentLvl + 1);
-            }
-            else
-            {
-                System.out.println(prefix + "┣━━━" + file.getName()); // '┣' == \u2523
-                if (file.isDirectory())
-                    printDir(file, prefix + "┃   ", currentLvl + 1); // '┃' == \u2503
-            }
-        }
-
+        System.out.println("Done.");
     }
 }
+
+

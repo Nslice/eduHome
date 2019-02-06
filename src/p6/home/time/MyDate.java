@@ -98,5 +98,4 @@ public class MyDate extends Date implements Week
         int number = currentDayOfWeek();
         return Names.values()[number].toString();
     }
-
 }

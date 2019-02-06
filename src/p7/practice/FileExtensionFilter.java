@@ -3,18 +3,19 @@ package p7.practice;
 import java.io.File;
 import java.io.FileFilter;
 
+
 public class FileExtensionFilter implements FileFilter
 {
     private String extenstion;
     private int maxLvl;
-    //------------------------------------------------------------------------
+
 
     public FileExtensionFilter(String extenstion)
     {
         this.extenstion = "." + extenstion;
     }
 
-    
+
     @Override
     public boolean accept(File file)
     {
@@ -66,7 +67,5 @@ public class FileExtensionFilter implements FileFilter
                     printDir(file, prefix + "┃   ", currentLvl + 1); // '┃' == \u2503
             }
         }
-
     }
-
 }

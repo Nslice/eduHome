@@ -1,17 +1,5 @@
 package p5.practice;
 
-/*
-    https://regex101.com
-    https://regexone.com
-
-    (clear regex):
-    [ ]         - символьный класс
-    [^5]        - отрицание, любой символ кроме '5'
-    \Q 1+1 \E   - буквальное выражение между \Q и \E
-    \b          - граница слова
-    \B          - не граница слова
- */
-
 import other.Show;
 
 import java.io.BufferedReader;
@@ -19,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 public class Example
 {
@@ -106,7 +95,6 @@ public class Example
             System.out.println("subsequence: " + m.group());
             System.out.println("    indexes: " + m.start() + "-" + m.end());
         }
-
 
         System.out.println("Done.");
     }

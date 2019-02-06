@@ -12,7 +12,7 @@ public class Example
     public static void main(String[] args) throws Vehicle.CountryError
     {
         Airplane plane = new Airplane(1, "Boeing 747-400", 395_700,
-                917);
+                                      917);
         plane.setTankVolume(216_840).setConsumption(2600).setFuelLevel(50_000)
                 .setSpeed(755).setFlyHours(735.2);
 
@@ -70,7 +70,7 @@ public class Example
             System.out.println(obj.getCountry());
             if (obj instanceof Car)
             {
-                Car tmp = (Car) obj;   
+                Car tmp = (Car) obj;
                 System.out.println("\n" + tmp + " \n");
             }
         }

@@ -148,6 +148,4 @@ public class Truck extends Car
                 "Fuel level: " + getFuelLevel() + " L";
         return str;
     }
-
-
 }

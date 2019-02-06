@@ -6,6 +6,7 @@ import p7.home.space.Planet;
 import java.util.Locale;
 import java.util.Scanner;
 
+
 public class Example
 {
     public static void main(String[] args)
@@ -26,7 +27,6 @@ public class Example
             System.out.println("exp.message: \"" + ex.getMessage() + "\"");
         }
         System.out.println("\n");
-
 
 
         Scanner in = new Scanner(System.in);

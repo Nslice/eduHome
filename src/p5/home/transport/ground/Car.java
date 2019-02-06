@@ -56,7 +56,7 @@ public class Car extends Vehicle
     {
         return consumption;
     }
-    
+
     public Car setTankVolume(double tankVolume)
     {
         this.tankVolume = tankVolume;
@@ -152,5 +152,4 @@ public class Car extends Vehicle
                 "Fuel level: " + fuelLevel + " L";
         return str;
     }
-
 }

@@ -132,6 +132,7 @@ public class Example
         System.out.println(Arrays.toString(strs));
 
         scanner.close();
+        System.out.println("Done.");
     }
 
 }

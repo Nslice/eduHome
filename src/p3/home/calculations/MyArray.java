@@ -7,7 +7,7 @@ public class MyArray
 {
     private int[] arr;
 
-    //--------------------------------------------------------------------
+
     public MyArray(int size, int low, int high)
     {
         arr = new int[size];
@@ -60,5 +60,4 @@ public class MyArray
 
         return sum;
     }
-
 }

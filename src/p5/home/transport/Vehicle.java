@@ -10,9 +10,6 @@ public abstract class Vehicle implements IManufacturer
     //------------------------------------------------------------------------
 
 
-    /**
-     * Класс исключения
-     */
     public static class CountryError extends Exception
     {
     }
@@ -98,5 +95,6 @@ public abstract class Vehicle implements IManufacturer
 
 
     public abstract Vehicle setFuelLevel(double lvl);
+
     public abstract double getFuelLevel();
 }
