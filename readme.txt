@@ -5,15 +5,6 @@ doc.bat:
     src\home2\space\Planet.java src\home2\Example.java
     %dest%\index.html
 
-doc.sh:
-    #!/usr/bin/env bash
-    javadoc -d docPath -encoding utf8 -private -author -version home2/space/Planet.java home2/Example.java
-
- 	# запуск:
-    # chmod +x some.sh
-    # ./some.sh
-
-
 Компиляция и запуск из cmd Windows:
 run.bat:
     chcp 65001

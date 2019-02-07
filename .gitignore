@@ -1,14 +1,5 @@
-<<<<<<< HEAD
 /out
 /.idea
 *.iml
 *.bat
 *.sh
-src/p8.practice/Calendar.java
-=======
-/.idea
-/out
-*.iml
-*.bat
-*.sh
->>>>>>> merger/master
